@@ -7,3 +7,5 @@ https://financial-cents.com/resources/articles/feed/
 #t http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957	Wiley: Journal of Business Finance & Accounting: Table of Contents
 #t https://www.techjunkie.com/feed/	Tech Junkie
 #t https://financial-cents.com/resources/articles/feed/	Articles – Financial Cents
+https://financial-cents.com/feed/
+#t https://financial-cents.com/feed/	Financial Cents
