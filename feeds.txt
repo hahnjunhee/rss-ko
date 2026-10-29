@@ -1,0 +1,3 @@
+# 원본 피드 목록 (한 줄에 하나, #은 주석)
+https://note.com/recommend/rss
+https://www.techjunkie.com/feed/
