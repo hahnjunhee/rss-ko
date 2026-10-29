@@ -2,3 +2,4 @@
 https://note.com/recommend/rss
 https://www.techjunkie.com/feed/
 http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957
+https://financial-cents.com/resources/articles/feed/
