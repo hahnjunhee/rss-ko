@@ -1,0 +1,43 @@
+name: Update feed
+
+# 한글 요약 피드(feed.xml) 갱신. 매일 00/04/08/12/16/20시(KST). 수동 실행 가능.
+on:
+  schedule:
+    - cron: "0 3,7,11,15,19,23 * * *"   # UTC (= KST 12/16/20/00/04/08시). GitHub 스케줄은 지연될 수 있음
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-feed
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch feeds and summarize new items
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/fetch_and_summarize.py
+      - name: Validate feed.xml
+        run: python -c "import xml.etree.ElementTree as ET; ET.parse('feed.xml')"
+      - name: Commit and push
+        run: |
+          git diff --quiet -- feed.xml items.json seen.json && { echo "변경 없음"; exit 0; }
+          git config user.name "hahnjunhee"
+          git config user.email "sgr.jhub@gmail.com"
+          git add feed.xml items.json seen.json
+          git commit -m "Feed update ($(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST)"
+          # 관리 화면이 feeds.txt를 직접 커밋하므로 그 사이 main이 앞서 있을 수 있다.
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 3
+          done
+          exit 1
