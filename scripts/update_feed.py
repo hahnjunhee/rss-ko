@@ -6,6 +6,8 @@ Usage:
   update_feed.py add <new_items.json>      # merges items, rewrites feed.xml / items.json / seen.json
 
 new_items.json: [{"source","link","pubDate","title_orig","title_ko","summary_ko"}, ...]
+  번역 실패로 원문을 임시 게재하는 글은 "untranslated": true, "attempts": N 이 붙는다. 같은 링크가 나중에
+  번역되어 오면 임시 항목을 대체한다.
 """
 import json, sys, html
 from datetime import datetime, timezone, timedelta
@@ -46,15 +48,20 @@ def cmd_add(path):
     now = datetime.now(timezone.utc)
     seen, items = load(SEEN, {}), load(ITEMS, [])
     new = json.loads(Path(path).read_text(encoding="utf-8"))
-    known = {i["link"] for i in items}
+    by_link = {i["link"]: i for i in items}
     added = 0
     for n in new:
-        if not n.get("link") or n["link"] in known:
+        if not n.get("link"):
             continue
+        old = by_link.get(n["link"])
+        if old is not None:
+            if not old.get("untranslated"):
+                continue
+            items.remove(old)  # 원문 임시 게재 항목은 새 결과(번역 성공 또는 재시도 횟수 갱신)로 대체한다
         for k in ("source", "pubDate", "title_orig", "title_ko", "summary_ko"):
             n.setdefault(k, "")
         items.append(n)
-        known.add(n["link"])
+        by_link[n["link"]] = n
         seen[n["link"]] = now.date().isoformat()
         added += 1
     items.sort(key=lambda i: parse_date(i["pubDate"]), reverse=True)
@@ -81,8 +88,9 @@ def write_feed(items, now):
         f"<lastBuildDate>{format_datetime(now)}</lastBuildDate>",
     ]
     for i in items:
+        note = "<p>(자동 번역에 실패해 원문을 그대로 싣습니다)</p>" if i.get("untranslated") else ""
         body = (
-            f"<p>{e(i['summary_ko'])}</p>"
+            f"{note}<p>{e(i['summary_ko'])}</p>"
             f"<p>원제: {e(i['title_orig'])}<br/>출처: {e(i['source'])}</p>"
         )
         out += [

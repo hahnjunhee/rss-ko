@@ -90,11 +90,12 @@ class ParseTest(Base):
 
 
 class SummarizeTest(Base):
-    BODY = " ".join(f"Sentence number {i} talks about rocket engines and orbital launches today." for i in range(10))
+    WORDS = "alpha bravo charlie delta echo foxtrot golf hotel india juliet".split()
+    BODY = " ".join(f"Sentence about rocket engines and {w} launches number{i} today." for i, w in enumerate(WORDS))
 
     def test_extract_picks_n_sentences_and_caps(self):
         s = self.m.extract_summary("rocket", self.BODY, 2, 500)
-        self.assertEqual(s.count("Sentence number"), 2)
+        self.assertEqual(s.count("Sentence about"), 2)
         self.assertLessEqual(len(self.m.extract_summary("x", self.BODY, 5, 100)), 100)
         self.assertEqual(self.m.extract_summary("t", "짧음", 3, 50), "짧음")
 
@@ -119,6 +120,62 @@ class SummarizeTest(Base):
             def read(s, *a): return json.dumps([[["안녕 ", "Hello ", None], ["세상", "world", None]], None, "en"]).encode()
         with unittest.mock.patch("urllib.request.urlopen", return_value=R()), unittest.mock.patch("time.sleep"):
             self.assertEqual(self.m.translate("Hello world"), "안녕 세상")
+
+    def test_japanese_short_sentences_are_summarized(self):
+        ja = "今日は映画を観てきました。とても良い作品でした。主演の演技が素晴らしかったです。次はもう一度観たいです。"
+        s = self.m.extract_summary("映画の感想", ja, 2, 500)
+        self.assertEqual(s.count("。"), 2)  # 20자 미만 문장을 버려 전체가 그대로 나오던 문제
+
+    def test_junk_removed_and_decimal_not_split(self):
+        text = "Version v1.2 is out with 3.5x faster builds. #news #tech Subscribe to our newsletter! The post X appeared first on Y."
+        self.assertEqual(self.m.split_sentences(text), ["Version v1.2 is out with 3.5x faster builds."])
+
+    def test_short_excerpt_is_translated_not_dropped(self):
+        self.m.translate = lambda x, *a: "KO:" + x
+        t, s = self.real_summarize({"title": "Hi", "body": "Short note"})
+        self.assertEqual(s, "KO:Short note")
+
+    def test_translate_retries_then_succeeds(self):
+        calls = []
+        def gtx(text):
+            calls.append(text)
+            if len(calls) < 3:
+                raise self.m.urllib.error.HTTPError("u", 429, "slow", {}, None)
+            return "OK"
+        self.m.gtx = gtx
+        with unittest.mock.patch("time.sleep") as sl:
+            self.assertEqual(self.m.translate("hello"), "OK")
+        self.assertEqual(len(calls), 3)
+        self.assertEqual([c.args[0] for c in sl.call_args_list][:2], list(self.m.BACKOFF))
+
+    def test_translate_fatal_error_not_retried_and_exhaustion_raises(self):
+        n = []
+        def bad(text):
+            n.append(1)
+            raise self.m.urllib.error.HTTPError("u", 400, "bad", {}, None)
+        self.m.gtx = bad
+        with unittest.mock.patch("time.sleep"), self.assertRaises(self.m.urllib.error.HTTPError):
+            self.m.translate("hello")
+        self.assertEqual(len(n), 1)
+        self.m.gtx = lambda t: (_ for _ in ()).throw(TimeoutError("t"))
+        with unittest.mock.patch("time.sleep"), self.assertRaises(TimeoutError):
+            self.m.translate("hello again")
+
+    def test_translate_uses_cache_and_version_key(self):
+        calls = []
+        self.m.gtx = lambda t: calls.append(t) or "KO"
+        with unittest.mock.patch("time.sleep"):
+            self.m.translate("same text")
+            self.m.translate("same text")
+            self.assertEqual(len(calls), 1)
+            self.m.PROCESS_VERSION = "2"
+            self.m.translate("same text")
+        self.assertEqual(len(calls), 2)
+
+    def test_check_item_flags(self):
+        self.assertEqual(self.m.check_item("t", "Sales rose 12.5% to 3,400", "t", "매출이 늘었다"), ["요약 숫자 누락 ['12.5', '3,400']"])
+        self.assertEqual(self.m.check_item("t", "売上は１２％増", "t", "매출 12% 증가"), [])
+        self.assertIn("요약 비어 있음", self.m.check_item("t", "x y z", "t", " "))
 
 
 class MainTest(Base):
@@ -168,6 +225,65 @@ class MainTest(Base):
         self.assertIn("boom", text)
         self.assertIn("요약 실패 1건", text)
         self.assertIn("신규 2건", text)
+
+    def test_item_failure_falls_back_then_retranslates(self):
+        def flaky(item):
+            if item["link"].endswith("a1"):
+                raise ValueError("boom")
+            return self._summarize(item)
+        self.m.summarize = flaky
+        self.pages[FEED_B] = OSError("boom")
+        items = self.run_main()
+        a1 = next(i for i in items if i["link"].endswith("a1"))
+        self.assertTrue(a1["untranslated"])
+        self.assertEqual((a1["attempts"], a1["title_ko"]), (1, "A1"))
+        self.assertIn("자동 번역에 실패", (self.tmp / "feed.xml").read_text(encoding="utf-8"))
+        self.m.summarize = self._summarize
+        items = self.run_main()
+        a1 = next(i for i in items if i["link"].endswith("a1"))
+        self.assertNotIn("untranslated", a1)
+        self.assertEqual(a1["title_ko"], "한글 A1")
+        self.assertEqual(len([i for i in items if i["link"].endswith("a1")]), 1)
+
+    def test_attempts_exhausted_not_retried(self):
+        def flaky(item):
+            if item["link"].endswith("a1"):
+                raise ValueError("boom")
+            return self._summarize(item)
+        self.m.summarize = flaky
+        self.pages[FEED_B] = OSError("boom")
+        self.run_main()
+        ip = self.tmp / "items.json"
+        items = json.loads(ip.read_text(encoding="utf-8"))
+        for i in items:
+            if i.get("untranslated"):
+                i["attempts"] = self.m.MAX_ATTEMPTS
+        ip.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
+        calls = []
+        self.m.summarize = lambda item: calls.append(item["link"]) or self._summarize(item)
+        self.run_main()
+        self.assertNotIn("https://note.com/u/n/a1", calls)
+
+    def test_breaker_stops_and_publishes_nothing_on_outage(self):
+        self.m.BREAKER = 2
+        def down(item):
+            self.summarized.append(item["link"])
+            raise OSError("down")
+        self.m.summarize = down
+        items = self.run_main()
+        self.assertEqual(len(self.summarized), 2)
+        self.assertFalse(any(i["link"] in ("https://note.com/u/n/a1", "https://note.com/u/n/a2", "https://example.org/b1") for i in items))
+        self.assertNotIn("https://note.com/u/n/a1", json.loads((self.tmp / "seen.json").read_text(encoding="utf-8")))
+
+    def test_dry_run_changes_nothing(self):
+        before = {n: (self.tmp / n).read_bytes() for n in ("feed.xml", "items.json", "seen.json")}
+        out = self.tmp / "dry.json"
+        with unittest.mock.patch.dict(os.environ, {"DRY_RUN_OUT": str(out)}), unittest.mock.patch("sys.argv", ["x", "--dry-run"]):
+            self.m.main()
+        for n, b in before.items():
+            self.assertEqual((self.tmp / n).read_bytes(), b)
+        self.assertEqual(len(json.loads(out.read_text(encoding="utf-8"))), 4)  # 이미 처리한 old 글도 포함
+        self.assertFalse((self.tmp / "translations.json").exists())
 
     def test_real_data_untouched(self):
         before = {n: (REPO / n).read_bytes() for n in ("feed.xml", "items.json", "seen.json")}
