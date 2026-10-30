@@ -251,9 +251,41 @@ class SummarizeTest(Base):
         self.m.ENGINES[0].__name__, self.m.ENGINES[1].__name__ = "cut", "full"
         self.assertTrue(self.m.gtx(src).endswith("이야기"))
         self.assertEqual(self.m.ENGINE_SHORT["cut"], 1)
-        self.m.ENGINES = [lambda t: "「우리는 우주인」"]  # 다른 엔진도 짧으면 짧은 쪽이라도 쓴다
+        self.m.ENGINES = [lambda t: "「우리는 우주인」"]  # 다른 엔진도 짧고 나눌 곳도 없으면 짧은 쪽이라도 쓴다
         self.m.ENGINES[0].__name__ = "only"
-        self.assertEqual(self.m.gtx(src), "「우리는 우주인」")
+        self.assertEqual(self.m.gtx("男児の親目線で観たら思わぬところで抉られた話"), "「우리는 우주인」")
+
+    def test_gtx_splits_into_parts_when_all_engines_truncate(self):
+        src = "『我々は宇宙人』 男児の親目線で観たら、思わぬところで抉られた話"
+        calls = []
+        def eng(t):
+            calls.append(t)
+            if t == src:
+                return "「우리는 우주인」"  # 전체를 보내면 뒤쪽이 잘린다
+            return {"『我々は宇宙人』": "『우리는 우주인』", "男児の親目線で観たら、思わぬところで抉られた話": "남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기"}[t]
+        eng.__name__ = "e"
+        self.m.ENGINES = [eng]
+        out = self.m.gtx(src)
+        self.assertEqual(out, "『우리는 우주인』 남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기")
+        self.assertEqual(self.m.ENGINE_SPLIT["split"], 1)
+        self.assertEqual(len(calls), 3)  # 전체 1회 + 조각 2회
+
+    def test_split_parts_only_at_brackets_and_punctuation(self):
+        sp = self.m.split_parts
+        self.assertEqual(sp("『我々は宇宙人』 男児の親目線で観たら"), ["『我々は宇宙人』", "男児の親目線で観たら"])
+        self.assertEqual(sp("How to Clean Up Old Videos Without Losing Quality"), [])  # 영어 단어 단위로는 나누지 않음
+        self.assertEqual(sp("First sentence here. Second one follows."), ["First sentence here.", "Second one follows."])
+        self.assertEqual(sp("a. b. c. d. e. f. g."), [])  # 7조각 이상이면 나누지 않음
+
+    def test_summary_prefers_informative_lead_over_greeting(self):
+        ja = ("落合陽一です．今日は，小室哲哉さんが横浜のnull²ⁿ（ヌルヌルネクサス）に遊びに来てくれた夜の話．"
+              "27日は夕方にTBSで収録があって，そのあと横浜のランドマークプラザの5階に向かった．"
+              "お客さんがもう誰もいない館で小室さんを迎えて，部屋を見てもらってから，ワインを開けて1時間あまり喋った．"
+              "1か月くらい，ほぼこれしかやっていない．続きをみる")
+        s = self.m.extract_summary("全部言葉でできた世界に，色がついていく", ja, 3, 500)
+        self.assertIn("小室哲哉", s)
+        self.assertNotIn("落合陽一です", s)
+        self.assertNotIn("続きをみる", s)
 
     def test_gtx_strips_zero_width(self):
         self.m.ENGINES = [lambda t: "용도를\u200b\u200b변경"]
