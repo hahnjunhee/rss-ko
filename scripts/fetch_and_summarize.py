@@ -194,15 +194,73 @@ def cache_key(text):
     return hashlib.sha1(f"{PROCESS_VERSION}\0{text}".encode()).hexdigest()
 
 
-def gtx(text):
+def _open(req):
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.read().decode("utf-8", "replace")
+
+
+def gtx_api(text):
+    """translate.googleapis.com gtx 엔드포인트(POST)."""
     req = urllib.request.Request(
         "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ko&dt=t",
         data=urllib.parse.urlencode({"q": text[:4500]}).encode(), headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        out = "".join(seg[0] for seg in json.load(r)[0] if seg and seg[0])
-    if not out.strip():
-        raise ValueError("empty translation")
-    return out.strip()
+    return "".join(seg[0] for seg in json.loads(_open(req))[0] if seg and seg[0])
+
+
+def parse_chrome(data):
+    """clients5 응답 모양이 여러 가지라 알려진 형태를 모두 받는다."""
+    if isinstance(data, dict):
+        return "".join(x.get("trans", "") for x in data.get("sentences", []))
+    if isinstance(data, list) and data:
+        first = data[0]
+        if isinstance(first, str):
+            return first
+        if isinstance(first, list) and first and isinstance(first[0], str):
+            return first[0]
+    return ""
+
+
+def gtx_chrome(text):
+    """clients5.google.com 크롬 확장용 엔드포인트(POST). IP 제한이 gtx_api와 따로 걸리는 경우가 많다."""
+    req = urllib.request.Request(
+        "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&tl=ko&dt=t",
+        data=urllib.parse.urlencode({"q": text[:4500]}).encode(), headers={"User-Agent": UA})
+    return parse_chrome(json.loads(_open(req)))
+
+
+def parse_mobile(page):
+    m = re.search(r'class="result-container">(.*?)</div>', page, re.S)
+    return html.unescape(m.group(1)) if m else ""
+
+
+def gtx_mobile(text):
+    """translate.google.com/m 모바일 웹(GET). URL 길이 제한 때문에 인코딩 후 6000자를 넘으면 쓰지 않는다."""
+    q = urllib.parse.quote(text[:4500])
+    if len(q) > 6000:
+        raise ValueError("too long for mobile endpoint")
+    req = urllib.request.Request(f"https://translate.google.com/m?sl=auto&tl=ko&q={q}",
+                                 headers={"User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36"})
+    return parse_mobile(_open(req))
+
+
+ENGINES = [gtx_api, gtx_chrome, gtx_mobile]
+ENGINE_STATS = Counter()
+
+
+def gtx(text):
+    """엔진을 순서대로 시도해 처음 성공한 결과를 돌려준다. 모두 실패하면 첫 엔진의 예외를 올린다
+    (재시도 여부는 translate()가 첫 엔진의 오류 코드로 판단한다)."""
+    first = None
+    for engine in ENGINES:
+        try:
+            out = engine(text)
+            if not out.strip():
+                raise ValueError("empty translation")
+            ENGINE_STATS[engine.__name__] += 1
+            return out.strip()
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, IndexError, TypeError) as e:
+            first = first or e
+    raise first
 
 
 def translate(text, delay=1.5):
@@ -366,9 +424,11 @@ def main():
                 print(f"::warning::검사 {it['link']}: {f}")
         out = Path(os.environ.get("DRY_RUN_OUT") or ROOT / "dry-run-items.json")
         out.write_text(json.dumps(new_items, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"번역 엔진 사용: {dict(ENGINE_STATS)}")
         print(f"dry-run: {len(new_items)}건 → {out} (검사 경고 {warns}건, 실제 파일은 변경하지 않음)")
         return
     save_tcache()
+    print(f"번역 엔진 사용: {dict(ENGINE_STATS)}")
     if not new_items:
         print("새 글 없음")
         return

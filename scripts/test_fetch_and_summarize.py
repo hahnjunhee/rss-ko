@@ -160,6 +160,33 @@ class SummarizeTest(Base):
             self.assertEqual(self.m.translate("hello"), "OK")
         self.assertEqual([c.args[0] for c in sl.call_args_list][:2], [7, self.m.MAX_WAIT])
 
+    def test_gtx_falls_back_to_next_engine(self):
+        def down(text):
+            raise self.m.urllib.error.HTTPError("u", 429, "slow", {}, None)
+        self.m.ENGINES = [down, lambda text: " 안녕 "]
+        self.m.ENGINES[1].__name__ = "second"
+        self.assertEqual(self.m.gtx("hello"), "안녕")
+        self.assertEqual(dict(self.m.ENGINE_STATS), {"second": 1})
+
+    def test_gtx_raises_first_engine_error_and_rejects_empty(self):
+        def e429(text):
+            raise self.m.urllib.error.HTTPError("u", 429, "slow", {}, None)
+        def e403(text):
+            raise self.m.urllib.error.HTTPError("u", 403, "no", {}, None)
+        self.m.ENGINES = [e429, e403, lambda text: "  "]
+        with self.assertRaises(self.m.urllib.error.HTTPError) as c:
+            self.m.gtx("hello")
+        self.assertEqual(c.exception.code, 429)  # 재시도 여부는 첫 엔진 오류로 판단
+
+    def test_parse_chrome_and_mobile_shapes(self):
+        pc = self.m.parse_chrome
+        self.assertEqual(pc({"sentences": [{"trans": "안녕 "}, {"trans": "세상"}]}), "안녕 세상")
+        self.assertEqual(pc(["안녕"]), "안녕")
+        self.assertEqual(pc([["안녕", "hello"]]), "안녕")
+        self.assertEqual(pc({}), "")
+        self.assertEqual(self.m.parse_mobile('<div class="result-container">안녕 &amp; 세상</div>'), "안녕 & 세상")
+        self.assertEqual(self.m.parse_mobile("<html></html>"), "")
+
     def test_translate_fatal_error_not_retried_and_exhaustion_raises(self):
         n = []
         def bad(text):
