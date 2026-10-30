@@ -25,7 +25,8 @@ SENTENCES = int(os.environ.get("SUMMARY_SENTENCES", "3"))
 MAX_SUMMARY = 500  # 요약 최대 글자 수(번역 전)
 PROCESS_VERSION = "1"  # 요약·번역 규칙을 바꾸면 올린다(번역 캐시 키에 들어가 이전 결과를 재사용하지 않는다)
 RETRIES = 2        # 번역 일시 오류 재시도 횟수
-BACKOFF = (2, 6)   # 재시도 전 대기(초)
+BACKOFF = (5, 15)  # 재시도 전 대기(초). 429 응답에 Retry-After가 있으면 그 값(최대 MAX_WAIT초)을 따른다
+MAX_WAIT = 60
 BREAKER = 3        # 글이 연속으로 이만큼 실패하면 서비스 장애로 보고 이번 실행의 나머지를 건너뛴다
 MAX_ATTEMPTS = 3   # 번역 실패로 원문을 임시 게재한 글을 다시 번역해 보는 최대 횟수
 CACHE_KEEP = 1000  # 번역 캐시 보관 개수
@@ -204,9 +205,9 @@ def gtx(text):
     return out.strip()
 
 
-def translate(text, delay=0.4):
+def translate(text, delay=1.5):
     """Google 번역(비공식 gtx 엔드포인트). 이미 한글이 대부분이면 그대로 두고, 같은 입력은 캐시를 쓴다.
-    429·5xx·타임아웃·빈 응답은 RETRIES번까지 대기 후 다시 시도하고, 그래도 안 되면 예외."""
+    429·5xx·타임아웃·빈 응답은 RETRIES번까지 대기(Retry-After 우선) 후 다시 시도하고, 그래도 안 되면 예외."""
     if not text or len(re.findall(r"[가-힣]", text)) > len(text) * 0.3:
         return text
     key = cache_key(text)
@@ -214,6 +215,7 @@ def translate(text, delay=0.4):
         return TCACHE[key]
     last = None
     for attempt in range(RETRIES + 1):
+        wait = BACKOFF[min(attempt, len(BACKOFF) - 1)]
         try:
             out = gtx(text)
             TCACHE[key] = out
@@ -223,10 +225,13 @@ def translate(text, delay=0.4):
             if e.code not in RETRY_CODES:
                 raise
             last = e
+            retry_after = (e.headers.get("Retry-After") if e.headers else None) or ""
+            if retry_after.strip().isdigit():
+                wait = min(int(retry_after), MAX_WAIT)
         except (urllib.error.URLError, TimeoutError, ValueError) as e:
             last = e
         if attempt < RETRIES:
-            time.sleep(BACKOFF[min(attempt, len(BACKOFF) - 1)])
+            time.sleep(wait)
     raise last
 
 

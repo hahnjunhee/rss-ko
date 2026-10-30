@@ -148,6 +148,18 @@ class SummarizeTest(Base):
         self.assertEqual(len(calls), 3)
         self.assertEqual([c.args[0] for c in sl.call_args_list][:2], list(self.m.BACKOFF))
 
+    def test_translate_honors_retry_after_with_cap(self):
+        seq = iter(["7", "999"])
+        def gtx(text):
+            try:
+                raise self.m.urllib.error.HTTPError("u", 429, "slow", {"Retry-After": next(seq)}, None)
+            except StopIteration:
+                return "OK"
+        self.m.gtx = gtx
+        with unittest.mock.patch("time.sleep") as sl:
+            self.assertEqual(self.m.translate("hello"), "OK")
+        self.assertEqual([c.args[0] for c in sl.call_args_list][:2], [7, self.m.MAX_WAIT])
+
     def test_translate_fatal_error_not_retried_and_exhaustion_raises(self):
         n = []
         def bad(text):
