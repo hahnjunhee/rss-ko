@@ -260,15 +260,35 @@ class SummarizeTest(Base):
         calls = []
         def eng(t):
             calls.append(t)
-            if t == src:
-                return "「우리는 우주인」"  # 전체를 보내면 뒤쪽이 잘린다
+            if t == src or t.startswith('"'):
+                return "「우리는 우주인」"  # 전체를 보내면(괄호를 따옴표로 바꿔도) 뒤쪽이 잘린다
             return {"『我々は宇宙人』": "『우리는 우주인』", "男児の親目線で観たら、思わぬところで抉られた話": "남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기"}[t]
         eng.__name__ = "e"
         self.m.ENGINES = [eng]
         out = self.m.gtx(src)
         self.assertEqual(out, "『우리는 우주인』 남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기")
-        self.assertEqual(self.m.ENGINE_SPLIT["split"], 1)
-        self.assertEqual(len(calls), 3)  # 전체 1회 + 조각 2회
+        self.assertEqual(self.m.ENGINE_FIXED["split"], 1)
+        self.assertEqual(len(calls), 4)  # 전체 1회 + 괄호 변환 1회 + 조각 2회
+
+    def test_gtx_retries_with_brackets_normalized_before_splitting(self):
+        src = "『我々は宇宙人』 男児の親目線で観たら、思わぬところで抉られた話"
+        calls = []
+        def eng(t):
+            calls.append(t)
+            if "『" in t:
+                return "「우리는 우주인」"  # 괄호가 있으면 뒤가 잘린다
+            return '"우리는 우주인" 남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기'
+        eng.__name__ = "e"
+        self.m.ENGINES = [eng]
+        self.assertEqual(self.m.gtx(src), "『우리는 우주인』 남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기")
+        self.assertEqual(dict(self.m.ENGINE_FIXED), {"bracket": 1})
+        self.assertEqual(len(calls), 2)  # 조각별 번역까지 가지 않는다
+
+    def test_bracket_helpers(self):
+        norm, seq = self.m.normalize_brackets("『A』と「B」")
+        self.assertEqual((norm, seq), ('"A"と"B"', ["『", "』", "「", "」"]))
+        self.assertEqual(self.m.restore_brackets('"가"와 "나"', seq), "『가』와 「나」")
+        self.assertEqual(self.m.restore_brackets('"가" 나', seq), '"가" 나')  # 개수가 다르면 그대로
 
     def test_split_parts_only_at_brackets_and_punctuation(self):
         sp = self.m.split_parts
