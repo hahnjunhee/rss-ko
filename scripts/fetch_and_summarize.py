@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """feeds.txt의 피드를 가져와 새 글을 한글 제목·요약으로 만든 뒤 update_feed.py add 로 반영한다.
 
-환경변수: ANTHROPIC_API_KEY (필수), SUMMARY_MODEL (기본 claude-haiku-5-5), MAX_NEW (한 번에 요약할 최대 글 수, 기본 20)
+환경변수: ANTHROPIC_API_KEY (필수), SUMMARY_MODEL (기본 claude-haiku-5-5), MAX_NEW (한 번에 요약할 최대 글 수, 기본 20),
+NEW_ITEMS_PATH (요약 결과를 남길 JSON 경로, 없으면 임시 파일), GITHUB_STEP_SUMMARY (있으면 실행 요약을 덧붙임)
 표준 라이브러리만 사용한다.
 """
 import html, json, os, re, subprocess, sys, tempfile
@@ -152,23 +153,30 @@ def main():
                 it["feed"] = url
                 candidates.append(it)
         except Exception as e:
-            failed.append(url)
+            failed.append((url, str(e)))
             print(f"::warning::피드 수집 실패 {url}: {e}")
 
-    fresh = [c for c in candidates if c["link"] not in seen]
+    # 같은 글을 내보내는 피드가 둘 이상이면 먼저 나온 것만 쓴다.
+    fresh, in_run = [], set()
+    for c in candidates:
+        if c["link"] not in seen and c["link"] not in in_run:
+            in_run.add(c["link"])
+            fresh.append(c)
     # 새 글이 많으면 최신순으로 MAX_NEW개만 처리하고 나머지는 다음 실행에 처리한다.
     fresh.sort(key=lambda c: parse_date_key(c["pubDate"]), reverse=True)
     fresh = fresh[:MAX_NEW]
     print(f"feeds failed={len(failed)} candidates={len(candidates)} new={len(fresh)}")
     if failed and not candidates:
+        write_step_summary(failed, 0, 0, [], [])
         sys.exit("모든 피드 수집에 실패했습니다.")
 
-    new_items = []
+    new_items, sum_failed = [], []
     for c in fresh:
         try:
             title_ko, summary_ko = summarize(c)
         except Exception as e:
             print(f"::warning::요약 실패 {c['link']}: {e}")
+            sum_failed.append((c["link"], str(e)))
             continue
         host = urlparse(c["link"]).netloc
         new_items.append({
@@ -180,12 +188,33 @@ def main():
             "summary_ko": summary_ko,
         })
 
+    write_step_summary(failed, len(candidates), len(fresh), new_items, sum_failed)
     if not new_items:
         print("새 글 없음")
         return
-    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
-        json.dump(new_items, f, ensure_ascii=False)
-    subprocess.run([sys.executable, str(ROOT / "scripts" / "update_feed.py"), "add", f.name], check=True)
+    # 워크플로가 충돌 시 요약을 다시 부르지 않고 이 파일로 add 를 재실행한다.
+    path = os.environ.get("NEW_ITEMS_PATH")
+    if path:
+        Path(path).write_text(json.dumps(new_items, ensure_ascii=False), encoding="utf-8")
+    else:
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as f:
+            json.dump(new_items, f, ensure_ascii=False)
+        path = f.name
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "update_feed.py"), "add", path], check=True)
+
+
+def write_step_summary(failed, n_cand, n_new, new_items, sum_failed):
+    p = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not p:
+        return
+    lines = ["## Feed update", "",
+             f"- 후보 {n_cand}건 / 신규 {n_new}건 / 요약 성공 {len(new_items)}건 / 요약 실패 {len(sum_failed)}건"]
+    if failed:
+        lines += ["", f"### 수집 실패 피드 ({len(failed)})"] + [f"- {u}: {err}" for u, err in failed]
+    if sum_failed:
+        lines += ["", f"### 요약 실패 ({len(sum_failed)})"] + [f"- {u}: {err}" for u, err in sum_failed]
+    with open(p, "a", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
 
 
 def parse_date_key(s):
