@@ -244,23 +244,63 @@ def gtx_mobile(text):
 
 
 ENGINES = [gtx_api, gtx_chrome, gtx_mobile]
-ENGINE_STATS = Counter()
+SKIP_AFTER = 3  # 한 엔진이 이만큼 연속 실패하면 이번 실행의 나머지 호출에서는 건너뛴다
+ENGINE_STATS, ENGINE_FAILS, ENGINE_STREAK = Counter(), Counter(), Counter()
+ENGINE_LAST_ERR = {}
+
+
+def engine_name(engine):
+    return getattr(engine, "__name__", repr(engine))
 
 
 def gtx(text):
-    """엔진을 순서대로 시도해 처음 성공한 결과를 돌려준다. 모두 실패하면 첫 엔진의 예외를 올린다
-    (재시도 여부는 translate()가 첫 엔진의 오류 코드로 판단한다)."""
+    """엔진을 순서대로 시도해 처음 성공한 결과를 돌려준다. 연속 실패한 엔진은 건너뛴다(모두 건너뛰게 되면 전부 다시 시도).
+    모두 실패하면 처음 시도한 엔진의 예외를 올린다(재시도 여부는 translate()가 그 오류 코드로 판단한다)."""
     first = None
-    for engine in ENGINES:
+    live = [e for e in ENGINES if ENGINE_STREAK[engine_name(e)] < SKIP_AFTER] or ENGINES
+    for engine in live:
+        name = engine_name(engine)
         try:
             out = engine(text)
             if not out.strip():
                 raise ValueError("empty translation")
-            ENGINE_STATS[engine.__name__] += 1
-            return out.strip()
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, IndexError, TypeError) as e:
+            ENGINE_STREAK[name] += 1
+            ENGINE_FAILS[name] += 1
+            ENGINE_LAST_ERR[name] = f"{type(e).__name__}: {e}"[:200]
             first = first or e
+            continue
+        ENGINE_STREAK[name] = 0
+        ENGINE_STATS[name] += 1
+        return out.strip()
     raise first
+
+
+def append_step_summary(lines):
+    p = os.environ.get("GITHUB_STEP_SUMMARY")
+    if p:
+        with open(p, "a", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+
+
+def report_engines():
+    lines = [f"번역 엔진 사용: {dict(ENGINE_STATS)}"]
+    lines += [f"번역 엔진 실패 {n}: {c}회, 마지막 오류 {ENGINE_LAST_ERR.get(n, '')}" for n, c in ENGINE_FAILS.items()]
+    print("\n".join(lines))
+    append_step_summary(["", "### 번역 엔진"] + [f"- {l}" for l in lines])
+
+
+def report_samples(new_items, by_link, k=10):
+    """dry-run 결과에서 k건을 고르게 뽑아 원문 요약과 번역을 나란히 로그와 실행 요약에 남긴다."""
+    ok = [i for i in new_items if not i.get("untranslated")]
+    picks = ok[::max(1, len(ok) // k)][:k]
+    lines = ["## dry-run 샘플", ""]
+    for n, i in enumerate(picks, 1):
+        src = source_summary(by_link[i["link"]]) or "(본문 없음)"
+        lines += [f"### {n}. [{i['source']}] {i['title_ko']}", f"- 원제: {i['title_orig']}",
+                  f"- 원문 요약: {src}", f"- 번역 요약: {i['summary_ko']}", ""]
+    print("::group::dry-run 샘플\n" + "\n".join(lines) + "\n::endgroup::")
+    append_step_summary(lines)
 
 
 def translate(text, delay=1.5):
@@ -424,11 +464,12 @@ def main():
                 print(f"::warning::검사 {it['link']}: {f}")
         out = Path(os.environ.get("DRY_RUN_OUT") or ROOT / "dry-run-items.json")
         out.write_text(json.dumps(new_items, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"번역 엔진 사용: {dict(ENGINE_STATS)}")
+        report_engines()
+        report_samples(new_items, by_link)
         print(f"dry-run: {len(new_items)}건 → {out} (검사 경고 {warns}건, 실제 파일은 변경하지 않음)")
         return
     save_tcache()
-    print(f"번역 엔진 사용: {dict(ENGINE_STATS)}")
+    report_engines()
     if not new_items:
         print("새 글 없음")
         return

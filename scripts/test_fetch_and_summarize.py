@@ -178,6 +178,51 @@ class SummarizeTest(Base):
             self.m.gtx("hello")
         self.assertEqual(c.exception.code, 429)  # 재시도 여부는 첫 엔진 오류로 판단
 
+    def test_failing_engine_skipped_after_streak_and_reported(self):
+        calls = []
+        def bad(text):
+            calls.append(1)
+            raise self.m.urllib.error.HTTPError("u", 429, "slow", {}, None)
+        def good(text):
+            return "OK"
+        self.m.ENGINES = [bad, good]
+        for _ in range(5):
+            self.assertEqual(self.m.gtx("x"), "OK")
+        self.assertEqual(len(calls), self.m.SKIP_AFTER)  # 연속 3번 실패 뒤로는 호출하지 않음
+        self.assertEqual(self.m.ENGINE_FAILS["bad"], 3)
+        self.assertIn("429", self.m.ENGINE_LAST_ERR["bad"])
+        sp = self.tmp / "step.md"
+        with unittest.mock.patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": str(sp)}), unittest.mock.patch("builtins.print") as pr:
+            self.m.report_engines()
+        text = sp.read_text(encoding="utf-8")
+        self.assertIn("good", text)
+        self.assertIn("bad: 3회", text)
+        self.assertTrue(pr.called)
+
+    def test_all_engines_skipped_are_retried(self):
+        n = []
+        def flaky(text):
+            n.append(1)
+            if len(n) <= 3:
+                raise ValueError("down")
+            return "OK"
+        self.m.ENGINES = [flaky]
+        for _ in range(3):
+            with self.assertRaises(ValueError):
+                self.m.gtx("x")
+        self.assertEqual(self.m.gtx("x"), "OK")  # 모두 건너뛰는 상황이면 전부 다시 시도
+
+    def test_report_samples_prints_and_writes_summary(self):
+        items = [{"link": f"l{i}", "source": "S", "title_orig": f"T{i}", "title_ko": f"제목{i}", "summary_ko": f"요약{i}"} for i in range(25)]
+        by_link = {f"l{i}": {"title": f"T{i}", "body": "A sentence for the test body here."} for i in range(25)}
+        sp = self.tmp / "step.md"
+        with unittest.mock.patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": str(sp)}), unittest.mock.patch("builtins.print") as pr:
+            self.m.report_samples(items, by_link)
+        text = sp.read_text(encoding="utf-8")
+        self.assertEqual(text.count("### "), 10)
+        self.assertIn("- 원문 요약: A sentence for the test body here.", text)
+        self.assertIn("::group::", pr.call_args[0][0])
+
     def test_parse_chrome_and_mobile_shapes(self):
         pc = self.m.parse_chrome
         self.assertEqual(pc({"sentences": [{"trans": "안녕 "}, {"trans": "세상"}]}), "안녕 세상")
