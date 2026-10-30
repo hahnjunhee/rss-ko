@@ -138,6 +138,36 @@ class SummarizeTest(Base):
         self.assertNotIn("）", s)                # 앞에 남은 닫는 기호
         self.assertIn("小室哲哉", s)
 
+    def test_cut_at_sentence_boundary(self):
+        cut = self.m.cut_at_sentence
+        self.assertEqual(cut("짧은 글입니다.", 100), "짧은 글입니다.")
+        text = "First sentence is here. Second sentence is here. Third sentence that gets cut in the mid"
+        self.assertEqual(cut(text, 60), "First sentence is here. Second sentence is here.")
+        self.assertEqual(cut("x" * 100, 50), "x" * 50)  # 문장 끝이 없으면 그냥 자른다
+        self.assertEqual(cut("가나다。라마바。사아자차카타파하", 12), "가나다。라마바。")
+
+    def test_long_rss_body_does_not_end_with_a_fragment(self):
+        body = " ".join(f"This is sentence number {i} of a very long feed body." for i in range(400))
+        s = self.m.source_summary({"title": "T", "body": body})
+        self.assertTrue(s.endswith("."))
+        self.assertNotIn("larg", s)
+
+    def test_numbered_headings_are_not_picked(self):
+        text = "\n".join(["1.マイページへのログイン方法", "このマイページは、単なる求人検索ページではありません。", "2) Getting started",
+                          "マイページに登録すると、希望条件に合った求人がメールで届きます。", "登録は無料で、スマートフォンからも手続きできます。"])
+        s = self.m.extract_summary("マイページ活用術", text, 3, 500)
+        self.assertNotIn("ログイン方法", s)
+        self.assertNotIn("Getting started", s)
+        self.assertTrue(self.m.heading_like("1.マイページへのログイン方法"))
+        self.assertFalse(self.m.heading_like("2026年は売上が伸びました。"))
+        self.assertFalse(self.m.heading_like("1. この機能は便利です。"))  # 문장부호로 끝나면 소제목이 아니다
+
+    def test_only_leading_sentences_are_candidates(self):
+        lead = [f"Lead sentence number {i} talks about alpha{i} topic here today." for i in range(12)]
+        late = ["Late sentence mentions the title words rocket engines rocket engines rocket engines rocket engines 99."]
+        s = self.m.extract_summary("rocket engines", " ".join(lead + late), 3, 500)
+        self.assertNotIn("Late sentence", s)
+
     def test_list_items_are_not_picked_unless_nothing_else(self):
         only = "◆ 첫째 항목입니다\n◆ 둘째 항목입니다"
         self.assertTrue(self.m.extract_summary("제목", only, 3, 500))  # 후보가 전부 제외되면 모두 후보로 둔다
@@ -247,7 +277,7 @@ class SummarizeTest(Base):
         self.assertIn("::group::", pr.call_args[0][0])
 
     def test_plain_adds_space_between_blocks_and_strips_zero_width(self):
-        self.assertEqual(self.m.plain("<p>them.</p><h2>One Game</h2>x\u200by<br>z"), "them. One Game xy z")
+        self.assertEqual(self.m.plain("<p>them.</p><h2>One Game</h2>x\u200by<br>z"), "them. xy z")  # 소제목(h1~h6) 텍스트는 뺀다
 
     def test_read_more_and_fullwidth_period(self):
         text = "落合陽一です．今日は夜の話．1か月くらい，これしかやっていない．続きをみる"

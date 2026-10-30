@@ -43,19 +43,33 @@ BLOCK_TAGS = {"p", "br", "div", "li", "ul", "ol", "tr", "td", "th", "table", "se
 ZERO_WIDTH = re.compile("[\u200b-\u200d\u2060\ufeff]")
 
 
+HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
+
+
 class _Text(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.parts = []
+        self.parts, self.heading = [], 0
 
     def handle_data(self, d):
-        self.parts.append(d)
+        if not self.heading:  # 소제목 텍스트는 요약 입력에서 뺀다
+            self.parts.append(d)
 
     def handle_starttag(self, tag, attrs):
+        if tag in HEADING_TAGS:
+            self.heading += 1
         if tag in BLOCK_TAGS:
             self.parts.append(" ")  # 문단·제목 사이에 공백이 없으면 "them.One Game"처럼 문장이 붙는다
 
-    handle_endtag = handle_startendtag = lambda self, tag, *a: self.parts.append(" ") if tag in BLOCK_TAGS else None
+    def handle_endtag(self, tag):
+        if tag in HEADING_TAGS and self.heading:
+            self.heading -= 1
+        if tag in BLOCK_TAGS:
+            self.parts.append(" ")
+
+    def handle_startendtag(self, tag, attrs):
+        if tag in BLOCK_TAGS:
+            self.parts.append(" ")
 
 
 def plain(s):
@@ -150,7 +164,25 @@ def is_junk(sent):
 
 
 LIST_MARK = re.compile(r"^[\s◆◇■□●○◎▼▽▲△▶►▪・※•*＊#＃\-–—]+")
+NUMBERED = re.compile(r"^\s*\d+[.．、)）]\s*\S")
+
+
+def heading_like(sent):
+    """"1.マイページへのログイン方法"처럼 번호가 붙고 문장부호로 끝나지 않는 짧은 줄은 소제목으로 본다."""
+    return bool(NUMBERED.match(sent)) and len(sent) < 40 and sent[-1] not in "。.!?！？．"
+
+
 LEADING_CLOSER = re.compile(r"^[)）\]】」』、，,\s]+")
+
+
+def cut_at_sentence(text, limit):
+    """limit자를 넘으면 limit 안의 마지막 문장 끝(. ! ? 。 ！ ？ ． 줄바꿈)에서 자른다. 문장 끝이 앞쪽 절반에도 없으면 그냥 자른다."""
+    if len(text) <= limit:
+        return text
+    chunk = text[:limit]
+    ends = [chunk.rfind(c) for c in ".!?。！？．\n"]
+    i = max(ends)
+    return chunk[:i + 1] if i >= limit // 2 else chunk
 
 
 def split_sentences(text):
@@ -169,9 +201,10 @@ def tokens(text):
 
 
 TITLE_ECHO = 0.6    # 문장 토큰의 이 비율 이상이 제목과 겹치면 제목 되풀이로 본다
-OVERLAP_CAP = 2     # 제목과 겹치는 토큰에 주는 가산점 상한
+OVERLAP_CAP = 4     # 제목과 겹치는 토큰에 주는 가산점 상한
+LEAD_WINDOW = 12   # 요약 후보로 보는 앞쪽 문장 수
 LEAD_WEIGHT = 6     # 앞 문장 가산점: 글의 핵심은 대개 앞쪽에 있다
-SHORT_PENALTY = 4   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
+SHORT_PENALTY = 6   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
 
 
 def short_sentence(sent):
@@ -190,8 +223,10 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
     tw = tokens(title)
     # 제목을 되풀이한 문장과 ◆·■·・ 등으로 시작하는 소제목·목록 줄은 요약 후보에서 뺀다(전부 해당하면 모두 후보로 둔다).
     cand = [i for i, x in enumerate(sents)
-            if not LIST_MARK.match(x) and not (tw and len(toks[i]) >= 3 and len(toks[i] & tw) / len(toks[i]) >= TITLE_ECHO)]
+            if not LIST_MARK.match(x) and not heading_like(x)
+            and not (tw and len(toks[i]) >= 3 and len(toks[i] & tw) / len(toks[i]) >= TITLE_ECHO)]
     cand = cand or list(range(len(sents)))
+    cand = [i for i in cand if i < LEAD_WINDOW] or cand  # 핵심은 대개 글 앞쪽에 있다
     if len(cand) <= n:
         picked, score = list(cand), {i: -i for i in cand}
     else:
@@ -221,7 +256,7 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
 
 def source_summary(item):
     """원문을 수집한 글이면 그 본문을, 아니면 RSS 본문을 요약 대상으로 쓴다."""
-    text = item.get("fulltext") or plain(item["body"])[:MAX_TEXT]
+    text = item.get("fulltext") or cut_at_sentence(plain(item["body"]), MAX_TEXT)
     return extract_summary(html.unescape(item["title"]), text)
 
 
@@ -334,7 +369,7 @@ def get_fulltext(item):
     if m:  # 유료 구간은 가져오지 않는다
         text = text[:m.start()]
         FULLTEXT_STATS["paywall_cut"] += 1
-    text = "\n".join(l.strip() for l in text.splitlines() if l.strip())[:MAX_TEXT]
+    text = cut_at_sentence("\n".join(l.strip() for l in text.splitlines() if l.strip()), MAX_TEXT)
     if len(text) < len(excerpt) + FULLTEXT_MIN_GAIN:
         FULLTEXT_STATS["no_gain"] += 1
         return ""
