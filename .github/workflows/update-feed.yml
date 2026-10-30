@@ -27,6 +27,10 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install optional dependencies
+        run: pip install -r requirements.txt || echo "::warning::trafilatura 설치에 실패해 원문 수집 없이 RSS 발췌로 진행합니다"
       - name: Test
         run: python scripts/test_fetch_and_summarize.py
       - name: Fetch feeds and summarize new items

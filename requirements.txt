@@ -1,0 +1,2 @@
+# 선택 의존성: fulltext.txt에 적은 호스트의 원문 수집에만 쓴다(없으면 RSS 발췌로 동작)
+trafilatura>=2,<3
