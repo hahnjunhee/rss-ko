@@ -149,10 +149,14 @@ def is_junk(sent):
     return bool(STRONG_JUNK.search(sent) or HASHTAGS.fullmatch(sent) or (len(sent) < 80 and WEAK_JUNK.search(sent)))
 
 
+LIST_MARK = re.compile(r"^[\s◆◇■□●○◎▼▽▲△▶►▪・※•*＊#＃\-–—]+")
+LEADING_CLOSER = re.compile(r"^[)）\]】」』、，,\s]+")
+
+
 def split_sentences(text):
     """마침표 뒤에 공백이 있을 때만 영문 문장을 나눠 1.2, U.S. 같은 표기를 쪼개지 않는다. 일본어의 전각 마침표(．)도 숫자 뒤가 아니면 문장 끝으로 본다."""
     parts = re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*|(?<=[^0-9０-９]．)\s*|\n+", text)
-    return [p for p in (x.strip() for x in parts) if len(p) >= 2 and not is_junk(p)]
+    return [p for p in (LEADING_CLOSER.sub("", x.strip()) for x in parts) if len(p) >= 2 and not is_junk(p)]
 
 
 def tokens(text):
@@ -164,14 +168,16 @@ def tokens(text):
     return out
 
 
+TITLE_ECHO = 0.6    # 문장 토큰의 이 비율 이상이 제목과 겹치면 제목 되풀이로 본다
+OVERLAP_CAP = 2     # 제목과 겹치는 토큰에 주는 가산점 상한
 LEAD_WEIGHT = 6     # 앞 문장 가산점: 글의 핵심은 대개 앞쪽에 있다
 SHORT_PENALTY = 4   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
 
 
 def short_sentence(sent):
-    """일본어·중국어는 12자, 그 외는 25자 미만이면 짧은 문장으로 본다."""
+    """일본어·중국어는 15자, 그 외는 25자 미만이면 짧은 문장으로 본다."""
     cjk = sum(len(r) for r in CJK.findall(sent)) > len(sent) * 0.5
-    return len(sent) < (12 if cjk else 25)
+    return len(sent) < (15 if cjk else 25)
 
 
 def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
@@ -181,18 +187,22 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
     if not sents:
         return ""
     toks = [tokens(x) for x in sents]
-    if len(sents) <= n:
-        picked, score = list(range(len(sents))), {i: -i for i in range(len(sents))}
+    tw = tokens(title)
+    # 제목을 되풀이한 문장과 ◆·■·・ 등으로 시작하는 소제목·목록 줄은 요약 후보에서 뺀다(전부 해당하면 모두 후보로 둔다).
+    cand = [i for i, x in enumerate(sents)
+            if not LIST_MARK.match(x) and not (tw and len(toks[i]) >= 3 and len(toks[i] & tw) / len(toks[i]) >= TITLE_ECHO)]
+    cand = cand or list(range(len(sents)))
+    if len(cand) <= n:
+        picked, score = list(cand), {i: -i for i in cand}
     else:
         freq = Counter(w for t in toks for w in t)
         common = {w for w, c in freq.items() if c == len(sents)} if len(sents) >= 4 else set()
-        tw = tokens(title)
         score = {}
-        for i, t in enumerate(toks):
-            t = t - common
+        for i in cand:
+            t = toks[i] - common
             base = sum(freq[w] for w in t) / len(t) if t else 0
-            score[i] = (base + 2 * len(t & tw) + LEAD_WEIGHT / (i + 1) + (0.5 if re.search(r"\d", sents[i]) else 0)
-                        - (SHORT_PENALTY if short_sentence(sents[i]) else 0))
+            score[i] = (base + min(2 * len(t & tw), OVERLAP_CAP) + LEAD_WEIGHT / (i + 1)
+                        + (0.5 if re.search(r"\d", sents[i]) else 0) - (SHORT_PENALTY if short_sentence(sents[i]) else 0))
         picked = []
         for i in sorted(score, key=lambda k: (-score[k], k)):
             if len(picked) >= n:

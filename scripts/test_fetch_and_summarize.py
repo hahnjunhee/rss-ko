@@ -121,6 +121,29 @@ class SummarizeTest(Base):
         with unittest.mock.patch("urllib.request.urlopen", return_value=R()), unittest.mock.patch("time.sleep"):
             self.assertEqual(self.m.translate("Hello world"), "안녕 세상")
 
+    def test_fulltext_summary_skips_title_echo_and_list_markers(self):
+        title = "全部言葉でできた世界に，色がついていく"
+        body = "\n".join([
+            "「全部言葉でできた世界に，色がついていく」",
+            "全部言葉でできた世界に，どんどん色がついていく感じがする．",
+            "あれを言葉でやっている．",
+            "◆小室さんの来訪",
+            "）今日は，小室哲哉さんが横浜のスタジオに遊びに来てくれた夜の話．",
+            "27日は夕方にTBSで収録があって，そのあと横浜のランドマークプラザの5階に向かった．",
+            "小室さんは音楽の話から，言葉が先にあって色が後からついてくる感覚について語ってくれた．"])
+        s = self.m.extract_summary(title, body, 3, 500)
+        self.assertNotIn("どんどん色が", s)      # 제목 되풀이
+        self.assertNotIn("あれを言葉で", s)      # 짧은 문장
+        self.assertNotIn("◆", s)                # 소제목
+        self.assertNotIn("）", s)                # 앞에 남은 닫는 기호
+        self.assertIn("小室哲哉", s)
+
+    def test_list_items_are_not_picked_unless_nothing_else(self):
+        only = "◆ 첫째 항목입니다\n◆ 둘째 항목입니다"
+        self.assertTrue(self.m.extract_summary("제목", only, 3, 500))  # 후보가 전부 제외되면 모두 후보로 둔다
+        mixed = "◆ 첫째 항목입니다\n본문 문장이 여기에 있습니다. 두 번째 본문 문장입니다. 세 번째 본문 문장입니다. 네 번째 본문 문장입니다."
+        self.assertNotIn("◆", self.m.extract_summary("제목", mixed, 3, 500))
+
     def test_japanese_short_sentences_are_summarized(self):
         ja = "今日は映画を観てきました。とても良い作品でした。主演の演技が素晴らしかったです。次はもう一度観たいです。"
         s = self.m.extract_summary("映画の感想", ja, 2, 500)
