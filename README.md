@@ -1,6 +1,6 @@
 # rss-ko
 
-외국어 RSS 피드를 한글 제목·요약으로 통합한 피드 (하루 6회 자동 갱신: 00/04/08/12/16/20시 KST, GitHub Actions `update-feed.yml`).
+외국어 RSS 피드를 한글 제목·요약으로 통합한 피드 (하루 4회 자동 갱신: 08/11/14/17시 KST, GitHub Actions `update-feed.yml`).
 
 - 구독 주소: https://hahnjunhee.github.io/rss-ko/feed.xml
 - 원본 피드 목록: `feeds.txt` (한 줄에 하나)

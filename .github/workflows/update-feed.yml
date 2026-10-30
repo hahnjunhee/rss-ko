@@ -1,9 +1,9 @@
 name: Update feed
 
-# 한글 요약 피드(feed.xml) 갱신. 매일 00/04/08/12/16/20시(KST). 수동 실행 가능.
+# 한글 요약 피드(feed.xml) 갱신. 매일 08/11/14/17시(KST) 하루 4번. 수동 실행 가능.
 on:
   schedule:
-    - cron: "0 3,7,11,15,19,23 * * *"   # UTC (= KST 12/16/20/00/04/08시). GitHub 스케줄은 지연될 수 있음
+    - cron: "5 23,2,5,8 * * *"   # UTC 23/02/05/08시 = KST 08/11/14/17시(5분 지연: 정각은 GitHub 스케줄이 몰려 더 늦어진다). 지연·누락될 수 있음
   workflow_dispatch:
     inputs:
       dry_run:
