@@ -223,6 +223,47 @@ class SummarizeTest(Base):
         self.assertIn("- 원문 요약: A sentence for the test body here.", text)
         self.assertIn("::group::", pr.call_args[0][0])
 
+    def test_plain_adds_space_between_blocks_and_strips_zero_width(self):
+        self.assertEqual(self.m.plain("<p>them.</p><h2>One Game</h2>x\u200by<br>z"), "them. One Game xy z")
+
+    def test_read_more_and_fullwidth_period(self):
+        text = "落合陽一です．今日は夜の話．1か月くらい，これしかやっていない．続きをみる"
+        self.assertEqual(self.m.split_sentences(text), ["落合陽一です．", "今日は夜の話．", "1か月くらい，これしかやっていない．"])
+        self.assertEqual(self.m.split_sentences("倍率は３．５倍になった。"), ["倍率は３．５倍になった。"])  # 숫자 사이 전각 점은 나누지 않음
+        self.assertEqual(self.m.split_sentences("Great post. 계속 보기"), ["Great post."])
+
+    def test_parse_chrome_joins_all_segments(self):
+        pc = self.m.parse_chrome
+        self.assertEqual(pc([["「우리는 우주인」", "a"], ["남자아이의 부모 입장에서 보니", "b"]]), "「우리는 우주인」남자아이의 부모 입장에서 보니")
+        self.assertEqual(pc(["안녕", "세상"]), "안녕세상")
+        self.assertEqual(pc(["안녕", "ja"]), "안녕")  # 끝의 언어 코드는 제외
+
+    def test_too_short_detection(self):
+        ts = self.m.too_short
+        self.assertTrue(ts("『我々は宇宙人』 男児の親目線で観たら、思わぬところで抉られた話", "「우리는 우주인」"))
+        self.assertFalse(ts("『我々は宇宙人』 男児の親目線で観たら", "『우리는 우주인』 남자아이의 부모 눈으로 보면"))
+        self.assertFalse(ts("How to Clean Up Old Screen Recordings Without Losing Quality", "품질 저하 없이 오래된 화면 녹화를 정리하는 방법"))
+        self.assertFalse(ts("Hi", ""))  # 너무 짧은 원문은 판단하지 않음
+
+    def test_gtx_prefers_longer_when_first_is_truncated(self):
+        src = "『我々は宇宙人』 男児の親目線で観たら、思わぬところで抉られた話"
+        self.m.ENGINES = [lambda t: "「우리는 우주인」", lambda t: "『우리는 우주인』 남자아이 부모의 눈으로 보니 뜻밖의 곳에서 마음이 아팠던 이야기"]
+        self.m.ENGINES[0].__name__, self.m.ENGINES[1].__name__ = "cut", "full"
+        self.assertTrue(self.m.gtx(src).endswith("이야기"))
+        self.assertEqual(self.m.ENGINE_SHORT["cut"], 1)
+        self.m.ENGINES = [lambda t: "「우리는 우주인」"]  # 다른 엔진도 짧으면 짧은 쪽이라도 쓴다
+        self.m.ENGINES[0].__name__ = "only"
+        self.assertEqual(self.m.gtx(src), "「우리는 우주인」")
+
+    def test_gtx_strips_zero_width(self):
+        self.m.ENGINES = [lambda t: "용도를\u200b\u200b변경"]
+        self.m.ENGINES[0].__name__ = "zw"
+        self.assertEqual(self.m.gtx("repurpose it"), "용도를변경")
+
+    def test_check_item_flags_short_title(self):
+        self.assertIn("제목 번역이 원문보다 비정상적으로 짧음",
+                      self.m.check_item("『我々は宇宙人』 男児の親目線で観たら、思わぬところで抉られた話", "", "「우리는 우주인」", ""))
+
     def test_parse_chrome_and_mobile_shapes(self):
         pc = self.m.parse_chrome
         self.assertEqual(pc({"sentences": [{"trans": "안녕 "}, {"trans": "세상"}]}), "안녕 세상")

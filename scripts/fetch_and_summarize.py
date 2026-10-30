@@ -38,6 +38,11 @@ UA = "Mozilla/5.0 (compatible; rss-ko/1.0; +https://github.com/hahnjunhee/rss-ko
 ATOM = "{http://www.w3.org/2005/Atom}"
 CONTENT = "{http://purl.org/rss/1.0/modules/content/}"
 
+BLOCK_TAGS = {"p", "br", "div", "li", "ul", "ol", "tr", "td", "th", "table", "section", "article", "blockquote",
+              "pre", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "figcaption"}
+ZERO_WIDTH = re.compile("[\u200b-\u200d\u2060\ufeff]")
+
+
 class _Text(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -46,11 +51,17 @@ class _Text(HTMLParser):
     def handle_data(self, d):
         self.parts.append(d)
 
+    def handle_starttag(self, tag, attrs):
+        if tag in BLOCK_TAGS:
+            self.parts.append(" ")  # 문단·제목 사이에 공백이 없으면 "them.One Game"처럼 문장이 붙는다
+
+    handle_endtag = handle_startendtag = lambda self, tag, *a: self.parts.append(" ") if tag in BLOCK_TAGS else None
+
 
 def plain(s):
     p = _Text()
     p.feed(s or "")
-    return re.sub(r"\s+", " ", "".join(p.parts)).strip()
+    return re.sub(r"\s+", " ", ZERO_WIDTH.sub("", "".join(p.parts))).strip()
 
 
 def http_get(url, timeout=30):
@@ -126,7 +137,8 @@ def guess_source(link):
 STRONG_JUNK = re.compile(r"article url:|comments url:|appeared first on", re.I)
 WEAK_JUNK = re.compile(
     r"subscribe|follow us|share this|read more|continue reading|click here|all rights reserved|sign up for|newsletter|"
-    r"フォロー|シェア|購読|チャンネル登録|ハッシュタグ|いいね|구독|공유하기|팔로우", re.I)
+    r"フォロー|シェア|購読|チャンネル登録|ハッシュタグ|いいね|구독|공유하기|팔로우|"
+    r"続きをみる|続きを読む|続きはこちら|もっと見る|계속 보기|더 보기", re.I)
 HASHTAGS = re.compile(r"(?:[#＃]\S+\s*)+")
 CJK = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]+")
 WORD = re.compile(r"[0-9A-Za-z\u00c0-\u024f\uac00-\ud7af]{2,}")
@@ -138,8 +150,8 @@ def is_junk(sent):
 
 
 def split_sentences(text):
-    """마침표 뒤에 공백이 있을 때만 영문 문장을 나눠 1.2, U.S. 같은 표기를 쪼개지 않는다."""
-    parts = re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*", text)
+    """마침표 뒤에 공백이 있을 때만 영문 문장을 나눠 1.2, U.S. 같은 표기를 쪼개지 않는다. 일본어의 전각 마침표(．)도 숫자 뒤가 아니면 문장 끝으로 본다."""
+    parts = re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*|(?<=[^0-9０-９]．)\s*", text)
     return [p for p in (x.strip() for x in parts) if len(p) >= 2 and not is_junk(p)]
 
 
@@ -207,16 +219,24 @@ def gtx_api(text):
     return "".join(seg[0] for seg in json.loads(_open(req))[0] if seg and seg[0])
 
 
+SHAPES = Counter()
+LANG_CODE = re.compile(r"^[a-z]{2,3}(-[A-Za-z]+)?$")
+
+
 def parse_chrome(data):
-    """clients5 응답 모양이 여러 가지라 알려진 형태를 모두 받는다."""
+    """clients5 응답 모양이 여러 가지라 알려진 형태를 모두 받고, 여러 문장 구간은 모두 이어 붙인다."""
     if isinstance(data, dict):
-        return "".join(x.get("trans", "") for x in data.get("sentences", []))
+        SHAPES["dict"] += 1
+        return "".join(x.get("trans", "") for x in data.get("sentences", []) if isinstance(x, dict))
     if isinstance(data, list) and data:
-        first = data[0]
-        if isinstance(first, str):
-            return first
-        if isinstance(first, list) and first and isinstance(first[0], str):
-            return first[0]
+        if all(isinstance(x, str) for x in data):
+            SHAPES["list[str]"] += 1
+            parts = data[:-1] if len(data) > 1 and LANG_CODE.match(data[-1]) else data  # 끝의 감지 언어 코드 제외
+            return "".join(parts)
+        if all(isinstance(x, list) and x and isinstance(x[0], str) for x in data):
+            SHAPES["list[list]"] += 1
+            return "".join(x[0] for x in data)
+        SHAPES["other"] += 1
     return ""
 
 
@@ -245,7 +265,7 @@ def gtx_mobile(text):
 
 ENGINES = [gtx_api, gtx_chrome, gtx_mobile]
 SKIP_AFTER = 3  # 한 엔진이 이만큼 연속 실패하면 이번 실행의 나머지 호출에서는 건너뛴다
-ENGINE_STATS, ENGINE_FAILS, ENGINE_STREAK = Counter(), Counter(), Counter()
+ENGINE_STATS, ENGINE_FAILS, ENGINE_STREAK, ENGINE_SHORT = Counter(), Counter(), Counter(), Counter()
 ENGINE_LAST_ERR = {}
 
 
@@ -253,16 +273,26 @@ def engine_name(engine):
     return getattr(engine, "__name__", repr(engine))
 
 
+def too_short(src, out):
+    """번역이 원문보다 비정상적으로 짧다(구간 누락 의심). 일본어·중국어 원문은 글자 수가 비슷해야 하므로 기준이 더 높다."""
+    src, out = src.strip(), out.strip()
+    if len(src) < 12:
+        return False
+    cjk = sum(len(r) for r in CJK.findall(src)) > len(src) * 0.5
+    return len(out) < len(src) * (0.45 if cjk else 0.25)
+
+
 def gtx(text):
     """엔진을 순서대로 시도해 처음 성공한 결과를 돌려준다. 연속 실패한 엔진은 건너뛴다(모두 건너뛰게 되면 전부 다시 시도).
+    결과가 비정상적으로 짧으면(구간 누락 의심) 다음 엔진 결과와 비교해 더 긴 쪽을 쓴다.
     모두 실패하면 처음 시도한 엔진의 예외를 올린다(재시도 여부는 translate()가 그 오류 코드로 판단한다)."""
-    first = None
+    first, short = None, None
     live = [e for e in ENGINES if ENGINE_STREAK[engine_name(e)] < SKIP_AFTER] or ENGINES
     for engine in live:
         name = engine_name(engine)
         try:
-            out = engine(text)
-            if not out.strip():
+            out = ZERO_WIDTH.sub("", engine(text)).strip()
+            if not out:
                 raise ValueError("empty translation")
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, IndexError, TypeError) as e:
             ENGINE_STREAK[name] += 1
@@ -271,8 +301,16 @@ def gtx(text):
             first = first or e
             continue
         ENGINE_STREAK[name] = 0
+        if too_short(text, out):
+            ENGINE_SHORT[name] += 1
+            if short is None or len(out) > len(short[1]):
+                short = (name, out)
+            continue
         ENGINE_STATS[name] += 1
-        return out.strip()
+        return out
+    if short:
+        ENGINE_STATS[short[0]] += 1
+        return short[1]
     raise first
 
 
@@ -285,6 +323,10 @@ def append_step_summary(lines):
 
 def report_engines():
     lines = [f"번역 엔진 사용: {dict(ENGINE_STATS)}"]
+    if ENGINE_SHORT:
+        lines.append(f"번역이 원문보다 비정상적으로 짧아 다른 엔진과 비교한 횟수: {dict(ENGINE_SHORT)}")
+    if SHAPES:
+        lines.append(f"clients5 응답 모양: {dict(SHAPES)}")
     lines += [f"번역 엔진 실패 {n}: {c}회, 마지막 오류 {ENGINE_LAST_ERR.get(n, '')}" for n, c in ENGINE_FAILS.items()]
     print("\n".join(lines))
     append_step_summary(["", "### 번역 엔진"] + [f"- {l}" for l in lines])
@@ -355,6 +397,8 @@ def check_item(src_title, src_summary, title_ko, summary_ko):
         if not ko.strip():
             flags.append(f"{label} 비어 있음")
             continue
+        if too_short(src, ko):
+            flags.append(f"{label} 번역이 원문보다 비정상적으로 짧음")
         missing = sorted({n for n in re.findall(r"\d+(?:[.,]\d+)*", norm(src)) if n not in norm(ko)})
         if missing:
             flags.append(f"{label} 숫자 누락 {missing}")
