@@ -50,9 +50,10 @@ class Base(unittest.TestCase):
         self.pages = {FEED_A: RSS_A, FEED_B: ATOM_B}
         self.summarized = []
         self.m.http_get = lambda url, timeout=30: self._get(url)
+        self.real_summarize = self.m.summarize
         self.m.summarize = self._summarize
         self.out = self.tmp / "new_items.json"
-        self.env = {"ANTHROPIC_API_KEY": "test", "NEW_ITEMS_PATH": str(self.out)}
+        self.env = {"NEW_ITEMS_PATH": str(self.out)}
         for k in ("GITHUB_STEP_SUMMARY",):
             os.environ.pop(k, None)
         patcher = unittest.mock.patch.dict(os.environ, self.env)
@@ -86,6 +87,38 @@ class ParseTest(Base):
         self.assertEqual(got[0]["link"], "https://example.org/b1")
         self.assertEqual(got[0]["pubDate"], "2026-10-28T12:00:00Z")
         self.assertEqual(got[1]["link"], "https://note.com/u/n/a1")
+
+
+class SummarizeTest(Base):
+    BODY = " ".join(f"Sentence number {i} talks about rocket engines and orbital launches today." for i in range(10))
+
+    def test_extract_picks_n_sentences_and_caps(self):
+        s = self.m.extract_summary("rocket", self.BODY, 2, 500)
+        self.assertEqual(s.count("Sentence number"), 2)
+        self.assertLessEqual(len(self.m.extract_summary("x", self.BODY, 5, 100)), 100)
+        self.assertEqual(self.m.extract_summary("t", "짧음", 3, 50), "짧음")
+
+    def test_summarize_translates_title_and_summary(self):
+        seen = []
+        self.m.translate = lambda x, *a: seen.append(x) or "KO:" + x[:5]
+        t, s = self.real_summarize({"title": "Rocket &amp; Co", "body": self.BODY})
+        self.assertTrue(t.startswith("KO:Rocke") and s.startswith("KO:Sente"))
+        self.assertEqual(seen[0], "Rocket & Co")
+
+    def test_summarize_without_body_translates_title_only(self):
+        self.m.translate = lambda x, *a: "KO:" + x
+        t, s = self.real_summarize({"title": "Hi", "body": "짧"})
+        self.assertEqual(t, "KO:Hi")
+        self.assertIn("제목만", s)
+
+    def test_translate_skips_korean_and_parses_response(self):
+        self.assertEqual(self.m.translate("안녕하세요 반갑습니다"), "안녕하세요 반갑습니다")
+        class R:
+            def __enter__(s): return s
+            def __exit__(s, *a): pass
+            def read(s, *a): return json.dumps([[["안녕 ", "Hello ", None], ["세상", "world", None]], None, "en"]).encode()
+        with unittest.mock.patch("urllib.request.urlopen", return_value=R()), unittest.mock.patch("time.sleep"):
+            self.assertEqual(self.m.translate("Hello world"), "안녕 세상")
 
 
 class MainTest(Base):

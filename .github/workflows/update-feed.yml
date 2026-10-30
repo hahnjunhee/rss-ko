@@ -26,7 +26,6 @@ jobs:
         run: python scripts/test_fetch_and_summarize.py
       - name: Fetch feeds and summarize new items
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NEW_ITEMS_PATH: ${{ runner.temp }}/new_items.json
         run: python scripts/fetch_and_summarize.py
       - name: Validate feed.xml
@@ -44,7 +43,7 @@ jobs:
           }
           commit
           # 관리 화면이 feeds.txt·feed.xml·seen.json을 직접 커밋하므로 그 사이 main이 앞서 있을 수 있다.
-          # rebase가 실패하면 origin/main 위에서 저장해 둔 요약(NEW_ITEMS_PATH)으로 add 를 다시 적용한다(요약 API 재호출 없음).
+          # rebase가 실패하면 origin/main 위에서 저장해 둔 요약(NEW_ITEMS_PATH)으로 add 를 다시 적용한다(번역 재호출 없음).
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
             echo "::warning::푸시 실패 ($i/3)"
