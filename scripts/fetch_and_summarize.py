@@ -6,10 +6,10 @@ API 키 없이 동작한다: 피드 본문에서 핵심 문장을 골라(추출 
 NEW_ITEMS_PATH (요약 결과를 남길 JSON 경로, 없으면 임시 파일), GITHUB_STEP_SUMMARY (있으면 실행 요약을 덧붙임),
 DRY_RUN_OUT (--dry-run 결과 경로, 기본 dry-run-items.json)
 --dry-run: 이미 처리한 글까지 포함해 요약·번역하되 피드·items·seen·번역 캐시는 건드리지 않고 결과와 자동 검사 경고만 낸다.
-표준 라이브러리만 사용한다.
+표준 라이브러리만으로 동작하며, 원문 수집(fulltext.txt에 적은 호스트만)은 선택 의존성 trafilatura가 있을 때만 쓴다.
 """
 import hashlib, html, json, os, re, subprocess, sys, tempfile, time, unicodedata
-import urllib.error, urllib.parse, urllib.request
+import urllib.error, urllib.parse, urllib.request, urllib.robotparser
 from collections import Counter
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -43,19 +43,33 @@ BLOCK_TAGS = {"p", "br", "div", "li", "ul", "ol", "tr", "td", "th", "table", "se
 ZERO_WIDTH = re.compile("[\u200b-\u200d\u2060\ufeff]")
 
 
+HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
+
+
 class _Text(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.parts = []
+        self.parts, self.heading = [], 0
 
     def handle_data(self, d):
-        self.parts.append(d)
+        if not self.heading:  # 소제목 텍스트는 요약 입력에서 뺀다
+            self.parts.append(d)
 
     def handle_starttag(self, tag, attrs):
+        if tag in HEADING_TAGS:
+            self.heading += 1
         if tag in BLOCK_TAGS:
             self.parts.append(" ")  # 문단·제목 사이에 공백이 없으면 "them.One Game"처럼 문장이 붙는다
 
-    handle_endtag = handle_startendtag = lambda self, tag, *a: self.parts.append(" ") if tag in BLOCK_TAGS else None
+    def handle_endtag(self, tag):
+        if tag in HEADING_TAGS and self.heading:
+            self.heading -= 1
+        if tag in BLOCK_TAGS:
+            self.parts.append(" ")
+
+    def handle_startendtag(self, tag, attrs):
+        if tag in BLOCK_TAGS:
+            self.parts.append(" ")
 
 
 def plain(s):
@@ -149,10 +163,32 @@ def is_junk(sent):
     return bool(STRONG_JUNK.search(sent) or HASHTAGS.fullmatch(sent) or (len(sent) < 80 and WEAK_JUNK.search(sent)))
 
 
+LIST_MARK = re.compile(r"^[\s◆◇■□●○◎▼▽▲△▶►▪・※•*＊#＃\-–—]+")
+NUMBERED = re.compile(r"^\s*\d+[.．、)）]\s*\S")
+
+
+def heading_like(sent):
+    """"1.マイページへのログイン方法"처럼 번호가 붙고 문장부호로 끝나지 않는 짧은 줄은 소제목으로 본다."""
+    return bool(NUMBERED.match(sent)) and len(sent) < 40 and sent[-1] not in "。.!?！？．"
+
+
+LEADING_CLOSER = re.compile(r"^[)）\]】」』、，,\s]+")
+
+
+def cut_at_sentence(text, limit):
+    """limit자를 넘으면 limit 안의 마지막 문장 끝(. ! ? 。 ！ ？ ． 줄바꿈)에서 자른다. 문장 끝이 앞쪽 절반에도 없으면 그냥 자른다."""
+    if len(text) <= limit:
+        return text
+    chunk = text[:limit]
+    ends = [chunk.rfind(c) for c in ".!?。！？．\n"]
+    i = max(ends)
+    return chunk[:i + 1] if i >= limit // 2 else chunk
+
+
 def split_sentences(text):
     """마침표 뒤에 공백이 있을 때만 영문 문장을 나눠 1.2, U.S. 같은 표기를 쪼개지 않는다. 일본어의 전각 마침표(．)도 숫자 뒤가 아니면 문장 끝으로 본다."""
-    parts = re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*|(?<=[^0-9０-９]．)\s*", text)
-    return [p for p in (x.strip() for x in parts) if len(p) >= 2 and not is_junk(p)]
+    parts = re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*|(?<=[^0-9０-９]．)\s*|\n+", text)
+    return [p for p in (LEADING_CLOSER.sub("", x.strip()) for x in parts) if len(p) >= 2 and not is_junk(p)]
 
 
 def tokens(text):
@@ -164,14 +200,17 @@ def tokens(text):
     return out
 
 
+TITLE_ECHO = 0.6    # 문장 토큰의 이 비율 이상이 제목과 겹치면 제목 되풀이로 본다
+OVERLAP_CAP = 4     # 제목과 겹치는 토큰에 주는 가산점 상한
+LEAD_WINDOW = 12   # 요약 후보로 보는 앞쪽 문장 수
 LEAD_WEIGHT = 6     # 앞 문장 가산점: 글의 핵심은 대개 앞쪽에 있다
-SHORT_PENALTY = 4   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
+SHORT_PENALTY = 6   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
 
 
 def short_sentence(sent):
-    """일본어·중국어는 12자, 그 외는 25자 미만이면 짧은 문장으로 본다."""
+    """일본어·중국어는 15자, 그 외는 25자 미만이면 짧은 문장으로 본다."""
     cjk = sum(len(r) for r in CJK.findall(sent)) > len(sent) * 0.5
-    return len(sent) < (12 if cjk else 25)
+    return len(sent) < (15 if cjk else 25)
 
 
 def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
@@ -181,18 +220,24 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
     if not sents:
         return ""
     toks = [tokens(x) for x in sents]
-    if len(sents) <= n:
-        picked, score = list(range(len(sents))), {i: -i for i in range(len(sents))}
+    tw = tokens(title)
+    # 제목을 되풀이한 문장과 ◆·■·・ 등으로 시작하는 소제목·목록 줄은 요약 후보에서 뺀다(전부 해당하면 모두 후보로 둔다).
+    cand = [i for i, x in enumerate(sents)
+            if not LIST_MARK.match(x) and not heading_like(x)
+            and not (tw and len(toks[i]) >= 3 and len(toks[i] & tw) / len(toks[i]) >= TITLE_ECHO)]
+    cand = cand or list(range(len(sents)))
+    cand = [i for i in cand if i < LEAD_WINDOW] or cand  # 핵심은 대개 글 앞쪽에 있다
+    if len(cand) <= n:
+        picked, score = list(cand), {i: -i for i in cand}
     else:
         freq = Counter(w for t in toks for w in t)
         common = {w for w, c in freq.items() if c == len(sents)} if len(sents) >= 4 else set()
-        tw = tokens(title)
         score = {}
-        for i, t in enumerate(toks):
-            t = t - common
+        for i in cand:
+            t = toks[i] - common
             base = sum(freq[w] for w in t) / len(t) if t else 0
-            score[i] = (base + 2 * len(t & tw) + LEAD_WEIGHT / (i + 1) + (0.5 if re.search(r"\d", sents[i]) else 0)
-                        - (SHORT_PENALTY if short_sentence(sents[i]) else 0))
+            score[i] = (base + min(2 * len(t & tw), OVERLAP_CAP) + LEAD_WEIGHT / (i + 1)
+                        + (0.5 if re.search(r"\d", sents[i]) else 0) - (SHORT_PENALTY if short_sentence(sents[i]) else 0))
         picked = []
         for i in sorted(score, key=lambda k: (-score[k], k)):
             if len(picked) >= n:
@@ -210,7 +255,126 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
 
 
 def source_summary(item):
-    return extract_summary(html.unescape(item["title"]), plain(item["body"])[:MAX_TEXT])
+    """원문을 수집한 글이면 그 본문을, 아니면 RSS 본문을 요약 대상으로 쓴다."""
+    text = item.get("fulltext") or cut_at_sentence(plain(item["body"]), MAX_TEXT)
+    return extract_summary(html.unescape(item["title"]), text)
+
+
+FULLTEXT_DELAY = 1.5                 # 같은 호스트에 대한 요청 간격(초)
+FULLTEXT_MAX = int(os.environ.get("FULLTEXT_MAX", "30"))  # 한 실행에서 원문을 가져올 최대 글 수
+FULLTEXT_MAX_BYTES = 2_000_000       # 응답 크기 상한
+FULLTEXT_MIN_GAIN = 50               # 원문이 RSS 발췌보다 이만큼 길 때만 쓴다
+ROBOT_TOKEN = "rss-ko"
+FULLTEXT_STATS, FULLTEXT_USED = Counter(), [0]
+FULLTEXT_LAST_ERR = {}
+_ROBOTS, _LAST_HIT = {}, {}
+TRUNCATED = re.compile(r"続きをみる|続きを読む|もっと見る|계속 보기|더 보기|read more|continue reading|\[…\]|\[\.\.\.\]|…\s*$|\.\.\.\s*$", re.I)
+PAYWALL = re.compile(r"ここから先は有料|ここから有料|この続きは有料|続きは有料|continue reading with a subscription|subscribe to (?:continue|read)", re.I)
+
+
+def fulltext_hosts():
+    """fulltext.txt에 적은 호스트(한 줄에 하나, #은 주석)만 원문을 수집한다. 파일이 없으면 기능이 꺼져 있다."""
+    p = ROOT / "fulltext.txt"
+    lines = p.read_text(encoding="utf-8").splitlines() if p.exists() else []
+    return [l.split("#")[0].strip().lower() for l in lines if l.split("#")[0].strip()]
+
+
+def host_allowed(url):
+    host = urlparse(url).netloc.lower().split(":")[0]
+    return urlparse(url).scheme in ("http", "https") and any(host == h or host.endswith("." + h) for h in fulltext_hosts())
+
+
+def wants_fulltext(item, excerpt):
+    """허용된 호스트이면서 RSS 발췌가 잘렸거나 짧을 때만 원문을 가져온다(글자 수 하나로만 정하지 않는다)."""
+    return host_allowed(item["link"]) and (bool(TRUNCATED.search(excerpt)) or len(excerpt) < 300)
+
+
+def fetch_robots(host, scheme):
+    """(상태코드, 본문). 네트워크 오류는 상태코드 0."""
+    try:
+        req = urllib.request.Request(f"{scheme}://{host}/robots.txt", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.status, r.read(500_000).decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        return e.code, ""
+    except Exception:
+        return 0, ""
+
+
+def robots_allows(url):
+    """robots.txt가 없거나(4xx) 허용하면 True. 서버 오류·네트워크 오류면 보수적으로 False."""
+    u = urlparse(url)
+    key = (u.scheme, u.netloc)
+    if key not in _ROBOTS:
+        status, text = fetch_robots(u.netloc, u.scheme)
+        rp = urllib.robotparser.RobotFileParser()
+        if status == 200:
+            rp.parse(text.splitlines())
+            _ROBOTS[key] = rp.can_fetch
+        else:
+            _ROBOTS[key] = (lambda ua, link: True) if 400 <= status < 500 else (lambda ua, link: False)
+    return _ROBOTS[key](ROBOT_TOKEN, url)
+
+
+def fetch_html(url):
+    """호스트별 간격을 지키며 HTML을 받는다. 크기 초과·HTML 아님·허용 호스트 밖으로의 리다이렉트는 ValueError."""
+    host = urlparse(url).netloc
+    wait = FULLTEXT_DELAY - (time.time() - _LAST_HIT.get(host, 0))
+    if wait > 0:
+        time.sleep(wait)
+    _LAST_HIT[host] = time.time()
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,application/xhtml+xml"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        if not host_allowed(r.geturl()):
+            raise ValueError(f"redirected outside allowed hosts: {r.geturl()}")
+        if "html" not in r.headers.get("Content-Type", "html"):
+            raise ValueError("not html")
+        data = r.read(FULLTEXT_MAX_BYTES + 1)
+        if len(data) > FULLTEXT_MAX_BYTES:
+            raise ValueError("response too large")
+        return data.decode(r.headers.get_content_charset() or "utf-8", "replace")
+
+
+def extract_text(page):
+    """trafilatura로 본문만 추출(댓글 제외). 라이브러리가 없으면 빈 문자열."""
+    try:
+        import trafilatura
+    except ImportError:
+        FULLTEXT_STATS["nolib"] += 1
+        return ""
+    return trafilatura.extract(page, include_comments=False, include_tables=False, favor_precision=True) or ""
+
+
+def get_fulltext(item):
+    """허용된 호스트의 잘린 글이면 공개 원문 본문을 돌려준다. 어떤 이유로든 실패하면 빈 문자열(RSS 발췌를 쓴다)."""
+    excerpt = plain(item["body"])
+    if not wants_fulltext(item, excerpt):
+        return ""
+    if FULLTEXT_USED[0] >= FULLTEXT_MAX:
+        FULLTEXT_STATS["limit"] += 1
+        return ""
+    url = item["link"]
+    try:
+        if not robots_allows(url):
+            FULLTEXT_STATS["robots"] += 1
+            return ""
+        FULLTEXT_USED[0] += 1
+        page = fetch_html(url)
+    except Exception as e:
+        FULLTEXT_STATS["fetch"] += 1
+        FULLTEXT_LAST_ERR["fetch"] = f"{type(e).__name__}: {e}"[:200]
+        return ""
+    text = ZERO_WIDTH.sub("", extract_text(page))
+    m = PAYWALL.search(text)
+    if m:  # 유료 구간은 가져오지 않는다
+        text = text[:m.start()]
+        FULLTEXT_STATS["paywall_cut"] += 1
+    text = cut_at_sentence("\n".join(l.strip() for l in text.splitlines() if l.strip()), MAX_TEXT)
+    if len(text) < len(excerpt) + FULLTEXT_MIN_GAIN:
+        FULLTEXT_STATS["no_gain"] += 1
+        return ""
+    FULLTEXT_STATS["ok"] += 1
+    return text
 
 
 def cache_key(text):
@@ -387,6 +551,8 @@ def report_engines():
         lines.append(f"짧은 번역을 복구한 횟수(bracket=괄호를 따옴표로 바꿔 재번역, split=조각별 재번역): {dict(ENGINE_FIXED)}")
     if SHAPES:
         lines.append(f"clients5 응답 모양: {dict(SHAPES)}")
+    if FULLTEXT_STATS:
+        lines.append(f"원문 수집: {dict(FULLTEXT_STATS)}" + (f", 마지막 오류 {FULLTEXT_LAST_ERR['fetch']}" if "fetch" in FULLTEXT_LAST_ERR else ""))
     lines += [f"번역 엔진 실패 {n}: {c}회, 마지막 오류 {ENGINE_LAST_ERR.get(n, '')}" for n, c in ENGINE_FAILS.items()]
     print("\n".join(lines))
     append_step_summary(["", "### 번역 엔진"] + [f"- {l}" for l in lines])
@@ -399,7 +565,10 @@ def report_samples(new_items, by_link, k=10):
     lines = ["## dry-run 샘플", ""]
     for n, i in enumerate(picks, 1):
         src = source_summary(by_link[i["link"]]) or "(본문 없음)"
-        lines += [f"### {n}. [{i['source']}] {i['title_ko']}", f"- 원제: {i['title_orig']}",
+        c = by_link[i["link"]]
+        ft = len(c.get("fulltext") or "")
+        origin = f"원문 수집 {ft}자" if ft else f"RSS 발췌 {len(plain(c['body']))}자"
+        lines += [f"### {n}. [{i['source']}] {i['title_ko']}", f"- 본문 출처: {origin}", f"- 원제: {i['title_orig']}",
                   f"- 원문 요약: {src}", f"- 번역 요약: {i['summary_ko']}", ""]
     print("::group::dry-run 샘플\n" + "\n".join(lines) + "\n::endgroup::")
     append_step_summary(lines)
@@ -533,6 +702,7 @@ def main():
     load_tcache()
     new_items, sum_failed, pending, item_failures, streak = [], [], [], [], 0
     for c in fresh:
+        c["fulltext"] = get_fulltext(c)
         try:
             title_ko, summary_ko = summarize(c)
         except Exception as e:

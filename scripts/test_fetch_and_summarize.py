@@ -121,6 +121,59 @@ class SummarizeTest(Base):
         with unittest.mock.patch("urllib.request.urlopen", return_value=R()), unittest.mock.patch("time.sleep"):
             self.assertEqual(self.m.translate("Hello world"), "안녕 세상")
 
+    def test_fulltext_summary_skips_title_echo_and_list_markers(self):
+        title = "全部言葉でできた世界に，色がついていく"
+        body = "\n".join([
+            "「全部言葉でできた世界に，色がついていく」",
+            "全部言葉でできた世界に，どんどん色がついていく感じがする．",
+            "あれを言葉でやっている．",
+            "◆小室さんの来訪",
+            "）今日は，小室哲哉さんが横浜のスタジオに遊びに来てくれた夜の話．",
+            "27日は夕方にTBSで収録があって，そのあと横浜のランドマークプラザの5階に向かった．",
+            "小室さんは音楽の話から，言葉が先にあって色が後からついてくる感覚について語ってくれた．"])
+        s = self.m.extract_summary(title, body, 3, 500)
+        self.assertNotIn("どんどん色が", s)      # 제목 되풀이
+        self.assertNotIn("あれを言葉で", s)      # 짧은 문장
+        self.assertNotIn("◆", s)                # 소제목
+        self.assertNotIn("）", s)                # 앞에 남은 닫는 기호
+        self.assertIn("小室哲哉", s)
+
+    def test_cut_at_sentence_boundary(self):
+        cut = self.m.cut_at_sentence
+        self.assertEqual(cut("짧은 글입니다.", 100), "짧은 글입니다.")
+        text = "First sentence is here. Second sentence is here. Third sentence that gets cut in the mid"
+        self.assertEqual(cut(text, 60), "First sentence is here. Second sentence is here.")
+        self.assertEqual(cut("x" * 100, 50), "x" * 50)  # 문장 끝이 없으면 그냥 자른다
+        self.assertEqual(cut("가나다。라마바。사아자차카타파하", 12), "가나다。라마바。")
+
+    def test_long_rss_body_does_not_end_with_a_fragment(self):
+        body = " ".join(f"This is sentence number {i} of a very long feed body." for i in range(400))
+        s = self.m.source_summary({"title": "T", "body": body})
+        self.assertTrue(s.endswith("."))
+        self.assertNotIn("larg", s)
+
+    def test_numbered_headings_are_not_picked(self):
+        text = "\n".join(["1.マイページへのログイン方法", "このマイページは、単なる求人検索ページではありません。", "2) Getting started",
+                          "マイページに登録すると、希望条件に合った求人がメールで届きます。", "登録は無料で、スマートフォンからも手続きできます。"])
+        s = self.m.extract_summary("マイページ活用術", text, 3, 500)
+        self.assertNotIn("ログイン方法", s)
+        self.assertNotIn("Getting started", s)
+        self.assertTrue(self.m.heading_like("1.マイページへのログイン方法"))
+        self.assertFalse(self.m.heading_like("2026年は売上が伸びました。"))
+        self.assertFalse(self.m.heading_like("1. この機能は便利です。"))  # 문장부호로 끝나면 소제목이 아니다
+
+    def test_only_leading_sentences_are_candidates(self):
+        lead = [f"Lead sentence number {i} talks about alpha{i} topic here today." for i in range(12)]
+        late = ["Late sentence mentions the title words rocket engines rocket engines rocket engines rocket engines 99."]
+        s = self.m.extract_summary("rocket engines", " ".join(lead + late), 3, 500)
+        self.assertNotIn("Late sentence", s)
+
+    def test_list_items_are_not_picked_unless_nothing_else(self):
+        only = "◆ 첫째 항목입니다\n◆ 둘째 항목입니다"
+        self.assertTrue(self.m.extract_summary("제목", only, 3, 500))  # 후보가 전부 제외되면 모두 후보로 둔다
+        mixed = "◆ 첫째 항목입니다\n본문 문장이 여기에 있습니다. 두 번째 본문 문장입니다. 세 번째 본문 문장입니다. 네 번째 본문 문장입니다."
+        self.assertNotIn("◆", self.m.extract_summary("제목", mixed, 3, 500))
+
     def test_japanese_short_sentences_are_summarized(self):
         ja = "今日は映画を観てきました。とても良い作品でした。主演の演技が素晴らしかったです。次はもう一度観たいです。"
         s = self.m.extract_summary("映画の感想", ja, 2, 500)
@@ -224,7 +277,7 @@ class SummarizeTest(Base):
         self.assertIn("::group::", pr.call_args[0][0])
 
     def test_plain_adds_space_between_blocks_and_strips_zero_width(self):
-        self.assertEqual(self.m.plain("<p>them.</p><h2>One Game</h2>x\u200by<br>z"), "them. One Game xy z")
+        self.assertEqual(self.m.plain("<p>them.</p><h2>One Game</h2>x\u200by<br>z"), "them. xy z")  # 소제목(h1~h6) 텍스트는 뺀다
 
     def test_read_more_and_fullwidth_period(self):
         text = "落合陽一です．今日は夜の話．1か月くらい，これしかやっていない．続きをみる"
@@ -353,6 +406,121 @@ class SummarizeTest(Base):
         self.assertEqual(self.m.check_item("t", "Sales rose 12.5% to 3,400", "t", "매출이 늘었다"), ["요약 숫자 누락 ['12.5', '3,400']"])
         self.assertEqual(self.m.check_item("t", "売上は１２％増", "t", "매출 12% 증가"), [])
         self.assertIn("요약 비어 있음", self.m.check_item("t", "x y z", "t", " "))
+
+
+NOTE_HTML = """<html><head><title>t</title></head><body><nav>メニュー ログイン</nav><article><h1>映画の感想</h1>
+<p>今日は映画を観てきました。主演の演技が素晴らしく、音楽も印象に残りました。帰り道にずっとサントラを聴いていました。</p>
+<p>特に終盤の長回しのシーンは息をのむほどで、劇場全体が静まり返っていたのを覚えています。もう一度観に行きたいです。</p>
+</article><div class="comments"><p>コメント: 最高でした!</p></div><footer>(c) site</footer></body></html>"""
+
+
+class FulltextTest(Base):
+    EXCERPT = "大学時代、アルバイトをしていた。続きをみる"
+
+    def setUp(self):
+        super().setUp()
+        (self.tmp / "fulltext.txt").write_text("# 원문 수집 허용 호스트\nnote.com  # 일본어 블로그\n", encoding="utf-8")
+        self.item = {"title": "T", "link": "https://note.com/u/n/x1", "body": self.EXCERPT}
+        self.long = "\n".join(["今日は映画を観てきました。主演の演技が素晴らしかったです。" * 3, "終盤の長回しのシーンは息をのむほどでした。" * 3])
+        self.m.robots_allows = lambda url: True
+        self.m.fetch_html = lambda url: "<html/>"
+        self.m.extract_text = lambda page: self.long
+
+    def test_wants_fulltext_only_for_allowed_truncated_posts(self):
+        w = self.m.wants_fulltext
+        self.assertTrue(w(self.item, self.EXCERPT))
+        self.assertFalse(w({"link": "https://other.com/a"}, self.EXCERPT))  # 허용 호스트가 아님
+        self.assertFalse(w(self.item, "x" * 400))  # 잘림 표시도 없고 충분히 길다
+        self.assertTrue(w(self.item, "짧음"))  # 짧으면 가져온다
+        self.assertTrue(w({"link": "https://www.note.com/a"}, self.EXCERPT))  # 하위 도메인
+        self.assertFalse(w({"link": "https://evilnote.com/a"}, self.EXCERPT))
+        self.assertFalse(w({"link": "ftp://note.com/a"}, self.EXCERPT))
+
+    def test_feature_off_without_hosts_file(self):
+        (self.tmp / "fulltext.txt").unlink()
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.assertEqual(dict(self.m.FULLTEXT_STATS), {})
+
+    def test_success_uses_fulltext_for_summary(self):
+        self.item["fulltext"] = self.m.get_fulltext(self.item)
+        self.assertTrue(self.item["fulltext"].startswith("今日は映画"))
+        self.assertEqual(self.m.FULLTEXT_STATS["ok"], 1)
+        self.assertIn("長回し", self.m.source_summary(self.item))
+        self.assertNotIn("続きをみる", self.m.source_summary(self.item))
+
+    def test_failures_fall_back_to_excerpt(self):
+        self.m.robots_allows = lambda url: False
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.assertEqual(self.m.FULLTEXT_STATS["robots"], 1)
+        self.m.robots_allows = lambda url: True
+        def boom(url):
+            raise self.m.urllib.error.HTTPError(url, 403, "no", {}, None)
+        self.m.fetch_html = boom
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.assertEqual(self.m.FULLTEXT_STATS["fetch"], 1)
+        self.assertIn("403", self.m.FULLTEXT_LAST_ERR["fetch"])
+        self.assertTrue(self.m.source_summary(self.item))  # 발췌로 요약은 계속 가능
+
+    def test_no_gain_and_empty_extraction(self):
+        self.m.extract_text = lambda page: "短い本文"
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.m.extract_text = lambda page: ""
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.assertEqual(self.m.FULLTEXT_STATS["no_gain"], 2)
+
+    def test_paywall_part_is_cut(self):
+        pre = "無料で読める部分です。映画の感想を書きました。" * 5
+        self.m.extract_text = lambda page: pre + "\nここから先は有料\n" + "有料部分の本文です。" * 20
+        out = self.m.get_fulltext(self.item)
+        self.assertNotIn("有料", out)
+        self.assertEqual(self.m.FULLTEXT_STATS["paywall_cut"], 1)
+
+    def test_per_run_limit(self):
+        self.m.FULLTEXT_MAX = 1
+        self.assertTrue(self.m.get_fulltext(self.item))
+        self.assertEqual(self.m.get_fulltext(self.item), "")
+        self.assertEqual(self.m.FULLTEXT_STATS["limit"], 1)
+
+    def test_robots_rules(self):
+        self.m.__dict__.pop("robots_allows")  # 설정에서 대체한 가짜를 걷어내고 실제 함수를 쓴다
+        spec = importlib.util.spec_from_file_location("fresh", self.tmp / "scripts" / "fetch_and_summarize.py")
+        fresh = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(fresh)
+        fresh.fetch_robots = lambda host, scheme: (200, "User-agent: *\nDisallow: /private/\n")
+        self.assertTrue(fresh.robots_allows("https://note.com/u/n/x1"))
+        self.assertFalse(fresh.robots_allows("https://note.com/private/a"))
+        fresh._ROBOTS.clear()
+        fresh.fetch_robots = lambda host, scheme: (404, "")
+        self.assertTrue(fresh.robots_allows("https://note.com/private/a"))  # robots.txt가 없으면 허용
+        fresh._ROBOTS.clear()
+        fresh.fetch_robots = lambda host, scheme: (503, "")
+        self.assertFalse(fresh.robots_allows("https://note.com/u/n/x1"))  # 서버 오류면 보수적으로 불허
+        fresh._ROBOTS.clear()
+        fresh.fetch_robots = lambda host, scheme: (0, "")
+        self.assertFalse(fresh.robots_allows("https://note.com/u/n/x1"))  # 네트워크 오류도 불허
+
+    def test_newline_separates_headings_from_sentences(self):
+        self.assertEqual(self.m.split_sentences("はじめに\n今日は映画を観てきました。"), ["はじめに", "今日は映画を観てきました。"])
+
+    @unittest.skipUnless(importlib.util.find_spec("trafilatura"), "trafilatura 미설치")
+    def test_real_trafilatura_extracts_body_without_comments(self):
+        spec = importlib.util.spec_from_file_location("real", self.tmp / "scripts" / "fetch_and_summarize.py")
+        real = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(real)
+        out = real.extract_text(NOTE_HTML)
+        self.assertIn("長回し", out)
+        self.assertNotIn("コメント", out)
+        self.assertNotIn("メニュー", out)
+
+    def test_main_summarizes_from_fulltext(self):
+        self.m.__dict__.pop("summarize", None)
+        self.m.summarize = self.real_summarize
+        self.m.translate = lambda x, *a: "KO:" + x[:6]
+        self.m.get_fulltext = lambda c: self.long if c["link"].endswith("a1") else ""
+        self.run_main()
+        s = json.loads((self.tmp / "items.json").read_text(encoding="utf-8"))
+        a1 = next(i for i in s if i["link"].endswith("a1"))
+        self.assertEqual(a1["summary_ko"], "KO:" + self.m.extract_summary("A1", self.long)[:6])
 
 
 class MainTest(Base):
