@@ -1,10 +1,15 @@
 name: Update feed
 
-# 한글 요약 피드(feed.xml) 갱신. 매일 00/04/08/12/16/20시(KST). 수동 실행 가능.
+# 한글 요약 피드(feed.xml) 갱신. 매일 08/11/14/17시(KST) 하루 4번. 수동 실행 가능.
 on:
   schedule:
-    - cron: "0 3,7,11,15,19,23 * * *"   # UTC (= KST 12/16/20/00/04/08시). GitHub 스케줄은 지연될 수 있음
+    - cron: "5 23,2,5,8 * * *"   # UTC 23/02/05/08시 = KST 08/11/14/17시(5분 지연: 정각은 GitHub 스케줄이 몰려 더 늦어진다). 지연·누락될 수 있음
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "피드·items·seen을 바꾸지 않고 요약·번역 결과만 dry-run-items.json 아티팩트로 저장 (품질 비교용)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,18 +32,27 @@ jobs:
       - name: Fetch feeds and summarize new items
         env:
           NEW_ITEMS_PATH: ${{ runner.temp }}/new_items.json
-        run: python scripts/fetch_and_summarize.py
+          MAX_NEW: ${{ inputs.dry_run && '30' || '20' }}
+        run: python scripts/fetch_and_summarize.py ${{ inputs.dry_run && '--dry-run' || '' }}
+      - name: Upload dry-run result
+        if: ${{ inputs.dry_run }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-items
+          path: dry-run-items.json
       - name: Validate feed.xml
+        if: ${{ !inputs.dry_run }}
         run: python -c "import xml.etree.ElementTree as ET; ET.parse('feed.xml')"
       - name: Commit and push
+        if: ${{ !inputs.dry_run }}
         env:
           NEW_ITEMS_PATH: ${{ runner.temp }}/new_items.json
         run: |
-          git diff --quiet -- feed.xml items.json seen.json && { echo "변경 없음"; exit 0; }
+          git diff --quiet -- feed.xml items.json seen.json translations.json && { echo "변경 없음"; exit 0; }
           git config user.name "hahnjunhee"
           git config user.email "sgr.jhub@gmail.com"
           commit() {
-            git add feed.xml items.json seen.json
+            git add feed.xml items.json seen.json translations.json
             git commit -m "Feed update ($(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST)"
           }
           commit
@@ -55,7 +69,7 @@ jobs:
             [ -f "$NEW_ITEMS_PATH" ] || { echo "::error::$NEW_ITEMS_PATH 없음"; exit 1; }
             python scripts/update_feed.py add "$NEW_ITEMS_PATH"
             python -c "import xml.etree.ElementTree as ET; ET.parse('feed.xml')"
-            git diff --quiet -- feed.xml items.json seen.json && { echo "변경 없음"; exit 0; }
+            git diff --quiet -- feed.xml items.json seen.json translations.json && { echo "변경 없음"; exit 0; }
             commit
           done
           exit 1
