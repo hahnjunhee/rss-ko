@@ -164,6 +164,16 @@ def tokens(text):
     return out
 
 
+LEAD_WEIGHT = 6     # 앞 문장 가산점: 글의 핵심은 대개 앞쪽에 있다
+SHORT_PENALTY = 4   # "落合陽一です．" 같은 인사·자기소개성 짧은 문장은 요약에 잘 안 뽑히게 한다
+
+
+def short_sentence(sent):
+    """일본어·중국어는 12자, 그 외는 25자 미만이면 짧은 문장으로 본다."""
+    cjk = sum(len(r) for r in CJK.findall(sent)) > len(sent) * 0.5
+    return len(sent) < (12 if cjk else 25)
+
+
 def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
     """추출 요약: 잡문장을 빼고, 단어 빈도·제목 일치·앞 문장·숫자 포함 여부로 문장 n개를 골라 원래 순서로 잇는다.
     원문 문장만 쓰므로 없는 내용을 지어내지 않고, 문장이 n개 이하이면 줄이지 않는다."""
@@ -181,7 +191,8 @@ def extract_summary(title, text, n=SENTENCES, max_chars=MAX_SUMMARY):
         for i, t in enumerate(toks):
             t = t - common
             base = sum(freq[w] for w in t) / len(t) if t else 0
-            score[i] = base + 2 * len(t & tw) + 3 / (i + 1) + (1 if re.search(r"\d", sents[i]) else 0)
+            score[i] = (base + 2 * len(t & tw) + LEAD_WEIGHT / (i + 1) + (0.5 if re.search(r"\d", sents[i]) else 0)
+                        - (SHORT_PENALTY if short_sentence(sents[i]) else 0))
         picked = []
         for i in sorted(score, key=lambda k: (-score[k], k)):
             if len(picked) >= n:
@@ -265,7 +276,7 @@ def gtx_mobile(text):
 
 ENGINES = [gtx_api, gtx_chrome, gtx_mobile]
 SKIP_AFTER = 3  # 한 엔진이 이만큼 연속 실패하면 이번 실행의 나머지 호출에서는 건너뛴다
-ENGINE_STATS, ENGINE_FAILS, ENGINE_STREAK, ENGINE_SHORT = Counter(), Counter(), Counter(), Counter()
+ENGINE_STATS, ENGINE_FAILS, ENGINE_STREAK, ENGINE_SHORT, ENGINE_FIXED = Counter(), Counter(), Counter(), Counter(), Counter()
 ENGINE_LAST_ERR = {}
 
 
@@ -282,10 +293,38 @@ def too_short(src, out):
     return len(out) < len(src) * (0.45 if cjk else 0.25)
 
 
-def gtx(text):
+SPLIT_AT = re.compile(r"(?<=[』」）)”\"’])[\s\u3000]+|(?<=[、。，．,.!?！？])[\s\u3000]+")
+GTX_ERRORS = (urllib.error.URLError, TimeoutError, ValueError, KeyError, IndexError, TypeError)
+
+
+OPEN_BRACKETS, CLOSE_BRACKETS = "『「【〈《", "』」】〉》"
+
+
+def normalize_brackets(text):
+    """『』「」【】 같은 CJK 괄호를 일반 따옴표로 바꾼다. 번역기가 괄호 뒤를 버리는 경우의 재시도용이다."""
+    seq = [c for c in text if c in OPEN_BRACKETS + CLOSE_BRACKETS]
+    return text.translate(str.maketrans({c: '"' for c in OPEN_BRACKETS + CLOSE_BRACKETS})), seq
+
+
+def restore_brackets(out, seq):
+    """번역문의 따옴표 개수가 원래 괄호 개수와 같을 때만 원래 괄호로 되돌린다."""
+    if out.count('"') != len(seq):
+        return out
+    it = iter(seq)
+    return re.sub('"', lambda m: next(it), out)
+
+
+def split_parts(text):
+    """닫는 괄호·따옴표·문장부호 뒤의 공백에서만 나눈다(영어 단어 단위로 쪼개지 않는다). 2~6조각일 때만 돌려준다."""
+    parts = [p for p in SPLIT_AT.split(text.strip()) if p.strip()]
+    return parts if 2 <= len(parts) <= 6 else []
+
+
+def gtx(text, split=True):
     """엔진을 순서대로 시도해 처음 성공한 결과를 돌려준다. 연속 실패한 엔진은 건너뛴다(모두 건너뛰게 되면 전부 다시 시도).
-    결과가 비정상적으로 짧으면(구간 누락 의심) 다음 엔진 결과와 비교해 더 긴 쪽을 쓴다.
-    모두 실패하면 처음 시도한 엔진의 예외를 올린다(재시도 여부는 translate()가 그 오류 코드로 판단한다)."""
+    결과가 비정상적으로 짧으면(구간 누락 의심) 다음 엔진 결과와 비교하고, 그래도 짧으면 먼저 CJK 괄호를 따옴표로 바꿔
+    다시 번역하고, 그래도 짧으면 문장부호·괄호 기준 조각별로 따로 번역해 이어 붙인 결과가 더 길 때 그것을 쓴다. 모두 실패하면 처음 시도한 엔진의 예외를 올린다
+    (재시도 여부는 translate()가 그 오류 코드로 판단한다)."""
     first, short = None, None
     live = [e for e in ENGINES if ENGINE_STREAK[engine_name(e)] < SKIP_AFTER] or ENGINES
     for engine in live:
@@ -294,7 +333,7 @@ def gtx(text):
             out = ZERO_WIDTH.sub("", engine(text)).strip()
             if not out:
                 raise ValueError("empty translation")
-        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, IndexError, TypeError) as e:
+        except GTX_ERRORS as e:
             ENGINE_STREAK[name] += 1
             ENGINE_FAILS[name] += 1
             ENGINE_LAST_ERR[name] = f"{type(e).__name__}: {e}"[:200]
@@ -309,6 +348,25 @@ def gtx(text):
         ENGINE_STATS[name] += 1
         return out
     if short:
+        if split:
+            norm, seq = normalize_brackets(text)
+            if seq:  # 1단계: 괄호를 따옴표로 바꿔 문맥을 유지한 채 한 번에 다시 번역
+                try:
+                    fixed = gtx(norm, split=False)
+                except GTX_ERRORS:
+                    fixed = ""
+                if fixed and not too_short(norm, fixed):
+                    ENGINE_FIXED["bracket"] += 1
+                    return restore_brackets(fixed, seq)
+            parts = split_parts(text)  # 2단계: 괄호·문장부호 기준 조각별 번역
+            if parts:
+                try:
+                    joined = " ".join(gtx(p, split=False) for p in parts)
+                except GTX_ERRORS:
+                    joined = ""
+                if len(joined) > len(short[1]):
+                    ENGINE_FIXED["split"] += 1
+                    return joined
         ENGINE_STATS[short[0]] += 1
         return short[1]
     raise first
@@ -325,6 +383,8 @@ def report_engines():
     lines = [f"번역 엔진 사용: {dict(ENGINE_STATS)}"]
     if ENGINE_SHORT:
         lines.append(f"번역이 원문보다 비정상적으로 짧아 다른 엔진과 비교한 횟수: {dict(ENGINE_SHORT)}")
+    if ENGINE_FIXED:
+        lines.append(f"짧은 번역을 복구한 횟수(bracket=괄호를 따옴표로 바꿔 재번역, split=조각별 재번역): {dict(ENGINE_FIXED)}")
     if SHAPES:
         lines.append(f"clients5 응답 모양: {dict(SHAPES)}")
     lines += [f"번역 엔진 실패 {n}: {c}회, 마지막 오류 {ENGINE_LAST_ERR.get(n, '')}" for n, c in ENGINE_FAILS.items()]
