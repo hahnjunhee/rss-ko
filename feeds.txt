@@ -9,3 +9,5 @@ https://financial-cents.com/resources/articles/feed/
 #t https://financial-cents.com/resources/articles/feed/	Articles – Financial Cents
 https://financial-cents.com/feed/
 #t https://financial-cents.com/feed/	Financial Cents
+https://blog.smartthings.com/feed/
+#t https://blog.smartthings.com/feed/	SmartThings Blog
