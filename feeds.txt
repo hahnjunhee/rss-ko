@@ -12,3 +12,4 @@ https://financial-cents.com/feed/
 https://blog.smartthings.com/feed/
 #t https://blog.smartthings.com/feed/	SmartThings Blog
 https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2Fauthor%2Fpavitra%2F
+https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F
