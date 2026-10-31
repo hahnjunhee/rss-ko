@@ -11,3 +11,4 @@ https://financial-cents.com/feed/
 #t https://financial-cents.com/feed/	Financial Cents
 #off https://feed.viewus.co.kr/feed/
 #t https://feed.viewus.co.kr/feed/	뷰어스
+https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Ftherundownai.beehiiv.com%2Farchive&full=1
