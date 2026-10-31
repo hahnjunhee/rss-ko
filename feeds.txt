@@ -12,4 +12,3 @@ https://financial-cents.com/feed/
 #off https://feed.viewus.co.kr/feed/
 #t https://feed.viewus.co.kr/feed/	뷰어스
 https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Ftherundownai.beehiiv.com%2Farchive&full=1
-https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fwww.artificialintelligencemadesimple.com%2Farchive%3Fsort%3Dnew&link=div.container-O1YsI6.two-column-list-BLHtzo.two-column-list--with-dividers-cHfR0M+a.pencraft.pc-reset.color-pub-primary-text-tsxVWu.font-pub-headings-kjzBhN.clamp-99xlzs.clamp-3-pcbPeb.reset-PDs18X&date=div.container-O1YsI6.two-column-list-BLHtzo.two-column-list--with-dividers-cHfR0M+time.date-rtYe1v&full=1
