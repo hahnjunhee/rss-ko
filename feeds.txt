@@ -9,5 +9,5 @@ https://financial-cents.com/resources/articles/feed/
 #t https://financial-cents.com/resources/articles/feed/	Articles – Financial Cents
 https://financial-cents.com/feed/
 #t https://financial-cents.com/feed/	Financial Cents
-https://feed.viewus.co.kr/feed/
+#off https://feed.viewus.co.kr/feed/
 #t https://feed.viewus.co.kr/feed/	뷰어스
