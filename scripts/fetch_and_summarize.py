@@ -665,6 +665,7 @@ def build_item(c, names, title_ko, summary_ko):
         "title_orig": html.unescape(c["title"]),
         "title_ko": title_ko,
         "summary_ko": summary_ko,
+        "feed": c.get("feed", ""),  # 구독 취소 링크용 원본 피드 주소
     }
 
 

@@ -6,6 +6,8 @@
 - 원본 피드 목록: `feeds.txt` (한 줄에 하나)
 - `seen.json`: 처리 이력 / `items.json`: 피드 데이터 / `scripts/update_feed.py`: 빌더
 
+**구독 취소:** 피드 글 하단의 "이 출처 구독 취소" 링크 → GitHub 이슈 작성 화면에서 Submit new issue → `unsubscribe.yml`이 `feeds.txt`에서 그 피드 줄(과 `#t` 제목 줄)을 지우고 이슈를 닫는다. 레포 주인이 연 이슈만 처리한다. 예전 글은 출처 피드를 기록하지 않아, 같은 사이트 피드가 하나뿐일 때만 링크가 붙는다.
+
 API 키가 필요 없다. 피드 본문에서 핵심 문장 3개를 고르고(추출 요약) Google 번역으로 한글화한다. 번역은 비공식 엔드포인트라 가끔 실패할 수 있고, 실패한 글은 다음 실행에서 재시도한다. 수동 실행: Actions → Update feed → Run workflow.
 
 ## 번역 품질·안정성 처리 (`scripts/fetch_and_summarize.py`)

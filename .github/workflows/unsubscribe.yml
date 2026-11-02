@@ -1,0 +1,54 @@
+name: Unsubscribe
+
+# 피드 글의 "이 출처 구독 취소" 링크 → 제목이 "구독 취소: <피드 주소>"인 이슈 → feeds.txt에서 삭제 후 이슈 닫기.
+# 레포 주인이 연 이슈만 처리한다(공개 레포라 다른 사람이 연 이슈는 무시).
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: unsubscribe
+  cancel-in-progress: false
+
+jobs:
+  unsubscribe:
+    if: startsWith(github.event.issue.title, '구독 취소:') && github.event.issue.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TITLE: ${{ github.event.issue.title }}
+      ISSUE: ${{ github.event.issue.number }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Remove feed and push
+        run: |
+          git config user.name "hahnjunhee"
+          git config user.email "sgr.jhub@gmail.com"
+          # 피드 갱신 작업과 동시에 푸시가 겹치면 최신 main에서 다시 적용한다(삭제는 몇 번 해도 결과가 같다).
+          for i in 1 2 3; do
+            git fetch origin main && git reset --hard origin/main
+            python scripts/update_feed.py unsubscribe "$TITLE" > "$RUNNER_TEMP/result.txt"
+            cat "$RUNNER_TEMP/result.txt"
+            git diff --quiet -- feeds.txt feed.xml && exit 0
+            python -c "import xml.etree.ElementTree as ET; ET.parse('feed.xml')"
+            git add feeds.txt feed.xml
+            git commit -m "Unsubscribe feed (#$ISSUE)"
+            git push origin HEAD:main && exit 0
+            echo "::warning::푸시 실패 ($i/3)"
+            sleep 3
+          done
+          echo "구독 취소 커밋을 푸시하지 못했습니다. Actions 로그를 확인해 주세요." > "$RUNNER_TEMP/result.txt"
+          exit 1
+      - name: Close issue
+        run: gh issue close "$ISSUE" -R "$GITHUB_REPOSITORY" --comment "$(cat "$RUNNER_TEMP/result.txt")"
+      - name: Report failure
+        if: failure()
+        run: gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "구독 취소에 실패했습니다. 이슈는 열어 두었습니다. Actions 로그를 확인해 주세요."
