@@ -74,5 +74,18 @@
 "7447a6587acb21f498fa6a74139a383779efd18d": "삼성 세탁기 및 건조기용 SmartThings: 모든 기능 설명",
 "7c9fb752629f2f80b1490be6a48cc40788a8c80a": "SmartThings는 연결된 삼성 세탁기와 건조기에 실시간 주기 알림, 사용자 정의 가능한 세탁 및 건조 설정, 원격 시작/중지/예약, 내장 유지 관리 알림, 기기 간 지능을 추가하며, 모두 기기 자체 제어가 아닌 SmartThings 앱에서 관리됩니다.",
 "25c9f15bff4dc7c84d7e9e32f97e721d625c281d": "삼성 TV에 내장된 SmartThings Hub를 활성화하는 방법",
-"c738e81b74843195fba042d38d996b0ba946aa73": "많은 2024년 이후 삼성 TV에는 SmartThings Hub가 내장되어 있으므로 별도의 허브 장치가 필요하지 않습니다. 휴대폰의 SmartThings 앱이나 TV 자체의 SmartThings 앱에서 켤 수 있습니다. 두 가지 방법 모두 TV를 연결하고 허브를 활성화하며 사용자가 장치 추가를 시작할 수 있도록 합니다."
+"c738e81b74843195fba042d38d996b0ba946aa73": "많은 2024년 이후 삼성 TV에는 SmartThings Hub가 내장되어 있으므로 별도의 허브 장치가 필요하지 않습니다. 휴대폰의 SmartThings 앱이나 TV 자체의 SmartThings 앱에서 켤 수 있습니다. 두 가지 방법 모두 TV를 연결하고 허브를 활성화하며 사용자가 장치 추가를 시작할 수 있도록 합니다.",
+"6541cb7e2b4c97f5302e94368ce62af8070754e0": "SmartThings를 사용하여 휴대폰에서 삼성 TV를 제어하는 방법",
+"4b9a71d358fd10b5d270a5127d6ea8deb794cb8f": "SmartThings 앱은 휴대폰을 연결된 삼성 TV의 리모컨으로 바꿔줍니다. 빠른 리모컨은 휴대폰의 알림 화면이나 Dynamic Island에서 사용할 수 있습니다. 구성원 초대를 사용하면 사용자는 전화기 자체를 넘겨주지 않고도 QR 코드를 통해 가족이나 손님과 특정 장치의 제어권을 공유할 수 있습니다.",
+"70ed1324578c08faccc7537c3513b7a4eb36bae9": "SmartThings Family Care: 통화 중 관리 및 안전 순찰",
+"63026c4edb353366c625b9dbc4c72fe134bd3372": "Samsung SmartThings Family Care는 간병인이 SmartThings 앱을 통해 간병 대상자의 일일 활동, 복약 일정, 위치를 모두 추적할 수 있는 기능입니다. 나우브리프(Now Brief)는 집, 건강, 가족현황을 한 화면에 모아주는 갤럭시폰 맞춤형 일일브리핑 서비스다.",
+"efe69a7bd81c520b1e10225972a3fe6f5211facf": "삼성, 보다 직관적인 사용자 경험을 제공하는 새로운 플랫폼 업데이트에서 'SmartThings Now' 출시",
+"8a8366d6b99e0f607cca863f2c6ade16d60a83bf": "SmartThings Now는 적시에 개인화된 정보와 제어 기능을 제공하여 재설계된 홈 탭 경험을 선도합니다. 로컬 제어는 네트워크 중단 중에도 연결된 장치의 응답성을 유지합니다. 대한민국 서울 – 2026년 10월 6일 – Samsung Electronics Co., Ltd.",
+"c1a917ee9e78d5032a5edf98e82430f9d348071b": "SmartThings 패밀리 케어란 무엇입니까? 기능, 설정 및 작동 방식",
+"6bad3f9d733e6d89c4736406d1dfaf7783837512": "SmartThings Family Care는 간병인이 간병 대상자의 활동, 위치, 약물 치료 일정 및 약속을 원격으로 모니터링하는 데 도움이 되는 SmartThings 앱 내의 간병 기능입니다. 호환되는 Samsung 및 SmartThings 장치의 정보를 연결하고 간병 대상자가 공유되는 내용을 제어할 수 있도록 합니다. Family Care는 200개 이상의 국가에서 운영됩니다.",
+"abfe007be12296c21cd07974d9de8bd524f82307": "IKEA Matter 기기는 SmartThings와 함께 작동합니다. 사용자가 연결하고 자동화할 수 있는 것",
+"92a40022bf36e747dd87e45a74574b093b06fc2f": "Samsung SmartThings는 호환되는 SmartThings에 직접 연결되는 스마트 전구, 플러그, 리모컨, 센서를 포함하여 IKEA의 모든 Matter-over-Thread 장치를 지원한다는 사실을 알고 계셨나요?",
+"0153b5435e26a5e87d1cc2faf944f78de1b7aab0": "SmartThings Safe Premium으로 마음의 평화를 얻으세요",
+"38370a7e86af8bfa16f96249d339b3440cc5e054": "SmartThings Safe Premium은 전문 모니터링 센터를 운영하고 당사를 대신하여 긴급 파견을 조정하는 제3자 파트너인 Arlo에 의해 구동됩니다. 집에 있든 이동 중이든 안전함을 느끼려면 탭 한 번만으로 충분합니다.",
+"e802438886a580c508b304ca2bc98cc1de2fcc76": "새롭게 향상된 SmartThings API 경험"
 }

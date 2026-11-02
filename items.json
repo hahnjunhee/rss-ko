@@ -728,6 +728,14 @@
   "summary_ko": "많은 2024년 이후 삼성 TV에는 SmartThings Hub가 내장되어 있으므로 별도의 허브 장치가 필요하지 않습니다. 휴대폰의 SmartThings 앱이나 TV 자체의 SmartThings 앱에서 켤 수 있습니다. 두 가지 방법 모두 TV를 연결하고 허브를 활성화하며 사용자가 장치 추가를 시작할 수 있도록 합니다."
  },
  {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/how-to-control-your-samsung-tv-from-your-phone-with-smartthings/",
+  "pubDate": "Fri, 23 Oct 2026 18:25:53 +0000",
+  "title_orig": "How to Control Your Samsung TV From Your Phone With SmartThings",
+  "title_ko": "SmartThings를 사용하여 휴대폰에서 삼성 TV를 제어하는 방법",
+  "summary_ko": "SmartThings 앱은 휴대폰을 연결된 삼성 TV의 리모컨으로 바꿔줍니다. 빠른 리모컨은 휴대폰의 알림 화면이나 Dynamic Island에서 사용할 수 있습니다. 구성원 초대를 사용하면 사용자는 전화기 자체를 넘겨주지 않고도 QR 코드를 통해 가족이나 손님과 특정 장치의 제어권을 공유할 수 있습니다."
+ },
+ {
   "source": "TechJunkie",
   "link": "https://www.techjunkie.com/how-to-fix-frozen-widgets-on-the-windows-taskbar/",
   "pubDate": "Fri, 23 Oct 2026 13:00:00 +0000",
@@ -758,6 +766,14 @@
   "title_orig": "Feeling Nostalgic? Here's How to Find Old Windows Icons on Your PC",
   "title_ko": "추억의 옛 윈도우 아이콘, PC에서 찾는 법",
   "summary_ko": "System32의 DLL과 SystemResources 폴더에 남아 있는 구버전 윈도우 아이콘 위치를 알려줍니다. '아이콘 변경' 창으로 적용하거나 7-Zip으로 추출하는 방법도 소개합니다."
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/smartthings-family-care-care-on-call-and-safety-patrol/",
+  "pubDate": "Tue, 20 Oct 2026 21:11:47 +0000",
+  "title_orig": "SmartThings Family Care: Care on Call and Safety Patrol",
+  "title_ko": "SmartThings Family Care: 통화 중 관리 및 안전 순찰",
+  "summary_ko": "Samsung SmartThings Family Care는 간병인이 SmartThings 앱을 통해 간병 대상자의 일일 활동, 복약 일정, 위치를 모두 추적할 수 있는 기능입니다. 나우브리프(Now Brief)는 집, 건강, 가족현황을 한 화면에 모아주는 갤럭시폰 맞춤형 일일브리핑 서비스다."
  },
  {
   "source": "Financial-cents",
@@ -864,6 +880,14 @@
   "summary_ko": "고객이 보낸 문서가 IMG_4471.pdf나 Scan0003.pdf처럼 알아보기 어려운 이름으로 되어 있어 일일이 열어 확인하고 이름을 바꾸는 작업은 반복적이고 비용으로 청구하기도 어렵다. 이 글은 AI가 문서 내용을 분석해 회계법인의 명명 규칙에 맞는 파일명을 만들어 주는 도구들을 비교하며, 독립형 도구와 practice management 소프트웨어 내장 기능 중 무엇을 고를지 살펴본다. 본문 발췌 기준으로 소개된 독립형 도구로는 RenamerX, Zush, Renamer.ai 등이 있고, 내장형으로는 Financial Cents가 언급된다."
  },
  {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/samsung-introduces-smartthings-now-in-new-platform-update-that-brings-more-intuitive-user-experiences/",
+  "pubDate": "Mon, 05 Oct 2026 23:00:00 +0000",
+  "title_orig": "Samsung Introduces ‘SmartThings Now’ in New Platform Update That Brings More Intuitive User Experiences",
+  "title_ko": "삼성, 보다 직관적인 사용자 경험을 제공하는 새로운 플랫폼 업데이트에서 'SmartThings Now' 출시",
+  "summary_ko": "SmartThings Now는 적시에 개인화된 정보와 제어 기능을 제공하여 재설계된 홈 탭 경험을 선도합니다. 로컬 제어는 네트워크 중단 중에도 연결된 장치의 응답성을 유지합니다. 대한민국 서울 – 2026년 10월 6일 – Samsung Electronics Co., Ltd."
+ },
+ {
   "source": "Financial-cents",
   "link": "https://financial-cents.com/resources/articles/taxdome-pricing/",
   "pubDate": "Tue, 29 Sep 2026 18:21:59 +0000",
@@ -878,6 +902,22 @@
   "title_orig": "How Bookkeeping Firms Use Practice Management Software to Scale",
   "title_ko": "회계 장부 기장 사무소가 실무 관리 소프트웨어로 규모를 키우는 방법",
   "summary_ko": "기장 사무소가 고객과 매출을 늘리면서도 업무 부담과 운영 문제가 같은 속도로 커지지 않게 하려면 체계적인 시스템이 필요하다고 설명한다. 실무 관리 소프트웨어는 반복 업무, 마감일, 문서 요청, 팀 배정, 청구를 한곳에서 관리해 대표 의존도를 낮추고 업무 위임을 쉽게 만들어 준다. 다만 소프트웨어 도입 전에 업무 절차와 책임을 먼저 정하고, 한 가지 업무부터 단계적으로 적용해야 한다고 강조한다."
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/what-is-smartthings-family-care-features-setup-and-how-it-works/",
+  "pubDate": "Mon, 28 Sep 2026 17:15:00 +0000",
+  "title_orig": "What Is SmartThings Family Care? Features, Setup and How It Works",
+  "title_ko": "SmartThings 패밀리 케어란 무엇입니까? 기능, 설정 및 작동 방식",
+  "summary_ko": "SmartThings Family Care는 간병인이 간병 대상자의 활동, 위치, 약물 치료 일정 및 약속을 원격으로 모니터링하는 데 도움이 되는 SmartThings 앱 내의 간병 기능입니다. 호환되는 Samsung 및 SmartThings 장치의 정보를 연결하고 간병 대상자가 공유되는 내용을 제어할 수 있도록 합니다. Family Care는 200개 이상의 국가에서 운영됩니다."
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/ikea-matter-devices-work-with-smartthings-what-users-can-connect-and-automate/",
+  "pubDate": "Mon, 28 Sep 2026 16:34:45 +0000",
+  "title_orig": "IKEA Matter Devices Work With SmartThings: What Users Can Connect and Automate",
+  "title_ko": "IKEA Matter 기기는 SmartThings와 함께 작동합니다. 사용자가 연결하고 자동화할 수 있는 것",
+  "summary_ko": "Samsung SmartThings는 호환되는 SmartThings에 직접 연결되는 스마트 전구, 플러그, 리모컨, 센서를 포함하여 IKEA의 모든 Matter-over-Thread 장치를 지원한다는 사실을 알고 계셨나요?"
  },
  {
   "source": "Financial-cents",
@@ -974,5 +1014,21 @@
   "title_orig": "US CEO Political Ideology and Non‐GAAP Earnings",
   "title_ko": "미국 CEO의 정치 성향과 비GAAP 이익",
   "summary_ko": "미국 기업의 CEO 정치 성향이 비GAAP 이익의 공시 여부와 질에 영향을 주는지 분석했다. 공화당 성향 CEO는 비GAAP 이익을 공시할 가능성이 낮았으나, 적자나 일시적 이익이 있을 때는 이 차이가 줄어들었다. 반면 제외 항목의 규모나 미래 영업이익·현금흐름과의 관계, 애널리스트 기대치 달성 목적의 활용에서는 정치 성향의 뚜렷한 영향이 확인되지 않았다."
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/get-peace-of-mind-with-smartthings-safe-premium-powered-by-arlo/",
+  "pubDate": "Wed, 24 Jun 2026 13:00:00 +0000",
+  "title_orig": "Get Peace Of Mind with SmartThings Safe Premium",
+  "title_ko": "SmartThings Safe Premium으로 마음의 평화를 얻으세요",
+  "summary_ko": "SmartThings Safe Premium은 전문 모니터링 센터를 운영하고 당사를 대신하여 긴급 파견을 조정하는 제3자 파트너인 Arlo에 의해 구동됩니다. 집에 있든 이동 중이든 안전함을 느끼려면 탭 한 번만으로 충분합니다."
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/a-new-enhanced-smartthings-api-experience/",
+  "pubDate": "Tue, 23 Jun 2026 18:00:00 +0000",
+  "title_orig": "A New Enhanced SmartThings API Experience",
+  "title_ko": "새롭게 향상된 SmartThings API 경험",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)"
  }
 ]
