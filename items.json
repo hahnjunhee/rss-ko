@@ -1,5 +1,14 @@
 [
  {
+  "source": "Wiley",
+  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70096?af=R",
+  "pubDate": "Tue, 03 Nov 2026 21:38:33 -0800",
+  "title_orig": "Contextualization of Numbers in Earnings Conference Calls",
+  "title_ko": "수익 전화 회의에서 숫자의 상황화",
+  "summary_ko": "이전 연구에서는 일반적으로 재무 공개에 숫자를 사용하는 것이 유익한 것으로 나타났습니다. 우리는 수익 회의 통화에서 맥락이 부족한 숫자를 사용하는 것이 단기적인 이점과 관련이 있지만 장기적으로는 부정적인 결과를 가져온다는 사실을 발견했습니다. 더욱이, 우리는 맥락 부족화가 장기적인 마이너스 시장 수익률, 전년 대비 수익 감소, 재작성 빈도 증가와 연관되어 있음을 발견했습니다.",
+  "feed": "http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957"
+ },
+ {
   "source": "Clickup",
   "link": "https://clickup.com/blog/employee-onboarding-examples/",
   "pubDate": "Wed, 04 Nov 2026 02:58:43 +0000",
@@ -114,6 +123,15 @@
   "title_orig": "駄菓子屋は、昭和の子どもの高級レストラン",
   "title_ko": "과자 가게는 쇼와의 어린이 고급 레스토랑",
   "summary_ko": "전회, 과자점에서 부자의 아이에게 패배해, 30엔으로 자본주의의 어려움을 생각해 본 이야기를 썼다. 생각하면 쇼와의 과자점에는 수상하고, 빨갛고, 신맛, 입의 수분을 빼앗는 음식이 좁고 줄지어 있었다. 부피가 큰 양과자는 선반에 쌓여 있었다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/matsumototakeuma/n/n5f7dee8d4f23",
+  "pubDate": "Mon, 02 Nov 2026 02:11:25 +0900",
+  "title_orig": "あれはキングオブコントそのもの",
+  "title_ko": "그건 킹 오브 콘트 그 자체",
+  "summary_ko": "TBS에서 얼른 낮부터 생방송에서 행해진 킹 오브 콘트의 패자 부활전. 왜냐하면 저는 이전 멤버십 한정 기사에서 자신이 킹 오브 콘트에서 우승한 것으로서 어떻게 그날 우승했는지를 구체적으로 써서 정말 그대로의 전개가 되고 있었기 때문이다. 우승한 테이에서 일기를 쓰고 우승한 것으로 보내고 있었는데 「어라?",
   "feed": "https://note.com/recommend/rss"
  },
  {
@@ -451,6 +469,33 @@
  },
  {
   "source": "note",
+  "link": "https://note.com/archis/n/nafc620de3edb",
+  "pubDate": "Sat, 31 Oct 2026 20:17:46 +0900",
+  "title_orig": "電子計算器に喰われない建築家――黒川紀章論 〈1〉",
+  "title_ko": "전자 계산기에 빠지지 않는 건축가――쿠로카와 기장론 〈1〉",
+  "summary_ko": "1960년, 26세의 구로카와 기장은 전자 계산기에 의한 설계 방법의 등장을 예측했습니다. 건축가는 그 방법에 '먹지 않는다' 위해 무엇을 가져야 하는가. 건축가에게 사상이란 무엇인가?",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/makochin_life/n/n59a1cf6a1d4d",
+  "pubDate": "Sat, 31 Oct 2026 19:02:54 +0900",
+  "title_orig": "自閉スペクトラム症の息子が安心して暮らせる家をつくりたい。築27年の一軒家改造奮闘記 #1",
+  "title_ko": "자폐 스펙트럼증의 아들이 안심하고 살 수 있는 집을 만들고 싶다. 건축 27년의 집 개조 분투기 #1",
+  "summary_ko": "아들의 코우는 심한 자폐 스펙트럼증과 난치성 간질이 있는 21세. 지금까지 25년 동안 살아온 아파트는 우리 가족에게 아늑한 장소였습니다. 그런 생각으로부터, 2026년 봄, 27년의 1채집을 개조하는 것을 결의했습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/clean_arnica1784/n/nba43fe82b9b1",
+  "pubDate": "Sat, 31 Oct 2026 18:09:48 +0900",
+  "title_orig": "バッグにぶら下がるAI「dot」を、コード書けない50代がCodexと9日で作った話｜M5Stack StopWatch × ChatGPT dots",
+  "title_ko": "가방에 매달리는 AI 'dot'를 코드 쓸 수 없는 50대가 Codex와 9일에 만든 이야기 | M5Stack StopWatch × ChatGPT dots",
+  "summary_ko": "소개 : 술집에서 dot가 고조되었다 이야기의 흐름으로, 가방에 매달려 있던 둥근 화면의 「dot」를 보였다면, 생각 외에 고조되었습니다 ♪ 「나중에 만들고 싶다」라고 생각해 주는 것이 이렇게 있어…",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
   "link": "https://note.com/nerve00000/n/na143732ef123",
   "pubDate": "Sat, 31 Oct 2026 16:15:56 +0900",
   "title_orig": "「14歳の時に聴いていた音楽が結局その人の一番好きな音楽」という言説があるけど、私は全然そうじゃないな",
@@ -727,6 +772,15 @@
  },
  {
   "source": "note",
+  "link": "https://note.com/tavosuu/n/naab2b4414ac5",
+  "pubDate": "Thu, 29 Oct 2026 23:01:27 +0900",
+  "title_orig": "30歳、1991年式のGolf 2を買った。",
+  "title_ko": "30세, 1991년식의 Golf 2를 샀다.",
+  "summary_ko": "좋아하게 되고 나서, 사기까지 5년 정도. 스피닝 차고라고 하는, Golf 2를 취급하는 가게가 소개되고 있었다. 거기에 비쳐 있던 Golf 2를 보고, 한눈에 그 룩에 반해 버렸다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
   "link": "https://note.com/jamamotocapisa/n/ned2ee4bdff0a",
   "pubDate": "Thu, 29 Oct 2026 22:58:12 +0900",
   "title_orig": "野花とも手をつなぐ",
@@ -862,6 +916,15 @@
   "title_orig": "1年間のセルフポートレートと、時間を寝かせること。写真家 かなまる。の撮影の話",
   "title_ko": "1년간의 셀프포트레이트와 시간을 묵혀두기, 사진가 가나마루의 촬영 이야기",
   "summary_ko": "'사진가의 판단'을 주제로 촬영 뒷이야기와 셔터를 누르거나 누르지 않는 순간을 다루는 Film in Life의 노트다. 협력 사진가들의 장비, 고집, 촬영 당일의 회고를 기록해 나갈 계획이라고 소개한다. 본문 발췌가 짧아 구체적인 1년간의 셀프포트레이트 내용은 확인되지 않으며, 제목과 소개문을 기준으로 요약했다."
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/mahiro_tjpw/n/n8b66a039b91c",
+  "pubDate": "Wed, 28 Oct 2026 12:37:36 +0900",
+  "title_orig": "ガブ飲ませ紅茶屋さんに行ってきた話",
+  "title_ko": "가브를 마시고 홍차 가게에 갔다.",
+  "summary_ko": "왠지 홍차를 엄청 마시게 오는 가게가 있는 것 같다! 그런 무레스나 씨의 차가 마시는 배틀 필드에 함께 도착해 준 것은 친구의 우동 씨 (가명) 가자 두 대답으로 권유를 타주는 우동 씨",
+  "feed": "https://note.com/recommend/rss"
  },
  {
   "source": "note",
