@@ -1,5 +1,23 @@
 [
  {
+  "source": "Clickup",
+  "link": "https://clickup.com/blog/content-governance/",
+  "pubDate": "Thu, 05 Nov 2026 03:25:42 +0000",
+  "title_orig": "Content Governance: How to Build a System That Keeps Content Current",
+  "title_ko": "콘텐츠 거버넌스: 콘텐츠를 최신 상태로 유지하는 시스템을 구축하는 방법",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
+ },
+ {
+  "source": "Clickup",
+  "link": "https://clickup.com/blog/claude-code-prompts/",
+  "pubDate": "Thu, 05 Nov 2026 03:25:40 +0000",
+  "title_orig": "Claude Code Prompts: 25 Copy-Ready Prompts and How to Write Your Own",
+  "title_ko": "Claude 코드 프롬프트: 25가지 복사 준비 프롬프트 및 직접 작성하는 방법",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
+ },
+ {
   "source": "Wiley",
   "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70096?af=R",
   "pubDate": "Tue, 03 Nov 2026 21:38:33 -0800",
@@ -27,6 +45,15 @@
   "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
  },
  {
+  "source": "note",
+  "link": "https://note.com/glocaleats/n/n2e6cc95c94fc",
+  "pubDate": "Wed, 04 Nov 2026 07:00:00 +0900",
+  "title_orig": "#17 セリアの陶芸ねんどで、ちいかわの箸置きを手作り！材料費660円で挑戦してみた",
+  "title_ko": "#17 세리아의 도예 넨도로, 치카카와의 젓가락 두어를 수제! 재료비 660엔으로 도전해 보았다",
+  "summary_ko": "그렇다면 스스로 만들어 보자. 집의 오븐에서 굽는 것 같다. 만들어 보기로 했습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
   "source": "Financial-cents",
   "link": "https://financial-cents.com/resources/articles/collect-documents-from-clients/",
   "pubDate": "Tue, 03 Nov 2026 16:46:49 +0000",
@@ -37,11 +64,47 @@
  },
  {
   "source": "note",
+  "link": "https://note.com/nomed/n/ncdb52cb13a1c",
+  "pubDate": "Tue, 03 Nov 2026 23:28:26 +0900",
+  "title_orig": "文化の日なので、文化的にベーグルを焼いた！",
+  "title_ko": "문화의 날이므로 문화적으로 베이글을 구웠다!",
+  "summary_ko": "쉬는 때마다 빵의 연습을 할까~라고 생각하고 있으면, 여러가지 용사가 들어가 생각하게 가지 않는 것이 인생이라고 하는 것. 「자유와 평화를 사랑해, 문화를 진행하는 날」인 것 같아서 자유롭게 빵을 구워도 좋다! 그래서 고구마를 사용한 빵을 만들기로 결정했습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/saranezumi/n/n963514201f27",
+  "pubDate": "Tue, 03 Nov 2026 21:53:58 +0900",
+  "title_orig": "短い軸ってかわいいのよ┃プラチナポケット18",
+  "title_ko": "짧은 축이 귀엽다 ┃ 백금 포켓 18",
+  "summary_ko": "만년필 중에는, 평균보다 짧은 축의 것이 몇개 존재하고 있지요. 현재로 환산하면 12,000~15,000엔 정도의 가격이었다고 한다. 지금까지는 정원에서 발굴한 엘리트 S(22K 니브)의 짧은 축을 애용하고 있던 나입니다만, 왠지 요전날의 출장중, 돌격에 「짧은 축의 만년필 귀여운」기에 돌입.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/f9721185/n/n1a631e5e4dd6",
+  "pubDate": "Tue, 03 Nov 2026 19:12:45 +0900",
+  "title_orig": "マクロレンズ、フィギュア撮影に必要なのか改めて考える",
+  "title_ko": "매크로 렌즈, 피규어 촬영에 필요한지 다시 생각한다",
+  "summary_ko": "나 자신, 피겨 촬영에 추천 렌즈를 들으면 아마 매크로 렌즈를 들겠습니다. 「피겨 촬영에 추천하는 렌즈는? 실제로, 매크로 렌즈는 편리합니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
   "link": "https://note.com/akitrip__/n/nc7301a7ded45",
   "pubDate": "Tue, 03 Nov 2026 19:00:07 +0900",
   "title_orig": "ホットサンドメーカーでいろんなもの挟んでみた",
   "title_ko": "핫 샌드 메이커로 여러 가지 끼워 보았습니다.",
   "summary_ko": "요 전날 5년 만에 핫 샌드 메이커를 끌어내 핫 샌드를 만들었습니다. 보통 토스트하는 것보다 핫 샌드 쪽이 맛있다! 그 이후로 다양한 것을 끼워 핫샌드 생활을 즐기고 있습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/sorarisu12/n/n7e51d4d4f5f3",
+  "pubDate": "Tue, 03 Nov 2026 18:21:52 +0900",
+  "title_orig": "ターナーをまったく知らない人間が、ターナー展に行った意味。",
+  "title_ko": "터너를 전혀 모르는 인간이 터너전에 간 의미.",
+  "summary_ko": "우에노에 있는 터너전에 갔습니다. 터너는 바다와 산의 자연, 인간의 일, 빛의 표현을 그리는 것이 뛰어나 다양한 그림을 그렸습니다. 자연과 인간의 무서움을 터너는 그림으로 표현했습니다.",
   "feed": "https://note.com/recommend/rss"
  },
  {
@@ -55,11 +118,56 @@
  },
  {
   "source": "note",
+  "link": "https://note.com/mizunouta/n/n73e928928d84",
+  "pubDate": "Tue, 03 Nov 2026 17:17:30 +0900",
+  "title_orig": "【質問箱・回答】この１～２年でよく聴いた曲は？　車で「ながら聴き」のわたしが、Spotifyとにらめっこしながら答えました",
+  "title_ko": "【질문 상자・응답】이 1~2년에 자주 들었던 곡은? 차로 「면서 듣기」의 내가, Spotify와 망설임하면서 대답했습니다",
+  "summary_ko": "반드시 이전부터 잘 읽어 주시고 있네요. 질문도 좋고 동시에 \"잘 들었던 노래는 있지만 이름을 모른다! 한때 잘 듣고 있던 아티스트는",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/rstc_nonaka/n/n45cf0d215f80",
+  "pubDate": "Tue, 03 Nov 2026 14:40:16 +0900",
+  "title_orig": "原価率、約87％。それでも利益が出る理由。",
+  "title_ko": "원가율, 약 87%. 그래도 이익이 나오는 이유.",
+  "summary_ko": "저는 지금까지 회사의 매출과 이익에 대해 많이 말하지 않았습니다. 그런데 깨달으면 회사의 이익을 늘리기 위해 엔지니어가 일하고 있다. 리츠안도 제20기를 맞이했습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
   "link": "https://note.com/real_pika208/n/nc09bac094e99",
   "pubDate": "Tue, 03 Nov 2026 12:33:06 +0900",
   "title_orig": "葬儀のナレーションは、どうやって生まれるのか",
   "title_ko": "장례식의 나레이션은 어떻게 태어나는가?",
   "summary_ko": "그런 질문을 받을 수 있습니다. 장례식의 사회를 하고 있으면, 고인님을 소개하는 나레이션을 읽을 기회가 있습니다. 나에게 나레이션 만들기는 문장을 쓰는 것보다 그 분다움을 찾는 시간에 가까운 것일지도 모릅니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/junya_m/n/n106a3d7b62d2",
+  "pubDate": "Tue, 03 Nov 2026 09:02:20 +0900",
+  "title_orig": "「広さ」と「深さ」が両立する書店「BOOKSHOPトランスビュー大江戸中井店」に行ってきた話",
+  "title_ko": "「넓이」와 「깊이」가 양립하는 서점 「BOOKSHOP 트랜스뷰 오에도 나카이점」에 다녀온 이야기",
+  "summary_ko": "서점은 재미 있습니다. 무엇을 지금 굉장합니다만, 소규모 서점이나 개인 서점이 늘어나 서점의 바리에이션이 퍼지고 있습니다. 그리고, 「책방은 즐겁다!",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/gusukuma/n/nb6781e5d5001",
+  "pubDate": "Tue, 03 Nov 2026 06:39:45 +0900",
+  "title_orig": "八代の『今』を辿りながら（そよ風茶房游再訪編）",
+  "title_ko": "야쓰시로의 『지금』을 추적하면서(소요풍차방부 재방편)",
+  "summary_ko": "벤치에 앉아 땀을 닦은 시트로 땀을 닦아 샀던 차로 목을 적시면서 낮의 햇살을 받고 히나타보코를 만끽했다. 엉망이라면 익숙한 차가. 매입에 가고 있었을 것이다, 가와사키 씨는 선글라스를 걸고, 쇼핑한 물건으로 빵빵의 에코 백을 안고 있으면서 점내에 들어갔다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/asakoi_558/n/n61afdb53a65d",
+  "pubDate": "Tue, 03 Nov 2026 03:01:36 +0900",
+  "title_orig": "醤油蔵がおしゃれなカフェに～地域の交流拠点をめざしてオープン！その名も「旧醤油蔵」",
+  "title_ko": "간장이 세련된 카페에~지역의 교류 거점을 목표로 오픈! 그 이름도 「구 간장」",
+  "summary_ko": "메이지에서 쇼와에 걸쳐 고베시 기타구 하치타초에 있던 간장 양조장이 개수되어 올해 5월에 세련된 카페가 되어 오픈했습니다. 고베시 기타구 핫타초 병풍 613-3 지역 커뮤니티 교통 「핫타 아와카와 버스」를 이용해 주세요.",
   "feed": "https://note.com/recommend/rss"
  },
  {
