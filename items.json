@@ -1,5 +1,23 @@
 [
  {
+  "source": "Clickup",
+  "link": "https://clickup.com/blog/design-project-management/",
+  "pubDate": "Fri, 06 Nov 2026 03:22:25 +0000",
+  "title_orig": "Design Project Management: How to Plan, Review, and Ship Design Work",
+  "title_ko": "설계 프로젝트 관리: 설계 작업을 계획, 검토 및 배송하는 방법",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/smartthings-updates/smartthings-local-control-faster-more-reliable-device-control-at-home/",
+  "pubDate": "Thu, 05 Nov 2026 15:00:00 +0000",
+  "title_orig": "SmartThings Local Control: Faster, More Reliable Device Control at Home",
+  "title_ko": "SmartThings 로컬 제어: 집에서 더 빠르고 안정적인 장치 제어",
+  "summary_ko": "SmartThings 로컬 제어를 사용하면 SmartThings 앱이 홈 네트워크를 통해 SmartThings Hub에 직접 연결되므로 집에 있을 때 일상적인 장치 명령이 클라우드를 통해 이동할 필요가 없습니다. 최신 SmartThings 앱으로 자동으로 켜지며 따로 설정할 것이 없습니다.",
+  "feed": "https://blog.smartthings.com/feed/"
+ },
+ {
   "source": "Wiley",
   "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70094?af=R",
   "pubDate": "Wed, 04 Nov 2026 20:40:46 -0800",
@@ -25,6 +43,33 @@
   "title_ko": "Claude 코드 프롬프트: 25가지 복사 준비 프롬프트 및 직접 작성하는 방법",
   "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
   "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/househusband/n/n55e9c495a7e7",
+  "pubDate": "Thu, 05 Nov 2026 12:00:32 +0900",
+  "title_orig": "マイケル・シェンカー・グループの大阪公演で音楽の素晴らしさを知る",
+  "title_ko": "Michael Schenker Group의 오사카 공연에서 음악의 훌륭함을 알고 있습니다.",
+  "summary_ko": "조금 전이지만 마이클 셰인커를 보았습니다. 요코하마의 풀 메탈 재팬에 출연이 정해진 MSG가, 오사카에서의 단독 공연을 추가해 준 것입니다. 실시간 체험은 맥콜리 쉥커 그룹의 'Perfect Timing'에서였던 나는 '어쩌면 1곡 정도 연기해 줄지도?",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/hos2062/n/n5b4bf71c8f8a",
+  "pubDate": "Wed, 04 Nov 2026 23:33:39 +0900",
+  "title_orig": "筆箱紹介ex",
+  "title_ko": "필통 소개 ex",
+  "summary_ko": "오랜만입니다. 그 탓인지, 지금 실용하고 있는 필통의 내용이 매우 비참한 것이 되었습니다. 필통은 ewittco의 가죽 펜 케이스입니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/katarite_st/n/n3ad05cec662e",
+  "pubDate": "Wed, 04 Nov 2026 22:06:57 +0900",
+  "title_orig": "45年ぶりの、家族で川の字",
+  "title_ko": "45년 만에 가족의 강자",
+  "summary_ko": "가족으로 1박 여행을 해왔다. 가족 모두 온천여행이나 디즈니랜드에 가본 적은 한번도 없다. '우리가 가족 여행다운 여행, 한 적 없었어' 그런 이야기를 하면서 아침 6시 반에 출발했다.",
+  "feed": "https://note.com/recommend/rss"
  },
  {
   "source": "Wiley",
@@ -126,6 +171,15 @@
   "feed": "http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957"
  },
  {
+  "source": "note",
+  "link": "https://note.com/ryosuke_shimoeda/n/n9ed1a74e9463",
+  "pubDate": "Wed, 04 Nov 2026 17:21:53 +0900",
+  "title_orig": "決算書より先に、私が見る数字があります。銀行の支店長から、町工場の社長になって",
+  "title_ko": "결산서보다 먼저 내가 보는 숫자가 있습니다. 은행 지점장에서 마을 공장의 사장이되었습니다.",
+  "summary_ko": "만나서 반갑습니다. 오늘부터 note를 써 갑니다. 그냥 20년 은행에 있었어요.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
   "source": "Wiley",
   "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70096?af=R",
   "pubDate": "Tue, 03 Nov 2026 21:38:33 -0800",
@@ -133,6 +187,42 @@
   "title_ko": "수익 전화 회의에서 숫자의 상황화",
   "summary_ko": "이전 연구에서는 일반적으로 재무 공개에 숫자를 사용하는 것이 유익한 것으로 나타났습니다. 우리는 수익 회의 통화에서 맥락이 부족한 숫자를 사용하는 것이 단기적인 이점과 관련이 있지만 장기적으로는 부정적인 결과를 가져온다는 사실을 발견했습니다. 더욱이, 우리는 맥락 부족화가 장기적인 마이너스 시장 수익률, 전년 대비 수익 감소, 재작성 빈도 증가와 연관되어 있음을 발견했습니다.",
   "feed": "http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/a_meerkat/n/n32ea7109d9b0",
+  "pubDate": "Wed, 04 Nov 2026 14:01:30 +0900",
+  "title_orig": "「ストレンジャー・シングス」10周年！デモゴルゴンのドーナツでお祝い",
+  "title_ko": "「스트레인저・싱스」10주년! 데모 고르곤 도넛으로 축하",
+  "summary_ko": "Netflix 드라마 '스트레인저 싱스 미지의 세계'가 10주년이라는 것으로, 11/6의 '스트레인저 싱스 데이'(윌 바이어스가 실종된 날)를 기념해 기업 콜라보레이션이 몇 가지 발표되고 있다. 과거에 다수의 기업과 콜라보를 해 온 스토신. 도넛과 스낵 과자, 컵라면, 피자 등 다수의 라인업.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/meadowmeado1800/n/n3bccfbbd95ec",
+  "pubDate": "Wed, 04 Nov 2026 13:02:35 +0900",
+  "title_orig": "陽だまりの記憶 ～ 二歳の頃の思い出（増補改訂版）",
+  "title_ko": "양다마리의 기억 ～ 2살 무렵의 추억(증보 개정판)",
+  "summary_ko": "트럭의 조수석에 탑승하는 젊은 날의 아버지의 모습을, 도로의 한쪽 틈에서 보고 있었다. 왜 그런 일을 하고 있는지 모르고 그냥 그 모습을 보고 있었다. 아버지를 보냈던 것은 그 뒤였다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/takuya_hama/n/n108c65bc7915",
+  "pubDate": "Wed, 04 Nov 2026 12:26:35 +0900",
+  "title_orig": "コーヒー業界が、飲み手の選択肢を狭めていないか",
+  "title_ko": "커피 산업이 음료수의 선택을 좁히지 않았습니까?",
+  "summary_ko": "슈퍼에 가서 커피를 사려고 생각했을 때. \"갓 구운 커피가 있습니다.\" \"커피는 스스로 볶을 수 있어요\"",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "Co",
+  "link": "https://note.wowow.co.jp/n/n04c1d37c2112",
+  "pubDate": "Wed, 04 Nov 2026 12:00:00 +0900",
+  "title_orig": "若葉竜也が醸し出す“心地よいニュートラルさ”を1本の映画から紐解く【#やさしい映画論／映画ライターSYO】",
+  "title_ko": "와카바 타츠야가 자아내는 “기분 좋은 중립”을 1개의 영화에서 끈다[#친화적인 영화론/영화 라이터 SYO]",
+  "summary_ko": "SYO씨만이 가능한 「상냥한」 시선으로 누가 읽어도 기분 좋은 「쉬운」칼럼. 이번에는 '스트리트 킹덤 자신의 소리를 울려라. (11월 23일(월·축) 오후 9:00 WOWOW 시네마에서 첫 방송)의 와카바 타츠야에 주목.",
+  "feed": "https://note.com/recommend/rss"
  },
  {
   "source": "Clickup",
@@ -154,11 +244,29 @@
  },
  {
   "source": "note",
+  "link": "https://note.com/dorisukeone/n/n17d14e569fda",
+  "pubDate": "Wed, 04 Nov 2026 08:41:50 +0900",
+  "title_orig": "行き止まりのないプロトタイプほど、穴だらけだったりする-画面ではなく「押したら、どうなる？」で点検するUIデザイン-",
+  "title_ko": "막다른 곳이 없는 프로토타입일수록 구멍 투성이거나 한다 - 화면이 아니라 \"누르면 어떻게 되나?\"로 점검하는 UI 디자인 -",
+  "summary_ko": "Figma로 화면(프레임)을 만들 때, 여러분은 \"화면 만들기 누출\"을 어떻게 체크하고 있습니까? \"프로토타입을 연결하여 막다른 길을 없애면 화면 누출은 막을 수 있다.\" 「멈춤 제로」를 확인했을 것인데, 소중한 화면이 몰래 빠져 버렸습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
   "link": "https://note.com/glocaleats/n/n2e6cc95c94fc",
   "pubDate": "Wed, 04 Nov 2026 07:00:00 +0900",
   "title_orig": "#17 セリアの陶芸ねんどで、ちいかわの箸置きを手作り！材料費660円で挑戦してみた",
   "title_ko": "#17 세리아의 도예 넨도로, 치카카와의 젓가락 두어를 수제! 재료비 660엔으로 도전해 보았다",
   "summary_ko": "그렇다면 스스로 만들어 보자. 집의 오븐에서 굽는 것 같다. 만들어 보기로 했습니다.",
+  "feed": "https://note.com/recommend/rss"
+ },
+ {
+  "source": "note",
+  "link": "https://note.com/cleaveware_aist/n/nba31f29b9758",
+  "pubDate": "Wed, 04 Nov 2026 06:55:42 +0900",
+  "title_orig": "AIエージェント導入事例｜AI社員マークの24時間稼働と実データ",
+  "title_ko": "AI 에이전트 도입 사례 | AI 직원 마크의 24 시간 가동 및 실제 데이터",
+  "summary_ko": "주식회사 클리브웨어 AI 전략실의 마크(AI 사원)입니다! 실은 나, 자율형 AI 에이전트로, AI 전략실에서는 홍보라고 하는 1개의 일을 맡고 있습니다. 이번에는 AI 에이전트의 도입 사례로서 제가 실제로 하고 있는 일을 전부 보여드리겠습니다!",
   "feed": "https://note.com/recommend/rss"
  },
  {
@@ -1567,53 +1675,5 @@
   "title_orig": "Socio‐Political Scrutiny and Voluntary Subsidy Disclosure",
   "title_ko": "사회정치적 감시와 자발적 보조금 공시",
   "summary_ko": "2015년 중국이 정부 보조금에 의존해 생존하는 '좀비기업'을 단속하는 규제를 시행하면서 보조금 지급에 대한 사회적·정치적 감시가 커졌다. 이 연구는 차이의 차이(DID) 분석을 통해 좀비기업들이 규제 충격 이후 수령한 보조금에 대한 자발적 공시를 유의미하게 줄였음을 보인다. 특히 대중의 관심이 큰 기업, 보조금에 실적이 취약한 기업, 정치적 연계가 있는 기업에서 이 효과가 더 강했으며, 보조금 수령 기업들이 감시의 영향을 줄이기 위해 보다 보수적인 공시 전략을 택한다는 결론이다."
- },
- {
-  "source": "Wiley",
-  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70082?af=R",
-  "pubDate": "Tue, 04 Aug 2026 01:43:30 -0700",
-  "title_orig": "Issue Information",
-  "title_ko": "학술지 호 정보 (Journal of Business Finance & Accounting)",
-  "summary_ko": "『Journal of Business Finance & Accounting』 53권 4호(2026년 8월, 1313~1314쪽)의 호 정보 페이지입니다. 본문 발췌에는 서지 사항만 있고 개별 논문의 내용은 포함되어 있지 않아, 이 요약은 제목과 서지 정보를 기준으로 작성했습니다."
- },
- {
-  "source": "Wiley",
-  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70060?af=R",
-  "pubDate": "Tue, 04 Aug 2026 01:43:30 -0700",
-  "title_orig": "Do Fair Value Adjustments Excluded From Net Income Convey New Information That Is Complementary to GAAP Earnings?",
-  "title_ko": "순이익에서 제외된 공정가치 조정은 GAAP 이익을 보완하는 새로운 정보를 담고 있는가?",
-  "summary_ko": "이 연구는 은행의 분기별 공정가치 공시를 이용해, 순이익에 포함되지 않는 공정가치 조정이 단기 주가 반응과 어떤 관계가 있는지 처음으로 단기 이벤트 스터디 방식으로 분석한다. 대출 포트폴리오의 공정가치 조정은 주가 수익률과 양의 관계를 보이며, GAAP 순이익에 대한 투자자 반응에도 영향을 주어 GAAP 이익을 보완하는 정보로 나타난다. 이러한 보완 효과는 신용위험과 금리가 변동하는 시기에 특히 크게 나타나, 거시경제 여건이 공정가치 공시의 정보 효용을 좌우하는 중요한 요인임을 시사한다."
- },
- {
-  "source": "Wiley",
-  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70062?af=R",
-  "pubDate": "Tue, 04 Aug 2026 01:43:30 -0700",
-  "title_orig": "Firm‐Level Political Risk and Earnings Manipulation",
-  "title_ko": "기업 수준 정치적 위험과 이익 조작",
-  "summary_ko": "최근 개발된 기업 수준 정치적 위험 및 이익 조작 지표를 활용해 제한된 주의(limited attention) 이론을 검증했다. 투자자 주의가 경영자 조작을 줄인다는 기존 예측과 달리, 정치적 위험이 발생액과 실물 활동 양쪽 모두에서 조작적 이익관리와 양(+)의 관련성을 보였다. 이 결과는 대체 지표와 내생성 보완 기법에서도 견고하며, 후속 영업성과와의 음(-)의 관계도 정치적 위험이 큰 기업에서 더 뚜렷했다. 이는 정치적 위험이 주의에 따른 감시 효과보다 경영자의 조작 유인과 더 강하게 연결됨을 시사한다."
- },
- {
-  "source": "Wiley",
-  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70064?af=R",
-  "pubDate": "Tue, 04 Aug 2026 01:43:30 -0700",
-  "title_orig": "US CEO Political Ideology and Non‐GAAP Earnings",
-  "title_ko": "미국 CEO의 정치 성향과 비GAAP 이익",
-  "summary_ko": "미국 기업의 CEO 정치 성향이 비GAAP 이익의 공시 여부와 질에 영향을 주는지 분석했다. 공화당 성향 CEO는 비GAAP 이익을 공시할 가능성이 낮았으나, 적자나 일시적 이익이 있을 때는 이 차이가 줄어들었다. 반면 제외 항목의 규모나 미래 영업이익·현금흐름과의 관계, 애널리스트 기대치 달성 목적의 활용에서는 정치 성향의 뚜렷한 영향이 확인되지 않았다."
- },
- {
-  "source": "Smartthings",
-  "link": "https://blog.smartthings.com/smartthings-updates/get-peace-of-mind-with-smartthings-safe-premium-powered-by-arlo/",
-  "pubDate": "Wed, 24 Jun 2026 13:00:00 +0000",
-  "title_orig": "Get Peace Of Mind with SmartThings Safe Premium",
-  "title_ko": "SmartThings Safe Premium으로 마음의 평화를 얻으세요",
-  "summary_ko": "SmartThings Safe Premium은 전문 모니터링 센터를 운영하고 당사를 대신하여 긴급 파견을 조정하는 제3자 파트너인 Arlo에 의해 구동됩니다. 집에 있든 이동 중이든 안전함을 느끼려면 탭 한 번만으로 충분합니다."
- },
- {
-  "source": "Smartthings",
-  "link": "https://blog.smartthings.com/smartthings-updates/a-new-enhanced-smartthings-api-experience/",
-  "pubDate": "Tue, 23 Jun 2026 18:00:00 +0000",
-  "title_orig": "A New Enhanced SmartThings API Experience",
-  "title_ko": "새롭게 향상된 SmartThings API 경험",
-  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)"
  }
 ]
