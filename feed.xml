@@ -6,7 +6,7 @@
 <atom:link href="https://hahnjunhee.github.io/rss-ko/feed.xml" rel="self" type="application/rss+xml"/>
 <description>외국어 RSS 피드를 한글 제목·요약으로 통합한 피드</description>
 <language>ko</language>
-<lastBuildDate>Sat, 07 Nov 2026 11:38:53 +0000</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 02:19:18 +0000</lastBuildDate>
 <item>
 <title>[Shtelo] 왕관이 나를 왕으로 만들지 않는다.</title>
 <link>https://me.shtelo.org/2026/10/week-1007</link>
@@ -20,6 +20,13 @@
 <guid isPermaLink="true">https://www.techjunkie.com/why-does-my-vpn-keep-disconnecting-7-common-causes-and-easy-fixes/</guid>
 <pubDate>Fri, 06 Nov 2026 15:13:15 +0000</pubDate>
 <description>&lt;p&gt;계속해서 연결이 끊어지는 VPN은 금방 좌절감을 느낄 수 있습니다. VPN은 장치와 원격 서버 사이에 암호화된 연결을 생성합니다. 휴대폰을 잠그면 VPN 연결이 끊어지나요?&lt;/p&gt;&lt;p&gt;원제: Why Does My VPN Keep Disconnecting? 7 Common Causes And Easy Fixes&lt;br/&gt;출처: TechJunkie&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fwww.techjunkie.com%2Ffeed%2F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+</item>
+<item>
+<title>[TechJunkie] Windows 노트북에서 배터리 상태 보고서를 생성하는 방법</title>
+<link>https://www.techjunkie.com/how-to-generate-a-battery-health-report-on-a-windows-laptop/</link>
+<guid isPermaLink="true">https://www.techjunkie.com/how-to-generate-a-battery-health-report-on-a-windows-laptop/</guid>
+<pubDate>Fri, 06 Nov 2026 13:00:00 +0000</pubDate>
+<description>&lt;p&gt;집에서, 사무실에서, 이동 중에 노트북을 사용하든, 주 전원보다는 배터리에 의존해야 할 때가 있습니다. Windows에서 배터리 상태 보고서를 실행하도록 요청하여 배터리 성능을 모니터링할 수 있습니다. &amp;#x27;설정&amp;#x27; 메뉴에서는 찾을 수 없지만 보고서가 있으면 실행하기 쉽고 이해하기 쉽습니다.&lt;/p&gt;&lt;p&gt;원제: How to Generate a Battery Health Report on a Windows Laptop&lt;br/&gt;출처: TechJunkie&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fwww.techjunkie.com%2Ffeed%2F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 작은 차이의 나르시시즘.</title>
@@ -1399,13 +1406,6 @@
 <guid isPermaLink="true">https://blog.smartthings.com/smartthings-updates/smartthings-family-care-care-on-call-and-safety-patrol/</guid>
 <pubDate>Tue, 20 Oct 2026 21:11:47 +0000</pubDate>
 <description>&lt;p&gt;Samsung SmartThings Family Care는 간병인이 SmartThings 앱을 통해 간병 대상자의 일일 활동, 복약 일정, 위치를 모두 추적할 수 있는 기능입니다. 나우브리프(Now Brief)는 집, 건강, 가족현황을 한 화면에 모아주는 갤럭시폰 맞춤형 일일브리핑 서비스다.&lt;/p&gt;&lt;p&gt;원제: SmartThings Family Care: Care on Call and Safety Patrol&lt;br/&gt;출처: Smartthings&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fblog.smartthings.com%2Ffeed%2F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
-</item>
-<item>
-<title>[Financial-cents] 회계법인을 위한 AI 문서 분류: 작동 원리와 활용처</title>
-<link>https://financial-cents.com/resources/articles/accounting-ai-document-classification/</link>
-<guid isPermaLink="true">https://financial-cents.com/resources/articles/accounting-ai-document-classification/</guid>
-<pubDate>Tue, 20 Oct 2026 18:49:10 +0000</pubDate>
-<description>&lt;p&gt;AI 문서 분류는 파일의 내용을 분석해 W-2, 은행 거래명세서, 송장 등 문서 유형과 세무연도·기간 같은 정보를 파악하고, 파일명 제안, 불일치 점검, 폴더 추천에 활용하는 방식이다. 기존 규칙 기반 분류나 텍스트 추출(OCR)과 달리 문서가 무엇인지 판단하는 데 초점이 있다. 다만 흐릿한 스캔이나 묶인 PDF 등에서는 오류가 생길 수 있어, 소규모로 시범 도입하고 사람의 검토를 유지하는 것이 권장된다.&lt;/p&gt;&lt;p&gt;원제: AI Document Classification for Accounting Firms: How It Works and Where to Use It&lt;br/&gt;출처: Financial-cents&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>
