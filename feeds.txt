@@ -14,3 +14,5 @@ https://blog.smartthings.com/feed/
 https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fme.shtelo.org%2F
 https://www.excelcampus.com/feed/
 #t https://www.excelcampus.com/feed/	Excel Campus
+https://rss.blog.naver.com/dbs828.xml
+#t https://rss.blog.naver.com/dbs828.xml	투투의 기록
