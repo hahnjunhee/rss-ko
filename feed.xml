@@ -6,13 +6,20 @@
 <atom:link href="https://hahnjunhee.github.io/rss-ko/feed.xml" rel="self" type="application/rss+xml"/>
 <description>외국어 RSS 피드를 한글 제목·요약으로 통합한 피드</description>
 <language>ko</language>
-<lastBuildDate>Sun, 08 Nov 2026 11:52:30 +0000</lastBuildDate>
+<lastBuildDate>Mon, 09 Nov 2026 02:34:56 +0000</lastBuildDate>
+<item>
+<title>[Shtelo] 11월 1주차 회고: 설계 2026-11-08</title>
+<link>https://me.shtelo.org/2026/11/week-1104/</link>
+<guid isPermaLink="true">https://me.shtelo.org/2026/11/week-1104/</guid>
+<pubDate>Sat, 07 Nov 2026 15:00:00 +0000</pubDate>
+<description>&lt;p&gt;(피드에 본문이 없어 제목만 번역했습니다)&lt;/p&gt;&lt;p&gt;원제: 11월 1주차 회고: 설계 2026-11-08&lt;br/&gt;출처: Shtelo&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fmy-claude.hahnjunhee.workers.dev%2Frssmaker%2Ffeed%3Furl%3Dhttps%253A%252F%252Fme.shtelo.org%252F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+</item>
 <item>
 <title>[Naver] 영어유치원 준비 ③ 프랜시스파커 입학설명회 후기</title>
 <link>https://blog.naver.com/dbs828/224468635562?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224468635562?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Sat, 07 Nov 2026 22:34:45 +0900</pubDate>
-<description>&lt;p&gt;영어유치원 입학을 준비하면서 여러 곳의 설명회를 다녀보고 있다. 영어유치원을 알아보면서 중요하게 생각했던 건 단순히 영어 노출 시간이 아니라 커리큘럼이 얼마나 체계적으로 구성되어 있는지였다. 교원에서 운영하는 프랜시스파커 프랜시스파커는 교원그룹 계열사인 교원위즈에서 운영하는 영어교육 브랜드다.&lt;/p&gt;&lt;p&gt;원제: 영어유치원 준비 ③ 프랜시스파커 입학설명회 후기&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;영어유치원 입학을 준비하면서 여러 곳의 설명회를 다녀보고 있다. 영어유치원을 알아보면서 중요하게 생각했던 건 단순히 영어 노출 시간이 아니라 커리큘럼이 얼마나 체계적으로 구성되어 있는지였다. 교원에서 운영하는 프랜시스파커 프랜시스파커는 교원그룹 계열사인 교원위즈에서 운영하는 영어교육 브랜드다.&lt;/p&gt;&lt;p&gt;원제: 영어유치원 준비 ③ 프랜시스파커 입학설명회 후기&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 이상한 살아있는 것들과 아이돌의 삶에 마음을 느낀다.</title>
@@ -26,7 +33,7 @@
 <link>https://blog.naver.com/dbs828/224468564270?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224468564270?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Sat, 07 Nov 2026 21:00:50 +0900</pubDate>
-<description>&lt;p&gt;요즘은 피부 관리도 꼭 비싼 에스테틱에 방문하지 않아도 집에서 간편하게 즐길 수 있는 제품들이 많아졌는데요. 오늘은 앰플엔 4종의 특징과 함께 집에서 활용하기 좋은 피부 고민별 앰플케어 방법을 소개해 볼게요 1. 다이소에서 만나는 앰플엔 4종 앰플엔은 피부 고민에 맞춰 선택할 수 있도록 다양한 앰플을 선보이고 있는데.......&lt;/p&gt;&lt;p&gt;원제: 앰플엔 다이소 입점! 피부 고민별 다이소앰플 4종으로 홈케어앰플 추천&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;요즘은 피부 관리도 꼭 비싼 에스테틱에 방문하지 않아도 집에서 간편하게 즐길 수 있는 제품들이 많아졌는데요. 오늘은 앰플엔 4종의 특징과 함께 집에서 활용하기 좋은 피부 고민별 앰플케어 방법을 소개해 볼게요 1. 다이소에서 만나는 앰플엔 4종 앰플엔은 피부 고민에 맞춰 선택할 수 있도록 다양한 앰플을 선보이고 있는데.......&lt;/p&gt;&lt;p&gt;원제: 앰플엔 다이소 입점! 피부 고민별 다이소앰플 4종으로 홈케어앰플 추천&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[Shtelo] 왕관이 나를 왕으로 만들지 않는다.</title>
@@ -61,7 +68,7 @@
 <link>https://blog.naver.com/dbs828/224467779254?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224467779254?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Fri, 06 Nov 2026 23:42:55 +0900</pubDate>
-<description>&lt;p&gt;2027학년도 초등학교 입학을 앞두고 사립초등학교 지원을 고민하고 있다면 지금 확인해야 할 일정이 있어요. 2027학년도 서울 사립초 원서접수는 ✔️2026년 11월 6일 오전 9시부터 11월 11일 오후 4시 30분까지예요. 오늘은 2027학년도 사립초 지원 일정부터 지원 방법, 추첨 방식, 당첨 후 등록 기간까지 정리해 볼게요.&lt;/p&gt;&lt;p&gt;원제: 2027년 사립초 지원기간 총정리｜서울 사립초 원서접수·추첨·합격자 발표 일정&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;2027학년도 초등학교 입학을 앞두고 사립초등학교 지원을 고민하고 있다면 지금 확인해야 할 일정이 있어요. 2027학년도 서울 사립초 원서접수는 ✔️2026년 11월 6일 오전 9시부터 11월 11일 오후 4시 30분까지예요. 오늘은 2027학년도 사립초 지원 일정부터 지원 방법, 추첨 방식, 당첨 후 등록 기간까지 정리해 볼게요.&lt;/p&gt;&lt;p&gt;원제: 2027년 사립초 지원기간 총정리｜서울 사립초 원서접수·추첨·합격자 발표 일정&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 【작업 이야기】 어머니가 마신 커피</title>
@@ -166,7 +173,7 @@
 <link>https://blog.naver.com/dbs828/224466447902?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224466447902?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Thu, 05 Nov 2026 21:42:37 +0900</pubDate>
-<description>&lt;p&gt;11월 주말, 아이와 어디로 나들이 갈지 고민하고 계신가요? 멀리 여행을 떠나지 않아도 수도권에는 아이와 함께 자연을 즐기고 가을 풍경을 감상할 수 있는 장소가 다양합니다. 오늘은 강변 산책부터 역사적인 성곽길, 넓은 도심 공원까지 아이랑 가볼만한 곳 3곳을 소개해 드릴게요.&lt;/p&gt;&lt;p&gt;원제: 아이랑 가볼만한 곳 수도권 BEST 3｜11월 단풍놀이 가을 나들이 추천&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;11월 주말, 아이와 어디로 나들이 갈지 고민하고 계신가요? 멀리 여행을 떠나지 않아도 수도권에는 아이와 함께 자연을 즐기고 가을 풍경을 감상할 수 있는 장소가 다양합니다. 오늘은 강변 산책부터 역사적인 성곽길, 넓은 도심 공원까지 아이랑 가볼만한 곳 3곳을 소개해 드릴게요.&lt;/p&gt;&lt;p&gt;원제: 아이랑 가볼만한 곳 수도권 BEST 3｜11월 단풍놀이 가을 나들이 추천&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 연근만의 요리</title>
@@ -194,7 +201,7 @@
 <link>https://blog.naver.com/dbs828/224466159283?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224466159283?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Thu, 05 Nov 2026 16:53:13 +0900</pubDate>
-<description>&lt;p&gt;매일 먹는 밥, 매번 새로 짓기 번거로울 때가 있죠. 저는 밥을 한 번 지을 때 여유 있게 준비해 두고 소분해서 냉동 보관하는 편인데요. 오늘 소개할 제품은 이런 일상적인 고민을 덜어줄 수 있는 실리만 아이스웨이 냉동 밥용기 350ml입니다.&lt;/p&gt;&lt;p&gt;원제: 냉동밥용기 추천, 실리만 아이스웨이 냉동 밥용기 350ml 사용 후기&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;매일 먹는 밥, 매번 새로 짓기 번거로울 때가 있죠. 저는 밥을 한 번 지을 때 여유 있게 준비해 두고 소분해서 냉동 보관하는 편인데요. 오늘 소개할 제품은 이런 일상적인 고민을 덜어줄 수 있는 실리만 아이스웨이 냉동 밥용기 350ml입니다.&lt;/p&gt;&lt;p&gt;원제: 냉동밥용기 추천, 실리만 아이스웨이 냉동 밥용기 350ml 사용 후기&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 세컨드 커리어 1년째로, 정말로 알았던 것.</title>
@@ -257,7 +264,7 @@
 <link>https://blog.naver.com/dbs828/224465224708?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224465224708?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Wed, 04 Nov 2026 22:32:01 +0900</pubDate>
-<description>&lt;p&gt;⬇️ 같이 보면 좋은 글 아이와 함께한 미술로 생각하기 스텝2 수업이 어느덧 9개월 정도 되었어요. 9개월 동안 지켜보면서 느낀 점은 단순히 그림을 그리는 기술뿐 아니라 미술을 대하는 태도에도 변화가 있었다는 거예요. 미술로 생각하기는 일반적인 그림 그리기 활동뿐 아니라 재료를 직접 만지고 다양한 방식으로 표현해 보는 퍼포먼스 활동이 함께 이루어지는데요.&lt;/p&gt;&lt;p&gt;원제: 미술로 생각하기 스텝2 9개월 후기｜그림 실력과 표현력이 달라졌어요&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;⬇️ 같이 보면 좋은 글 아이와 함께한 미술로 생각하기 스텝2 수업이 어느덧 9개월 정도 되었어요. 9개월 동안 지켜보면서 느낀 점은 단순히 그림을 그리는 기술뿐 아니라 미술을 대하는 태도에도 변화가 있었다는 거예요. 미술로 생각하기는 일반적인 그림 그리기 활동뿐 아니라 재료를 직접 만지고 다양한 방식으로 표현해 보는 퍼포먼스 활동이 함께 이루어지는데요.&lt;/p&gt;&lt;p&gt;원제: 미술로 생각하기 스텝2 9개월 후기｜그림 실력과 표현력이 달라졌어요&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 45년 만에 가족의 강자</title>
@@ -467,7 +474,7 @@
 <link>https://blog.naver.com/dbs828/224464005934?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224464005934?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Tue, 03 Nov 2026 22:36:17 +0900</pubDate>
-<description>&lt;p&gt;아이 한글 공부는 신기한 한글나라 방문수업을 끊은 후 사실상 방치 상태인데요! 그래서 이번에 활용해 본 교재는 ✔️마이리틀타이거 타이거스쿨 만4세 한글쓰기예요. 5세 한글 공부를 시작하거나 집에서 엄마표 한글을 진행하고 있는 분들에게도 소개해 드리고 싶었어요.&lt;/p&gt;&lt;p&gt;원제: 5세 한글 홈스쿨링, 마이리틀타이거 만4세 한글쓰기 워크북&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;아이 한글 공부는 신기한 한글나라 방문수업을 끊은 후 사실상 방치 상태인데요! 그래서 이번에 활용해 본 교재는 ✔️마이리틀타이거 타이거스쿨 만4세 한글쓰기예요. 5세 한글 공부를 시작하거나 집에서 엄마표 한글을 진행하고 있는 분들에게도 소개해 드리고 싶었어요.&lt;/p&gt;&lt;p&gt;원제: 5세 한글 홈스쿨링, 마이리틀타이거 만4세 한글쓰기 워크북&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 짧은 축이 귀엽다 ┃ 백금 포켓 18</title>
@@ -481,7 +488,7 @@
 <link>https://blog.naver.com/dbs828/224463928720?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224463928720?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Tue, 03 Nov 2026 21:19:04 +0900</pubDate>
-<description>&lt;p&gt;아이를 키우다 보면 자연스럽게 궁금해지는 부분이 있습니다. 그렇다면 지능이 높은 아이들에게는 어떤 공통적인 특징이 나타날까요? 오늘은 유아기에 관찰할 수 있는 지능 및 인지 발달 관련 특징 5가지를 알아보겠습니다.&lt;/p&gt;&lt;p&gt;원제: 지능이 높은 아이 특징 5가지, 어릴 때부터 나타나는 신호&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;아이를 키우다 보면 자연스럽게 궁금해지는 부분이 있습니다. 그렇다면 지능이 높은 아이들에게는 어떤 공통적인 특징이 나타날까요? 오늘은 유아기에 관찰할 수 있는 지능 및 인지 발달 관련 특징 5가지를 알아보겠습니다.&lt;/p&gt;&lt;p&gt;원제: 지능이 높은 아이 특징 5가지, 어릴 때부터 나타나는 신호&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 매크로 렌즈, 피규어 촬영에 필요한지 다시 생각한다</title>
@@ -523,7 +530,7 @@
 <link>https://blog.naver.com/dbs828/224463618581?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224463618581?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Tue, 03 Nov 2026 16:15:21 +0900</pubDate>
-<description>&lt;p&gt;2027년 3월 어린이집 입소를 준비하고 있다면 지금 확인해야 할 것이 있어요. 어린이집 입소대기를 신청해 둔 부모님이라면 올해 신학기 순번이 언제 공개되는지, 기존 대기 신청을 다시 해야 하는지 궁금하실 텐데요. 2027년 신학기 순번은 2026년 11월 2일 오전 10시부터 확인 가능합니다.&lt;/p&gt;&lt;p&gt;원제: 어린이집 신학기 순번 확인 방법｜2027년 입소대기 신청·순위 기준 총정리&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;2027년 3월 어린이집 입소를 준비하고 있다면 지금 확인해야 할 것이 있어요. 어린이집 입소대기를 신청해 둔 부모님이라면 올해 신학기 순번이 언제 공개되는지, 기존 대기 신청을 다시 해야 하는지 궁금하실 텐데요. 2027년 신학기 순번은 2026년 11월 2일 오전 10시부터 확인 가능합니다.&lt;/p&gt;&lt;p&gt;원제: 어린이집 신학기 순번 확인 방법｜2027년 입소대기 신청·순위 기준 총정리&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 원가율, 약 87%. 그래도 이익이 나오는 이유.</title>
@@ -572,7 +579,7 @@
 <link>https://blog.naver.com/dbs828/224462717443?fromRss=true&amp;trackingCode=rss</link>
 <guid isPermaLink="true">https://blog.naver.com/dbs828/224462717443?fromRss=true&amp;trackingCode=rss</guid>
 <pubDate>Mon, 02 Nov 2026 21:36:11 +0900</pubDate>
-<description>&lt;p&gt;신생아를 처음 만나면 작은 피부 변화 하나에도 걱정이 앞서기 마련이죠. 특히 아기 이마나 눈꺼풀, 목덜미에 붉은 반점이 보이면 혹시 피부질환은 아닐까 걱정하게 되는데요. 신생아에게 나타나는 붉은 반점 중 하나가 바로 연어반(Salmon patch)이에요.&lt;/p&gt;&lt;p&gt;원제: 신생아 연어반 언제 없어질까? 얼굴·이마·목덜미 붉은 반점 원인과 치료&lt;br/&gt;출처: Naver&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Frss.blog.naver.com%2Fdbs828.xml&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+<description>&lt;p&gt;신생아를 처음 만나면 작은 피부 변화 하나에도 걱정이 앞서기 마련이죠. 특히 아기 이마나 눈꺼풀, 목덜미에 붉은 반점이 보이면 혹시 피부질환은 아닐까 걱정하게 되는데요. 신생아에게 나타나는 붉은 반점 중 하나가 바로 연어반(Salmon patch)이에요.&lt;/p&gt;&lt;p&gt;원제: 신생아 연어반 언제 없어질까? 얼굴·이마·목덜미 붉은 반점 원인과 치료&lt;br/&gt;출처: Naver&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 가족 대화가 늘어난 무선 마이크 |</title>
@@ -1399,13 +1406,6 @@
 <guid isPermaLink="true">https://note.com/sh_hibiki/n/nbf273da41324</guid>
 <pubDate>Tue, 27 Oct 2026 17:00:00 +0900</pubDate>
 <description>&lt;p&gt;어떤 건축물이 근대 건축 운동 보존 목록(DOCOMOMO 계열로 추정)에 새로 선정된 소식을 다룬 글입니다. 피드에 본문 요약이 없어 제목 기준으로만 정리했습니다.&lt;/p&gt;&lt;p&gt;원제: 「モダン・ムーブメントの建築」に仲間入り！&lt;br/&gt;출처: note&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fnote.com%2Frecommend%2Frss&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
-</item>
-<item>
-<title>[Lydesign] 「모두가 UX 라이터가 될 수 있다」─ 한 사람의 전문지를 AI로 사용할 수 있는 스킬이 될 때까지</title>
-<link>https://lydesign.jp/n/n6195c9f6ea3e</link>
-<guid isPermaLink="true">https://lydesign.jp/n/n6195c9f6ea3e</guid>
-<pubDate>Tue, 27 Oct 2026 17:00:00 +0900</pubDate>
-<description>&lt;p&gt;안녕하세요. LINE 야후의 디자인 조직으로 UX 라이터를 하고 있는 momo입니다.&lt;/p&gt;&lt;p&gt;원제: 「誰もがUXライターになれる」─ ひとりの専門知をAIで使えるスキルにするまで&lt;br/&gt;출처: Lydesign&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>

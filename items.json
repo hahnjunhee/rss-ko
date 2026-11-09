@@ -1,5 +1,14 @@
 [
  {
+  "source": "Shtelo",
+  "link": "https://me.shtelo.org/2026/11/week-1104/",
+  "pubDate": "Sat, 07 Nov 2026 15:00:00 +0000",
+  "title_orig": "11월 1주차 회고: 설계 2026-11-08",
+  "title_ko": "11월 1주차 회고: 설계 2026-11-08",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fme.shtelo.org%2F"
+ },
+ {
   "source": "Naver",
   "link": "https://blog.naver.com/dbs828/224468635562?fromRss=true&trackingCode=rss",
   "pubDate": "Sat, 07 Nov 2026 22:34:45 +0900",
@@ -1707,13 +1716,5 @@
   "title_orig": "「モダン・ムーブメントの建築」に仲間入り！",
   "title_ko": "'모던 무브먼트 건축' 목록에 이름을 올리다!",
   "summary_ko": "어떤 건축물이 근대 건축 운동 보존 목록(DOCOMOMO 계열로 추정)에 새로 선정된 소식을 다룬 글입니다. 피드에 본문 요약이 없어 제목 기준으로만 정리했습니다."
- },
- {
-  "source": "Lydesign",
-  "link": "https://lydesign.jp/n/n6195c9f6ea3e",
-  "pubDate": "Tue, 27 Oct 2026 17:00:00 +0900",
-  "title_orig": "「誰もがUXライターになれる」─ ひとりの専門知をAIで使えるスキルにするまで",
-  "title_ko": "「모두가 UX 라이터가 될 수 있다」─ 한 사람의 전문지를 AI로 사용할 수 있는 스킬이 될 때까지",
-  "summary_ko": "안녕하세요. LINE 야후의 디자인 조직으로 UX 라이터를 하고 있는 momo입니다."
  }
 ]
