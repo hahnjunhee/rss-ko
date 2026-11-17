@@ -31,8 +31,10 @@ class Base(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.tmp, True)
         shutil.copytree(REPO / "scripts", self.tmp / "scripts", ignore=shutil.ignore_patterns("__pycache__"))
-        for n in ("feed.xml", "items.json", "seen.json"):
-            shutil.copy(REPO / n, self.tmp / n)
+        shutil.copy(REPO / "feed.xml", self.tmp / "feed.xml")
+        # 운영 items/seen 은 복사하지 않음(MAX_ITEMS 에 밀려 테스트 글이 잘리는 것 방지)
+        (self.tmp / "items.json").write_text("[]", encoding="utf-8")
+        (self.tmp / "seen.json").write_text("{}", encoding="utf-8")
         # 테스트용 상태: note 출처 이름은 items.json 에서 오고, old 링크는 이미 처리됨
         items = json.loads((self.tmp / "items.json").read_text(encoding="utf-8"))
         items.append({"source": "note", "link": "https://note.com/u/n/old", "pubDate": "Wed, 28 Oct 2026 08:00:00 +0900",
