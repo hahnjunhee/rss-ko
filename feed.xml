@@ -6,7 +6,7 @@
 <atom:link href="https://hahnjunhee.github.io/rss-ko/feed.xml" rel="self" type="application/rss+xml"/>
 <description>외국어 RSS 피드를 한글 제목·요약으로 통합한 피드</description>
 <language>ko</language>
-<lastBuildDate>Tue, 17 Nov 2026 00:16:25 +0000</lastBuildDate>
+<lastBuildDate>Tue, 17 Nov 2026 00:22:55 +0000</lastBuildDate>
 <item>
 <title>[TechJunkie] 지저분한 제품 사진을 다시 촬영하기 전에 복구하는 방법</title>
 <link>https://www.techjunkie.com/how-to-rescue-a-messy-product-photo-before-you-reshoot-it/</link>
@@ -160,6 +160,20 @@
 <guid isPermaLink="true">https://www.techjunkie.com/fix-proxy-errors-that-break-web-scrapers-formatting-auth-and-rotation/</guid>
 <pubDate>Mon, 09 Nov 2026 16:50:41 +0000</pubDate>
 <description>&lt;p&gt;대부분의 스크래핑 실패는 블록으로 시작되지 않습니다. 이는 &amp;quot;연결 거부됨&amp;quot;, &amp;quot;407 프록시 인증 필요&amp;quot; 또는 왔다 갔다 하는 시간 초과와 같은 작은 프록시 실수로 시작됩니다. 가장 일반적인 원인은 코드에 필요한 프록시 형식과 공급자가 제공하는 형식이 일치하지 않기 때문입니다.&lt;/p&gt;&lt;p&gt;원제: Fix Proxy Errors That Break Web Scrapers: Formatting, Auth, And Rotation&lt;br/&gt;출처: TechJunkie&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fwww.techjunkie.com%2Ffeed%2F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+</item>
+<item>
+<title>[Shtelo] 툴파 001</title>
+<link>https://me.shtelo.org/2026/11/tulpa-001/</link>
+<guid isPermaLink="true">https://me.shtelo.org/2026/11/tulpa-001/</guid>
+<pubDate>Mon, 09 Nov 2026 15:00:00 +0000</pubDate>
+<description>&lt;p&gt;(피드에 본문이 없어 제목만 번역했습니다)&lt;/p&gt;&lt;p&gt;원제: Tulpa 001&lt;br/&gt;출처: Shtelo&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fmy-claude.hahnjunhee.workers.dev%2Frssmaker%2Ffeed%3Furl%3Dhttps%253A%252F%252Fme.shtelo.org%252F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
+</item>
+<item>
+<title>[Shtelo] 툴파가 뭔가요</title>
+<link>https://me.shtelo.org/2026/11/what-is-tulpa/</link>
+<guid isPermaLink="true">https://me.shtelo.org/2026/11/what-is-tulpa/</guid>
+<pubDate>Mon, 09 Nov 2026 15:00:00 +0000</pubDate>
+<description>&lt;p&gt;(피드에 본문이 없어 제목만 번역했습니다)&lt;/p&gt;&lt;p&gt;원제: 툴파가 뭔가요&lt;br/&gt;출처: Shtelo&lt;br/&gt;&lt;a href=&quot;https://github.com/hahnjunhee/rss-ko/issues/new?title=%EA%B5%AC%EB%8F%85%20%EC%B7%A8%EC%86%8C%3A%20https%3A%2F%2Fmy-claude.hahnjunhee.workers.dev%2Frssmaker%2Ffeed%3Furl%3Dhttps%253A%252F%252Fme.shtelo.org%252F&amp;amp;body=%EC%95%84%EB%9E%98%20Submit%20new%20issue%EB%A5%BC%20%EB%88%84%EB%A5%B4%EB%A9%B4%20feeds.txt%EC%97%90%EC%84%9C%20%EC%9D%B4%20%ED%94%BC%EB%93%9C%EB%A5%BC%20%EB%B9%BC%EA%B3%A0%20%EC%9D%B4%EC%8A%88%EB%A5%BC%20%EC%9E%90%EB%8F%99%EC%9C%BC%EB%A1%9C%20%EB%8B%AB%EC%8A%B5%EB%8B%88%EB%8B%A4.&quot;&gt;이 출처 구독 취소&lt;/a&gt;&lt;/p&gt;</description>
 </item>
 <item>
 <title>[note] 지루한 전시회를 좋아한다.</title>
@@ -1392,20 +1406,6 @@
 <guid isPermaLink="true">https://feed.viewus.co.kr/ai/article/351893/</guid>
 <pubDate>Fri, 30 Oct 2026 11:12:02 +0000</pubDate>
 <description>&lt;p&gt;[사진=AI 생성 이미지] 2년 넘게 교제한 남자친구의 부모에게 3만원 상당의 약과 세트를 선물했다가 면전에서 핀잔을 듣고 남자친구에게 이별까지 통보받았다는 사연이 전해졌다. 최근 직장인 익명 커뮤니티에는 800일간 만난 남자친구의 부모와 식사한 뒤 관계가 끝났다는 A씨의 사연이 올라왔다. 하지만 주문한 의류 선물이 약속일까지 도착하지 않아 취소했고, A씨는 3만원 상당의 약과 세트만 준비해 식사 장소로 향했다.&lt;/p&gt;&lt;p&gt;원제: 800일 만난 남친 부모에 ‘3만원 약과’ 건넸다가…돌아온 건 훈계와 이별 통보&lt;br/&gt;출처: Co&lt;/p&gt;</description>
-</item>
-<item>
-<title>[Co] “주인공이 끝까지 쫓긴다” 두 자릿수 찍은 추적 드라마 3편</title>
-<link>https://feed.viewus.co.kr/ai/article/351891/</link>
-<guid isPermaLink="true">https://feed.viewus.co.kr/ai/article/351891/</guid>
-<pubDate>Fri, 30 Oct 2026 11:06:37 +0000</pubDate>
-<description>&lt;p&gt;주인공이 처음부터 끝까지 쫓기는 드라마가 있습니다. 가해자를 찾는 동시에 자신의 결백을 증명해야 하는 구조라 한순간도 편해지지 않습니다. 시청률로도 성적을 낸 추적 장르물 세 편을 모았습니다.&lt;/p&gt;&lt;p&gt;원제: “주인공이 끝까지 쫓긴다” 두 자릿수 찍은 추적 드라마 3편&lt;br/&gt;출처: Co&lt;/p&gt;</description>
-</item>
-<item>
-<title>[Co] 글래스 주일 美대사 “일본, 인도태평양 드론 생산 거점 삼아야”</title>
-<link>https://feed.viewus.co.kr/ai/article/351889/</link>
-<guid isPermaLink="true">https://feed.viewus.co.kr/ai/article/351889/</guid>
-<pubDate>Fri, 30 Oct 2026 11:06:37 +0000</pubDate>
-<description>&lt;p&gt;니혼게이자이신문에 따르면 글래스 대사는 지난 24일 일본경제연구센터와 일본국제문제연구소 공동 주최로 도쿄에서 열린 후지산 회의에서 일본을 “인도·태평양 지역의 무인기 생산 거점으로 삼아야 한다”고 말했다. 글래스 대사는 미일 간 드론 공동 개발이 “산업 기반과 생산 허브를 구축할 절호의 기회가 될 것”이라고 강조했다. (사진 출처=연합뉴스·다음 이미지검색) 日, 연내 방위산업기반전략 수립…수출 지원 법인 300명 규모 신설 국방부 드론 행사에 5년간 11억…외산 기체 참가·시연 추락 잇따라 FT “옛 슈타지 요원이 푸틴 밀사”…2022년 美·러 비밀 접촉 드러나 폴란드 국방부, K2 결함 30대 정비설에 “임무 수행 영향 없다” 한화에어로, 바르샤바 안보회의 참가…”폴란드 생산 자립도 강화”&lt;/p&gt;&lt;p&gt;원제: 글래스 주일 美대사 “일본, 인도태평양 드론 생산 거점 삼아야”&lt;br/&gt;출처: Co&lt;/p&gt;</description>
 </item>
 </channel>
 </rss>
