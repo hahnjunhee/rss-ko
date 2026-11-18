@@ -16,3 +16,5 @@ https://www.excelcampus.com/feed/
 #t https://www.excelcampus.com/feed/	Excel Campus
 https://zapier.com/blog/feeds/latest/
 #t https://zapier.com/blog/feeds/latest/	The Zapier Blog
+https://cdn.news.kicpa.or.kr/rss/gn_rss_allArticle.xml
+#t https://cdn.news.kicpa.or.kr/rss/gn_rss_allArticle.xml	CPA뉴스 - 전체기사
