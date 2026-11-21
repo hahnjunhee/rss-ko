@@ -10,11 +10,47 @@
  },
  {
   "source": "Zapier",
+  "link": "https://zapier.com/blog/panoramic-properties-next-gen-zaps",
+  "pubDate": "Wed, 25 Nov 2026 14:00:00 +0000",
+  "title_orig": "How Panoramic Properties caught a missing field in its leasing workflow",
+  "title_ko": "Panoramic Properties가 임대 작업 흐름에서 누락된 필드를 발견한 방법",
+  "summary_ko": "Adam Julien은 금요일에 대한 규칙을 가지고 있습니다. 그는 프로그래밍 경험과 게임 개발 배경 지식을 갖춘 Panoramic Properties의 마케팅 코디네이터입니다. Panoramic Properties는 11개 도시에 걸쳐 약 50개의 건물을 보유한 다가구 임대 회사입니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Smartthings",
+  "link": "https://blog.smartthings.com/matter/smartthings-is-the-first-platform-to-support-matter-cameras-enabling-a-first-class-multi-brand-camera-experience/",
+  "pubDate": "Fri, 20 Nov 2026 21:53:01 +0000",
+  "title_orig": "SmartThings Is the First Platform to Support Matter Cameras, Enabling a First-class Multi-brand Camera Experience.",
+  "title_ko": "SmartThings는 Matter 카메라를 지원하는 최초의 플랫폼으로, 일류 멀티 브랜드 카메라 경험을 가능하게 합니다.",
+  "summary_ko": "삼성의 AI 홈 플랫폼인 SmartThings는 Matter 카메라를 완벽하게 지원하는 최초의 글로벌 스마트 홈 플랫폼으로, 사용자는 자신이 선택한 카메라를 통합된 스마트 홈 보안 환경에 결합할 수 있습니다. Aqara, Eve 및 Xthings는 SmartThings 카메라 파트너와의 첫 번째 작업이며 SmartThings 허브로서 Aeotec Smart Home Hub 2, Aeotec Smart [...] 포스트 SmartThings는 Matter 카메라를 지원하는 최초의 플랫폼으로 일류 멀티 브랜드 카메라 경험을 가능하게 합니다.",
+  "feed": "https://blog.smartthings.com/feed/"
+ },
+ {
+  "source": "Zapier",
   "link": "https://zapier.com/blog/rough-hands-bjj-next-gen-zaps",
   "pubDate": "Fri, 20 Nov 2026 14:00:00 +0000",
   "title_orig": "The jiu-jitsu coach who told Claude what he wanted and never opened the Zap",
   "title_ko": "Claude에게 자신이 원하는 것을 말하고 Zap을 열지 않은 주짓수 코치",
   "summary_ko": "약 10년 전 그는 저녁 시간에 주짓수를 지도하는 일을 정규직으로 전환하기 위해 업계를 떠났습니다. 그는 현재 켄터키주 루이빌에 있는 Rough Hands BJJ를 소유하고 코치하고 있습니다. 러프 핸즈(Rough Hands) BJJ는 오픈한 지 10년이 되었으며 루이빌 지역에서 약 200명의 학생들에게 브라질 주짓수를 가르치고 있습니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/ways-to-manage-your-discord-server-with-automation",
+  "pubDate": "Fri, 20 Nov 2026 08:00:00 +0000",
+  "title_orig": "7 Discord automation ideas",
+  "title_ko": "7가지 Discord 자동화 아이디어",
+  "summary_ko": "Discord는 게이머를 위한 채팅 앱으로 시작되었지만 초기 사용 사례를 훨씬 뛰어넘어 성장했습니다. (바로 거기에 앱이 성공했다는 신호가 있습니다.) 오늘날에는 자원 봉사 그룹, 취미 커뮤니티 및 팀의 본거지이며 자동화와 결합하면 훨씬 더 잘 작동합니다. 그러나 Discord 중재자와 관리자는 작업을 자동화하고 명령을 실행하기 위해 종종 타사 봇에 의존하지만, 설정에는 학습 곡선이 있으며 나머지 대부분은 여전히 중재하는 사람에게 달려 있습니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/popular-zaps",
+  "pubDate": "Fri, 20 Nov 2026 07:00:00 +0000",
+  "title_orig": "14 popular ways to use Zapier to scale your work securely",
+  "title_ko": "Zapier를 사용하여 작업을 안전하게 확장하는 14가지 인기 있는 방법",
+  "summary_ko": "수동 작업은 (결국) 작업을 완료할 수 있지만 확장되는 경우는 거의 없습니다. 리드 후속 조치, 업데이트 공유, 팀 간 데이터 논의 등 프로세스가 더욱 복잡해짐에 따라 그에 맞춰 확장되는 워크플로의 필요성도 커집니다. 이것이 Zapier가 들어오는 곳입니다.",
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
@@ -25,6 +61,60 @@
   "title_ko": "최운열 회장 \"가격 아닌 감사품질로 경쟁하는 지속가능한 시장 만들 것\"",
   "summary_ko": "지난 19일 세계회계사대회 '감사품질과 규제 혁신: 한국 회계감사 개혁의 교훈과 과제' 세션 종료후 기념 촬영을 하고 있다. (왼쪽부터 최중경 IFRS 재단이사·한미협회 회장, 앤드류 리키어먼(Andrew Likierman) 런던비즈니스스쿨 교수, 최운열 한국공인회계사회 회장, 인 더취안(Yin Dequan) 중국 공인회계사) 지난 19일 서울 강남구 삼성동 그랜드 인터컨티넨탈 서울 파르나스에서 열린 2026 세계회계사대회에서 최운열 한국공인회계사회 회장이 한국의 회계개혁에 대해 발제를 하고 있다. 최운열 한국공인회계사회 회장이 2026 세계회계사대회(WCOA) 연단에 올라 한국 회계개혁의 상징인 신외감법의 도입 과정과 성과를 전 세계에 소개했다.",
   "feed": "https://cdn.news.kicpa.or.kr/rss/gn_rss_allArticle.xml"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/ai-model-flexibility",
+  "pubDate": "Fri, 20 Nov 2026 06:00:00 +0000",
+  "title_orig": "Prevent lock-in with AI model flexibility on Zapier",
+  "title_ko": "Zapier의 AI 모델 유연성으로 종속 방지",
+  "summary_ko": "모든 AI 제공업체에는 다양한 강점을 지닌 모델이 제공됩니다. 나는 내 글쓰기 스타일을 이해하기 때문에 Claude Stan입니다. 우리 팀과 Zapier의 다른 사람들은 완전히 다른 선호도를 가지고 있는데, 이는 새로운 모델이 출시될 때마다 바뀌는 경향이 있습니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/automate-chatgpt-zapier-mcp",
+  "pubDate": "Fri, 20 Nov 2026 05:00:00 +0000",
+  "title_orig": "4 ways to automate ChatGPT with Zapier MCP",
+  "title_ko": "Zapier MCP로 ChatGPT를 자동화하는 4가지 방법",
+  "summary_ko": "많은 AI 도구가 다른 앱에서 조치를 취할 수 있는 방법을 제공하며 저는 그 중 몇 가지를 시도해 보았습니다. 문제는 거의 항상 하나의 생태계에 묶여 있거나 한 번에 하나의 앱에만 연결되어 목적을 달성하지 못한다는 것입니다. ChatGPT(또는 MCP를 지원하는 AI 도구)에 한 번 설치하면 Zapier가 각 앱의 로그인을 처리하여 ChatGPT n을 처리하여 앱에 연결할 수 있습니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/automate-granola",
+  "pubDate": "Fri, 20 Nov 2026 05:00:00 +0000",
+  "title_orig": "4 ways to automate Granola with your AI agent and Zapier",
+  "title_ko": "AI 에이전트와 Zapier를 사용하여 Granola를 자동화하는 4가지 방법",
+  "summary_ko": "그래놀라(Granola)는 회의 장면을 훌륭하게 포착합니다. 이제 이미 사용하고 있는 AI 도구에서 그래놀라를 자동화할 수 있습니다. Claude, ChatGPT 또는 Cursor에 Zapier를 설치하고 메모에 어떤 일이 발생해야 하는지 설명하면 에이전트가 자동화를 구축합니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/automate-claude-zapier-mcp",
+  "pubDate": "Fri, 20 Nov 2026 05:00:00 +0000",
+  "title_orig": "How to automate Claude safely with Zapier MCP",
+  "title_ko": "Zapier MCP로 Claude를 안전하게 자동화하는 방법",
+  "summary_ko": "나는 커피숍에서 이 게임을 해왔는데, 누군가가 \"AI로 건물을 짓고 있다\"고 말하는 것을 우연히 들을 때마다 나는 콜드브루를 한 모금 마셨다. 모든 사람이 Claude와 같은 AI 도구를 업무용 앱에 액세스하여 해서는 안 되는 일을 할 수 있는 기회를 더 많이 제공한다면 IT 관리자도 잠을 이루지 못할 수 있습니다. Zapier MCP는 내장된 거버넌스를 통해 Claude를 기술 스택에 연결하여 이러한 격차를 해소합니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/automate-plaud",
+  "pubDate": "Fri, 20 Nov 2026 05:00:00 +0000",
+  "title_orig": "4 ways to automate Plaud with Zapier",
+  "title_ko": "Zapier로 Plaud를 자동화하는 4가지 방법",
+  "summary_ko": "Plaud는 Zoom에서든 커피를 마시든 대화를 녹음합니다. 그래서 Plaud 앱에 성적표가 쌓이고, 후속 조치는 모두가 그것을 복사하는 것을 기억하는 사람에게 의존하기로 동의했습니다. Claude, ChatGPT 또는 Cursor에 Zapier를 추가하고 녹음이 처리된 후 에이전트가 이를 빌드하면 어떤 일이 발생해야 하는지 설명하세요.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/automate-google-ai-studio",
+  "pubDate": "Fri, 20 Nov 2026 05:00:00 +0000",
+  "title_orig": "Gemini automation: How to use the Zapier Gemini integration (Gemini 3.8 Flash, Gemini Enterprise, and more)",
+  "title_ko": "Gemini 자동화: Zapier Gemini 통합 사용 방법(Gemini 3.8 Flash, Gemini Enterprise 등)",
+  "summary_ko": "구글 생태계에 사는 사람이라면 누구나 빠른 초안이나 빠른 답변을 위해 Gemini를 사용해 본 적이 있을 것입니다. (또는 나와 같다면 커서가 화면 하단에 너무 가까울 때마다 AI를 사용하도록 권장하는 Google Docs 팝업으로 인해 한계에 도달했습니다.) 그러나 채팅 창은 Gemini가 할 수 있는 작업의 시작일 뿐입니다. 앱을 나머지 앱에 연결하고 사용자를 대신하여 작동하게 하면 그 진정한 힘이 나타납니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
   "source": "Wiley",
@@ -1708,95 +1798,5 @@
   "title_ko": "세컨드 커리어 1년째로, 정말로 알았던 것.",
   "summary_ko": "「정말로」라고 하는 것은, 상상하고 있던 것과는 다른 것을 알았기 때문에. 하지만 맞지 않았던 절반이 훨씬 중요했습니다. 1년이 지나면 알 수 있습니다.",
   "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "Wiley",
-  "link": "https://onlinelibrary.wiley.com/doi/10.1111/jbfa.70094?af=R",
-  "pubDate": "Wed, 04 Nov 2026 20:40:46 -0800",
-  "title_orig": "Ancestor's Legacy? The Effect of Folklore on Corporate Innovation",
-  "title_ko": "조상의 유산? 기업 혁신에 대한 민속의 영향",
-  "summary_ko": "이 논문은 조상의 이야기가 현대 기업 혁신을 어떻게 형성하는지 조사합니다. 우리는 20개국의 산업화 이전 민속을 바탕으로 지역 문화 모티브의 국가 내 변화를 활용하여 기업 혁신에 미치는 영향을 조사합니다. 우리는 두 가지 유형의 모티프에 초점을 맞췄습니다. 영웅의 성공적인 도전을 도전에 패한 영웅과 비교하여 묘사하는 서사와 초자연적 존재를 포함하는 서사입니다.",
-  "feed": "http://onlinelibrary.wiley.com/rss/journal/10.1111/(ISSN)1468-5957"
- },
- {
-  "source": "Clickup",
-  "link": "https://clickup.com/blog/content-governance/",
-  "pubDate": "Thu, 05 Nov 2026 03:25:42 +0000",
-  "title_orig": "Content Governance: How to Build a System That Keeps Content Current",
-  "title_ko": "콘텐츠 거버넌스: 콘텐츠를 최신 상태로 유지하는 시스템을 구축하는 방법",
-  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
-  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
- },
- {
-  "source": "Clickup",
-  "link": "https://clickup.com/blog/claude-code-prompts/",
-  "pubDate": "Thu, 05 Nov 2026 03:25:40 +0000",
-  "title_orig": "Claude Code Prompts: 25 Copy-Ready Prompts and How to Write Your Own",
-  "title_ko": "Claude 코드 프롬프트: 25가지 복사 준비 프롬프트 및 직접 작성하는 방법",
-  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
-  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fclickup.com%2Fblog%2F"
- },
- {
-  "source": "note",
-  "link": "https://note.com/househusband/n/n55e9c495a7e7",
-  "pubDate": "Thu, 05 Nov 2026 12:00:32 +0900",
-  "title_orig": "マイケル・シェンカー・グループの大阪公演で音楽の素晴らしさを知る",
-  "title_ko": "Michael Schenker Group의 오사카 공연에서 음악의 훌륭함을 알고 있습니다.",
-  "summary_ko": "조금 전이지만 마이클 셰인커를 보았습니다. 요코하마의 풀 메탈 재팬에 출연이 정해진 MSG가, 오사카에서의 단독 공연을 추가해 준 것입니다. 실시간 체험은 맥콜리 쉥커 그룹의 'Perfect Timing'에서였던 나는 '어쩌면 1곡 정도 연기해 줄지도?",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/umihara_koume/n/n6189a53f4ccc",
-  "pubDate": "Thu, 05 Nov 2026 10:20:32 +0900",
-  "title_orig": "漫画のタイトルロゴ、初めてプロにお願いしてみた話",
-  "title_ko": "만화 타이틀 로고, 처음으로 프로에게 부탁해 본 이야기",
-  "summary_ko": "만화 표지를 만들 때, 나에게는 매번 같이 고민하는 일이 있습니다. 그것은 ...... 제목 로고 디자인! 하지만 왜 좋은지 모르겠다!",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/oymdnyt/n/n23f31616961c",
-  "pubDate": "Thu, 05 Nov 2026 02:14:06 +0900",
-  "title_orig": "問いと向き合う｜問題解決がコモディティ化するとき、組織と個人は何をすべきか？",
-  "title_ko": "질문과 마주한다 | 문제 해결이 상품화 될 때 조직과 개인은 무엇을해야합니까?",
-  "summary_ko": "이 기사에서는 개인이 자신의 입장을 밝힌 이의제기를 '자신의 질문'으로 하고 조직은 이를 중장기적인 성장의 모아로 키우는 역할 분담을 제안한다. AI가 급속히 발전한 요즘, 그러한 현장에서 반복적으로 만나는 것이 새로운 것에 임할 필요는 알고 있는데, 무엇에 임해야할지 모르는, 결정할 수 없다는 상황입니다. 2023년에 사내의 유지와 함께 시작한 「히라쿠 디자인 리서치」는, 개인으로서, 조직으로서 제로로부터 질문을 시작하는 힘이 희미해지고 있는 것이 아닌가, 라고 하는 위기감으로부터 시작한 것이었습니다.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/hos2062/n/n5b4bf71c8f8a",
-  "pubDate": "Wed, 04 Nov 2026 23:33:39 +0900",
-  "title_orig": "筆箱紹介ex",
-  "title_ko": "필통 소개 ex",
-  "summary_ko": "오랜만입니다. 그 탓인지, 지금 실용하고 있는 필통의 내용이 매우 비참한 것이 되었습니다. 필통은 ewittco의 가죽 펜 케이스입니다.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "Naver",
-  "link": "https://blog.naver.com/dbs828/224465224708?fromRss=true&trackingCode=rss",
-  "pubDate": "Wed, 04 Nov 2026 22:32:01 +0900",
-  "title_orig": "미술로 생각하기 스텝2 9개월 후기｜그림 실력과 표현력이 달라졌어요",
-  "title_ko": "미술로 생각하기 스텝2 9개월 후기｜그림 실력과 표현력이 달라졌어요",
-  "summary_ko": "⬇️ 같이 보면 좋은 글 아이와 함께한 미술로 생각하기 스텝2 수업이 어느덧 9개월 정도 되었어요. 9개월 동안 지켜보면서 느낀 점은 단순히 그림을 그리는 기술뿐 아니라 미술을 대하는 태도에도 변화가 있었다는 거예요. 미술로 생각하기는 일반적인 그림 그리기 활동뿐 아니라 재료를 직접 만지고 다양한 방식으로 표현해 보는 퍼포먼스 활동이 함께 이루어지는데요.",
-  "feed": "https://rss.blog.naver.com/dbs828.xml"
- },
- {
-  "source": "note",
-  "link": "https://note.com/katarite_st/n/n3ad05cec662e",
-  "pubDate": "Wed, 04 Nov 2026 22:06:57 +0900",
-  "title_orig": "45年ぶりの、家族で川の字",
-  "title_ko": "45년 만에 가족의 강자",
-  "summary_ko": "가족으로 1박 여행을 해왔다. 가족 모두 온천여행이나 디즈니랜드에 가본 적은 한번도 없다. '우리가 가족 여행다운 여행, 한 적 없었어' 그런 이야기를 하면서 아침 6시 반에 출발했다.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "TechJunkie",
-  "link": "https://www.techjunkie.com/what-to-do-if-formula-auditing-wont-work-in-excel/",
-  "pubDate": "Wed, 04 Nov 2026 13:00:00 +0000",
-  "title_orig": "What to Do if Formula Auditing Won’t Work in Excel",
-  "title_ko": "Excel에서 수식 감사가 작동하지 않는 경우 수행할 작업",
-  "summary_ko": "Excel에서 수식 감사가 계속 작동하지 않는 경우 문제의 범위를 약간 좁혀야 합니다. 근본적인 문제는 일반적으로 액세스 또는 설정 기반이며 파일과 Excel을 다시 \"기본\" 상태로 가져오면 해결될 수 있습니다. 시트가 비밀번호로 보호되어 있는 경우 일반적으로 Excel의 수식 감사가 다른 기능과 함께 회색으로 표시됩니다.",
-  "feed": "https://www.techjunkie.com/feed/"
  }
 ]
