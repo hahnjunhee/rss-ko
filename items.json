@@ -36,6 +36,15 @@
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/windows-system-image-manager-cant-generate-catalog-what-to-do/",
+  "pubDate": "Fri, 20 Nov 2026 13:00:00 +0000",
+  "title_orig": "Windows System Image Manager Can’t Generate Catalog – What to Do",
+  "title_ko": "Windows 시스템 이미지 관리자가 카탈로그를 생성할 수 없음 - 수행할 작업",
+  "summary_ko": "무인 Windows 배포를 설정하려는 경우 응답 파일을 생성하기 위한 전제 조건으로 Windows SIM(시스템 이미지 관리자)에서 카탈로그를 생성해야 합니다. 따라서 \"Windows 시스템 이미지 관리자가 카탈로그를 생성할 수 없습니다.\" 오류는 작업에 심각한 문제가 될 수 있습니다. PC의 Windows 아키텍처, 이미지의 아키텍처 및 버전, 설치된 ADK 버전을 기록해 두십시오.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
   "source": "Zapier",
   "link": "https://zapier.com/blog/ways-to-manage-your-discord-server-with-automation",
   "pubDate": "Fri, 20 Nov 2026 08:00:00 +0000",
@@ -1789,14 +1798,5 @@
   "title_ko": "냉동밥용기 추천, 실리만 아이스웨이 냉동 밥용기 350ml 사용 후기",
   "summary_ko": "매일 먹는 밥, 매번 새로 짓기 번거로울 때가 있죠. 저는 밥을 한 번 지을 때 여유 있게 준비해 두고 소분해서 냉동 보관하는 편인데요. 오늘 소개할 제품은 이런 일상적인 고민을 덜어줄 수 있는 실리만 아이스웨이 냉동 밥용기 350ml입니다.",
   "feed": "https://rss.blog.naver.com/dbs828.xml"
- },
- {
-  "source": "note",
-  "link": "https://note.com/frkw_yudai0619/n/nac9006119fa6",
-  "pubDate": "Thu, 05 Nov 2026 13:41:14 +0900",
-  "title_orig": "セカンドキャリア1年目で、本当にわかったこと。",
-  "title_ko": "세컨드 커리어 1년째로, 정말로 알았던 것.",
-  "summary_ko": "「정말로」라고 하는 것은, 상상하고 있던 것과는 다른 것을 알았기 때문에. 하지만 맞지 않았던 절반이 훨씬 중요했습니다. 1년이 지나면 알 수 있습니다.",
-  "feed": "https://note.com/recommend/rss"
  }
 ]
