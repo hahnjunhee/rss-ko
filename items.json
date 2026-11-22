@@ -18,6 +18,15 @@
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
+  "source": "Shtelo",
+  "link": "https://me.shtelo.org/2026/11/week-1118/",
+  "pubDate": "Sat, 21 Nov 2026 15:00:00 +0000",
+  "title_orig": "11월 3주차 회고: 능력 2026-11-22",
+  "title_ko": "11월 3주차 회고: 능력 2026-11-22",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fme.shtelo.org%2F"
+ },
+ {
   "source": "Smartthings",
   "link": "https://blog.smartthings.com/matter/smartthings-is-the-first-platform-to-support-matter-cameras-enabling-a-first-class-multi-brand-camera-experience/",
   "pubDate": "Fri, 20 Nov 2026 21:53:01 +0000",
@@ -1789,14 +1798,5 @@
   "title_ko": "게임 회사에 들어가 눈치채는 「프로 디자이너」와 「그림이 능숙한 사람」의 차이",
   "summary_ko": "같은 방에서 전문 디자이너와 일하면 디자인이라는 일에 관해 여러 가지 발견이 있는 것입니다. 특히 저는 취미로 그림을 그렸던 것도 있고, 프로모션의 범위에서만 사용하는 디자인을 스스로 바리바리 그리는 일이 있습니다. (게임내의 디자인이나 상품의 디자인 등, 돈을 받는 것에 관한 디자인을 만드는 것은 없어요.",
   "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "Naver",
-  "link": "https://blog.naver.com/dbs828/224466159283?fromRss=true&trackingCode=rss",
-  "pubDate": "Thu, 05 Nov 2026 16:53:13 +0900",
-  "title_orig": "냉동밥용기 추천, 실리만 아이스웨이 냉동 밥용기 350ml 사용 후기",
-  "title_ko": "냉동밥용기 추천, 실리만 아이스웨이 냉동 밥용기 350ml 사용 후기",
-  "summary_ko": "매일 먹는 밥, 매번 새로 짓기 번거로울 때가 있죠. 저는 밥을 한 번 지을 때 여유 있게 준비해 두고 소분해서 냉동 보관하는 편인데요. 오늘 소개할 제품은 이런 일상적인 고민을 덜어줄 수 있는 실리만 아이스웨이 냉동 밥용기 350ml입니다.",
-  "feed": "https://rss.blog.naver.com/dbs828.xml"
  }
 ]
