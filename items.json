@@ -19,6 +19,15 @@
  },
  {
   "source": "Shtelo",
+  "link": "https://me.shtelo.org/2026/11/friends-proxy/",
+  "pubDate": "Sun, 22 Nov 2026 15:00:00 +0000",
+  "title_orig": "올바른 친구관계에 대한 생각 2026-11-23",
+  "title_ko": "올바른 친구관계에 대한 생각 2026-11-23",
+  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
+  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fme.shtelo.org%2F"
+ },
+ {
+  "source": "Shtelo",
   "link": "https://me.shtelo.org/2026/11/week-1118/",
   "pubDate": "Sat, 21 Nov 2026 15:00:00 +0000",
   "title_orig": "11월 3주차 회고: 능력 2026-11-22",
@@ -1788,15 +1797,6 @@
   "title_orig": "【番外編】サウナ150施設踏破記念「あかりんが選ぶ神サウナ5選」制作秘話",
   "title_ko": "【번외편】사우나 150 시설 답파 기념 “아카린이 선택하는 신 사우나 5선” 제작 비화",
   "summary_ko": "\"추천 사우나는 어디? 사우나 순회를 계속하고 있으면, 지인이나 친한 사람으로부터 이런 질문을 받는 일이 있다. 그냥 그 무렵, 방문한 사우나가 150 시설에 도달.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/sunsoft/n/nf119d84415f9",
-  "pubDate": "Thu, 05 Nov 2026 18:08:37 +0900",
-  "title_orig": "ゲーム会社に入って気づいた「プロデザイナー」と「絵が上手い人」の違い",
-  "title_ko": "게임 회사에 들어가 눈치채는 「프로 디자이너」와 「그림이 능숙한 사람」의 차이",
-  "summary_ko": "같은 방에서 전문 디자이너와 일하면 디자인이라는 일에 관해 여러 가지 발견이 있는 것입니다. 특히 저는 취미로 그림을 그렸던 것도 있고, 프로모션의 범위에서만 사용하는 디자인을 스스로 바리바리 그리는 일이 있습니다. (게임내의 디자인이나 상품의 디자인 등, 돈을 받는 것에 관한 디자인을 만드는 것은 없어요.",
   "feed": "https://note.com/recommend/rss"
  }
 ]
