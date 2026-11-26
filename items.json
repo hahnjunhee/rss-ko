@@ -9,12 +9,30 @@
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/best-ai-pdf-to-podcast-tools/",
+  "pubDate": "Wed, 25 Nov 2026 23:10:37 +0000",
+  "title_orig": "Best AI PDF-to-Podcast Tools",
+  "title_ko": "최고의 AI PDF-팟캐스트 도구",
+  "summary_ko": "최고의 AI PDF-팟캐스트 도구는 문서, 연구 논문, 보고서 및 기타 서면 콘텐츠를 오디오로 변환하여 정보를 더 쉽게 소비하는 동시에 시간을 절약할 수 있습니다. Adobe Acrobat, Gemini Notebook, Jellypod, Scholarly, 1Bit AI 및 ElevenLabs와 같은 옵션은 다양한 접근 방식을 제공하므로 자신에게 가장 적합한 도구를 찾는 데 시간을 낭비하고 싶지 않습니다. 대신 PDF-팟캐스트는 문서를 해석하고 콘텐츠를 팟캐스트 스타일 토론으로 변환합니다.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
   "source": "Zapier",
   "link": "https://zapier.com/blog/panoramic-properties-next-gen-zaps",
   "pubDate": "Wed, 25 Nov 2026 14:00:00 +0000",
   "title_orig": "How Panoramic Properties caught a missing field in its leasing workflow",
   "title_ko": "Panoramic Properties가 임대 작업 흐름에서 누락된 필드를 발견한 방법",
   "summary_ko": "Adam Julien은 금요일에 대한 규칙을 가지고 있습니다. 그는 프로그래밍 경험과 게임 개발 배경 지식을 갖춘 Panoramic Properties의 마케팅 코디네이터입니다. Panoramic Properties는 11개 도시에 걸쳐 약 50개의 건물을 보유한 다가구 임대 회사입니다.",
+  "feed": "https://zapier.com/blog/feeds/latest/"
+ },
+ {
+  "source": "Zapier",
+  "link": "https://zapier.com/blog/pipedream-workflows",
+  "pubDate": "Wed, 25 Nov 2026 05:00:00 +0000",
+  "title_orig": "Pipedream Workflows is shutting down: How to export workflows and move to Zapier",
+  "title_ko": "Pipedream Workflows가 종료됩니다: 워크플로를 내보내고 Zapier로 이동하는 방법",
+  "summary_ko": "Pipedream Workflows는 Pipedream의 AI 에이전트 빌더인 String과 함께 2027년 3월 31일에 종료됩니다. 거기에서 실행 중인 워크플로가 있는 경우 그 전에 워크플로를 내보내고 다른 곳에서 다시 빌드해야 합니다. Pipedream Workflows 데이터를 내보내고 마감일 전에 Zap(Zapier의 자동화된 워크플로)으로 다시 빌드하는 방법은 다음과 같습니다.",
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
@@ -1779,24 +1797,6 @@
   "title_orig": "AIタレント、会社でどう通す？ChatGPTでタレント費ゼロ→校了した作戦解説！ ※コピペ指示文つき",
   "title_ko": "AI 탤런트, 회사에서 어떻게 통과? ChatGPT로 탤런트비 제로→교료한 작전 해설! ※코피페 지시문 첨부",
   "summary_ko": "안녕하세요, 미야마입니다 😊 오늘은 회사에서 AI 탤런트와 제품을 사용하고 싶습니다. 회사의 Copilot 구사하여 기획 입안.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/zizailab_aki/n/nd3604f8d7514",
-  "pubDate": "Sat, 07 Nov 2026 11:00:01 +0900",
-  "title_orig": "業務効率化を進めても、忙しさが変わらないのはなぜか、という話",
-  "title_ko": "업무 효율화를 진행해도 바쁜 것이 변하지 않는 이유는",
-  "summary_ko": "“효율화는 계속 하고 있습니다. 이런 원인은, 효율화에는 2종류 있어, 한쪽만을 계속하고 있기 때문이라고 생각하고 있습니다. 작업을 빠르게 하는 효율화와, 전략에 따라 일의 편성을 바꾸는 효율화.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/kii_writer_/n/ncbd1f59a52cc",
-  "pubDate": "Sat, 07 Nov 2026 10:06:19 +0900",
-  "title_orig": "「その会社の性格を背負う」ということ｜業務委託3か月、9社の資料制作で学んだこと",
-  "title_ko": "「그 회사의 성격을 짊어진다」라고 하는 것 | 업무 위탁 3개월, 9사의 자료 제작으로 배운 것",
-  "summary_ko": "자료 디자이너로서 제작회사의 팀에 본 참가해, 약 3개월이 지났습니다. 지금, 9사째의 자료 제작에 종사하고 있습니다. 그런데, 업무 위탁으로 팀의 일원이 된다는 것은 「그 회사의 성격을 짊어진다」, 그 위에 제작을 한다, 라고 하는 것입니다.",
   "feed": "https://note.com/recommend/rss"
  }
 ]
