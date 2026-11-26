@@ -9,6 +9,42 @@
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
+  "source": "Financial-cents",
+  "link": "https://financial-cents.com/resources/articles/cas-accounting/",
+  "pubDate": "Thu, 26 Nov 2026 11:14:30 +0000",
+  "title_orig": "Client Accounting Services (CAS): A Complete Guide for Firms",
+  "title_ko": "CAS(고객 회계 서비스): 기업을 위한 완벽한 가이드",
+  "summary_ko": "CAS(클라이언트 회계 서비스)가 정규 세무 업무보다 회사에 더 많은 수익을 가져다 줄 수 있다면 어떨까요? CAS(고객 회계 서비스)는 장부 관리, 급여 및 재무 보고, 예측 및 CFO 수준 조언에 대한 월별 결산부터 회사가 비즈니스 고객에게 제공하는 월별 회계 및 재무 서비스로, 일반적으로 지속적입니다. CAS(고객 회계 서비스)는 기업이 고객에게 제공하는 지속적인 회계 및 금융 서비스입니다.",
+  "feed": "https://financial-cents.com/resources/articles/feed/"
+ },
+ {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/best-ai-photo-to-video-tools/",
+  "pubDate": "Thu, 26 Nov 2026 06:11:55 +0000",
+  "title_orig": "Best AI Photo-to-Video Tools for Professional Creators",
+  "title_ko": "전문 창작자를 위한 최고의 AI 사진-비디오 도구",
+  "summary_ko": "전문 제작자를 위한 최고의 AI 사진-비디오 도구는 필요한 창의적 제어 수준, 상업용 라이선스 요구 사항 및 소프트웨어가 기존 편집 작업 흐름에 어떻게 적합한지에 따라 달라집니다. Adobe Premiere는 연결된 크리에이티브 워크플로우에서 AI 이미지-비디오 생성과 비디오 편집을 결합하려는 전문 제작자를 위한 강력한 옵션입니다. 무료 Adobe 계정은 이미지-비디오 생성에 대한 액세스가 제한되어 있습니다.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/how-to-redact-sensitive-information-from-pdfs-using-adobe-acrobat/",
+  "pubDate": "Thu, 26 Nov 2026 05:46:45 +0000",
+  "title_orig": "How to Redact Sensitive Information From PDFs Using Adobe Acrobat",
+  "title_ko": "Adobe Acrobat을 사용하여 PDF에서 중요한 정보를 수정하는 방법",
+  "summary_ko": "PDF에서 민감한 정보를 수정하려면 Adobe Acrobat Pro에서 PDF를 열고 모든 도구 → PDF 수정을 선택합니다. 제거하려는 텍스트나 이미지를 표시하고 모두 수정을 선택한 다음 확인하고 별도의 복사본을 저장합니다. Acrobat Pro에서 PDF를 엽니다.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/how-to-create-fillable-pdf-forms-adobe-acrobat/",
+  "pubDate": "Thu, 26 Nov 2026 05:32:26 +0000",
+  "title_orig": "How to Create Fillable PDF Forms Using Adobe Acrobat",
+  "title_ko": "Adobe Acrobat을 사용하여 입력 가능한 PDF 양식을 만드는 방법",
+  "summary_ko": "Adobe Acrobat Pro에서 채울 수 있는 PDF를 만들려면 빈 PDF를 열고 모든 도구 → 양식 준비를 선택합니다. 파일을 선택하고 양식 생성을 선택합니다. 표준 PDF를 고객이 디지털 방식으로 작성하고 반환할 수 있는 입력 가능한 대화형 양식으로 바꾸려면 아래 단계를 따르세요.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
   "source": "TechJunkie",
   "link": "https://www.techjunkie.com/best-ai-pdf-to-podcast-tools/",
   "pubDate": "Wed, 25 Nov 2026 23:10:37 +0000",
@@ -1762,41 +1798,5 @@
   "title_ko": "앰플엔 다이소 입점! 피부 고민별 다이소앰플 4종으로 홈케어앰플 추천",
   "summary_ko": "요즘은 피부 관리도 꼭 비싼 에스테틱에 방문하지 않아도 집에서 간편하게 즐길 수 있는 제품들이 많아졌는데요. 오늘은 앰플엔 4종의 특징과 함께 집에서 활용하기 좋은 피부 고민별 앰플케어 방법을 소개해 볼게요 1. 다이소에서 만나는 앰플엔 4종 앰플엔은 피부 고민에 맞춰 선택할 수 있도록 다양한 앰플을 선보이고 있는데.......",
   "feed": "https://rss.blog.naver.com/dbs828.xml"
- },
- {
-  "source": "note",
-  "link": "https://note.com/toki_memories428/n/ncbc8fd829fe8",
-  "pubDate": "Sat, 07 Nov 2026 20:46:13 +0900",
-  "title_orig": "サブ機という贅沢",
-  "title_ko": "서브 기계라는 사치",
-  "summary_ko": "그런데, 타이틀로 한 「서브기라고 하는 사치」에 대해서 조금 쓰고 싶다고 생각하는 것입니다. 거기에서 몇 대나 카메라를 사다 보면 그때마다 선대의 카메라가 서브기가 된다는 사치스럽게 하고 있습니다. 본격적으로 \"서브기\"로 카메라를 찾은 것은 몇 년 전부터입니다.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "Shtelo",
-  "link": "https://me.shtelo.org/2026/10/week-1007",
-  "pubDate": "Sat, 07 Nov 2026 11:38:41 +0000",
-  "title_orig": "왕관이 나를 왕으로 만들지 않는다.",
-  "title_ko": "왕관이 나를 왕으로 만들지 않는다.",
-  "summary_ko": "(피드에 본문이 없어 제목만 번역했습니다)",
-  "feed": "https://my-claude.hahnjunhee.workers.dev/rssmaker/feed?url=https%3A%2F%2Fme.shtelo.org%2F"
- },
- {
-  "source": "note",
-  "link": "https://note.com/sugihara_/n/n8cec8f85e481",
-  "pubDate": "Sat, 07 Nov 2026 15:16:47 +0900",
-  "title_orig": "pmconf2026福岡の舞台裏｜福岡で100人規模のカンファレンスを、コアメンバー3人＋Claudeで",
-  "title_ko": "pmconf2026 후쿠오카의 무대 뒤 | 후쿠오카에서 100명 규모의 컨퍼런스를, 코어 멤버 3명 + Claude에서",
-  "summary_ko": "여전히 크로스마트에 소속을 하고 있어 눈치채면 재적이 6년 9개월이 되었습니다. 그런데, 이번 취미로서 2020년부터 계속 관련되어 있는 pmconf(프로덕트 매니저 컨퍼런스)의 첫 후쿠오카 개최의 기획 리드를 했으므로 그 이야기를 기재하려고 생각합니다. 결과로서는, 준비 기간 약 반년으로, 일반 참가자 59명·등단자 17명·스탭 24명의, 대체로 100명 규모의 이벤트가 되었습니다.",
-  "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "note",
-  "link": "https://note.com/mmmiyama/n/nd72b57986567",
-  "pubDate": "Sat, 07 Nov 2026 11:57:36 +0900",
-  "title_orig": "AIタレント、会社でどう通す？ChatGPTでタレント費ゼロ→校了した作戦解説！ ※コピペ指示文つき",
-  "title_ko": "AI 탤런트, 회사에서 어떻게 통과? ChatGPT로 탤런트비 제로→교료한 작전 해설! ※코피페 지시문 첨부",
-  "summary_ko": "안녕하세요, 미야마입니다 😊 오늘은 회사에서 AI 탤런트와 제품을 사용하고 싶습니다. 회사의 Copilot 구사하여 기획 입안.",
-  "feed": "https://note.com/recommend/rss"
  }
 ]
