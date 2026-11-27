@@ -9,6 +9,15 @@
   "feed": "https://zapier.com/blog/feeds/latest/"
  },
  {
+  "source": "TechJunkie",
+  "link": "https://www.techjunkie.com/best-ai-video-editors/",
+  "pubDate": "Thu, 26 Nov 2026 19:30:52 +0000",
+  "title_orig": "Best AI Video Editors in 2026: Comparing Editing Tools for Professional Creators",
+  "title_ko": "2026년 최고의 AI 비디오 편집자: 전문 제작자를 위한 편집 도구 비교",
+  "summary_ko": "Adobe Premiere Pro는 전체 편집 작업 과정에 포함된 도구를 갖춘 AI 비디오 편집기를 찾는 전문 제작자를 위한 선택입니다. DaVinci Resolve는 무료 버전에서도 마무리와 색상 측면에서 제가 선택한 제품입니다. 세 명의 에디터 모두 EDME(어린이 주얼리 브랜드)의 동일한 18초 스케이트파크 프로모션을 사용했습니다.",
+  "feed": "https://www.techjunkie.com/feed/"
+ },
+ {
   "source": "Financial-cents",
   "link": "https://financial-cents.com/resources/articles/cas-accounting/",
   "pubDate": "Thu, 26 Nov 2026 11:14:30 +0000",
@@ -1789,14 +1798,5 @@
   "title_ko": "이상한 살아있는 것들과 아이돌의 삶에 마음을 느낀다.",
   "summary_ko": "다카하시 해인씨의 첫 개인전, 「이상한 셀룰전」에 다녀 왔습니다! 우리 팬들은 셀롤이 어떻게 태어났는지 알고 있다.",
   "feed": "https://note.com/recommend/rss"
- },
- {
-  "source": "Naver",
-  "link": "https://blog.naver.com/dbs828/224468564270?fromRss=true&trackingCode=rss",
-  "pubDate": "Sat, 07 Nov 2026 21:00:50 +0900",
-  "title_orig": "앰플엔 다이소 입점! 피부 고민별 다이소앰플 4종으로 홈케어앰플 추천",
-  "title_ko": "앰플엔 다이소 입점! 피부 고민별 다이소앰플 4종으로 홈케어앰플 추천",
-  "summary_ko": "요즘은 피부 관리도 꼭 비싼 에스테틱에 방문하지 않아도 집에서 간편하게 즐길 수 있는 제품들이 많아졌는데요. 오늘은 앰플엔 4종의 특징과 함께 집에서 활용하기 좋은 피부 고민별 앰플케어 방법을 소개해 볼게요 1. 다이소에서 만나는 앰플엔 4종 앰플엔은 피부 고민에 맞춰 선택할 수 있도록 다양한 앰플을 선보이고 있는데.......",
-  "feed": "https://rss.blog.naver.com/dbs828.xml"
  }
 ]
